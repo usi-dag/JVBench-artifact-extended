@@ -1,0 +1,125 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsize=70000
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, single-shot each
+# Measurement: 3 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.axpy.AxpyPatternBenchmark.fma
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 29.817 s/op
+# Warmup Iteration   2: 27.585 s/op
+# Warmup Iteration   3: 27.255 s/op
+Iteration   1: 27.239 s/op
+Iteration   2: 26.879 s/op
+Iteration   3: 27.094 s/op
+
+
+Result "inf.usi.dag.axpy.AxpyPatternBenchmark.fma":
+  N = 3
+  mean =     27.071 ±(99.9%) 3.304 s/op
+
+  Histogram, s/op:
+    [26.800, 26.850) = 0 
+    [26.850, 26.900) = 1 
+    [26.900, 26.950) = 0 
+    [26.950, 27.000) = 0 
+    [27.000, 27.050) = 0 
+    [27.050, 27.100) = 1 
+    [27.100, 27.150) = 0 
+    [27.150, 27.200) = 0 
+    [27.200, 27.250) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =     26.879 s/op
+     p(50.0000) =     27.094 s/op
+     p(90.0000) =     27.239 s/op
+     p(95.0000) =     27.239 s/op
+     p(99.0000) =     27.239 s/op
+     p(99.9000) =     27.239 s/op
+     p(99.9900) =     27.239 s/op
+     p(99.9990) =     27.239 s/op
+     p(99.9999) =     27.239 s/op
+    p(100.0000) =     27.239 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsize=70000
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, single-shot each
+# Measurement: 3 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.axpy.AxpyPatternBenchmark.fmaScalar
+
+# Run progress: 50.00% complete, ETA 00:02:52
+# Fork: 1 of 1
+# Warmup Iteration   1: 26.767 s/op
+# Warmup Iteration   2: 24.035 s/op
+# Warmup Iteration   3: 24.736 s/op
+Iteration   1: 24.263 s/op
+Iteration   2: 24.276 s/op
+Iteration   3: 24.527 s/op
+
+
+Result "inf.usi.dag.axpy.AxpyPatternBenchmark.fmaScalar":
+  N = 3
+  mean =     24.355 ±(99.9%) 2.720 s/op
+
+  Histogram, s/op:
+    [24.200, 24.225) = 0 
+    [24.225, 24.250) = 0 
+    [24.250, 24.275) = 1 
+    [24.275, 24.300) = 1 
+    [24.300, 24.325) = 0 
+    [24.325, 24.350) = 0 
+    [24.350, 24.375) = 0 
+    [24.375, 24.400) = 0 
+    [24.400, 24.425) = 0 
+    [24.425, 24.450) = 0 
+    [24.450, 24.475) = 0 
+    [24.475, 24.500) = 0 
+    [24.500, 24.525) = 0 
+    [24.525, 24.550) = 1 
+    [24.550, 24.575) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =     24.263 s/op
+     p(50.0000) =     24.276 s/op
+     p(90.0000) =     24.527 s/op
+     p(95.0000) =     24.527 s/op
+     p(99.0000) =     24.527 s/op
+     p(99.9000) =     24.527 s/op
+     p(99.9900) =     24.527 s/op
+     p(99.9990) =     24.527 s/op
+     p(99.9999) =     24.527 s/op
+    p(100.0000) =     24.527 s/op
+
+
+# Run complete. Total time: 00:05:26
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                       Mode  Cnt   Score   Error  Units
+AxpyPatternBenchmark.fma          ss    3  27.071 ± 3.304   s/op
+AxpyPatternBenchmark.fmaScalar    ss    3  24.355 ± 2.720   s/op
+
+Benchmark result is saved to paper/jdk19/p620/pattern/performance/2022-08-24_09:43:40/axpy/AxpyPatternBenchmark.fma.csv

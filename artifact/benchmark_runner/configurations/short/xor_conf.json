@@ -1,0 +1,107 @@
+{
+    "axpy": {
+        "patterns": [
+            {"name": "fma", "execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "indexInRange","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "broadcastExternal","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}}
+        ],
+        "input": "-Dsize=70000",
+        "execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10},
+        "printCompilation": "jvbench.axpy.Axpy::*"
+    },
+    "blackscholes": {
+        "patterns": [
+            {"name": "pow","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "indexInRange","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "mergeWithoutBlend","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}}
+        ],
+        "input": "-Dinput=/blackscholes/input/in_512K.input",
+        "execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10},
+        "printCompilation": "jvbench.blackscholes.Blackscholes::*"
+    },
+    "canneal": {
+        "patterns": [
+            {"name": "minSizeCheck","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "indexInRange","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "noMinSizeCheck","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "reductionInternal","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "reductionExternal","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}}
+        ],
+        "input": "-DN_SWAPS=10000 -DTEMP=2000 -DNETLIST=canneal/input/2500000.nets -DN_STEPS=300",
+        "execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10},
+        "printCompilation": "jvbench.canneal.*"
+    },
+    "jacobi2d": {
+        "patterns": [
+            {"name": "indexInRange","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}}
+        ],
+        "input": "-Dsize=10000 -Dtsteps=14",
+        "execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10},
+        "printCompilation": "jvbench.jacobi2d.Jacobi2d::*"
+    },
+    "lavaMD": {
+        "patterns": [
+            {"name": "indexInRange","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "fma","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "reduction","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}}
+        ],
+        "input": "-Dinput=/lavaMD/input/lavaMD_127776.input",
+        "execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10},
+        "printCompilation": "jvbench.lavaMD.LavaMD::kernelCPU*"
+    },
+    "particlefilter": {
+        "patterns": [
+            {"name": "xorPublic","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "xorExtended","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "mergeWithBlend","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "updateMaskInsideLoop","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "loadMaskInsideLoop","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "indexInRange","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "noSecondMask","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "staticMask","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}}
+        ],
+        "input": "-Dx=128 -Dy=128 -Dz=24 -Dnp=32768",
+        "execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10},
+        "printCompilation": "jvbench.particlefilter.ParticleFilter::*"
+    },
+    "pathfinder": {
+        "patterns": [
+            {"name": "indexInRange","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "conditionInsideLoop","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}}
+        ],
+        "input": "-Dinput=/pathfinder/input/pathfinder_5000_5000.input",
+        "execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10},
+        "printCompilation": "jvbench.pathfinder.PathFinder::*"
+    },
+    "somier": {
+        "patterns": [
+            {"name": "indexInRange","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "fma","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "pow","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}}
+        ],
+        "input": "-Dsteps=10 -Dn=128",
+        "execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10},
+        "printCompilation": "jvbench.somier.*::*"
+    },
+    "streamcluster": {
+        "patterns": [
+            {"name": "indexInRange","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "reduction","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "pow","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}}
+        ],
+        "input": "-Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=streamcluster/input/streamcluster_128_128.input",
+        "execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10},
+        "printCompilation": "jvbench.streamcluster.StreamCluster::*"
+
+    },
+    "swaptions": {
+        "patterns": [
+            {"name": "indexInRange","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "conversion","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}},
+            {"name": "pow","execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10}}
+        ],
+        "input": "-Dms=64 -Dns=16384",
+        "execution": { "mode": "SingleShotTime", "fork": 1, "warmup_iterations":  10, "iterations": 10},
+        "printCompilation": "jvbench.swaptions.*::*"
+    }
+}            

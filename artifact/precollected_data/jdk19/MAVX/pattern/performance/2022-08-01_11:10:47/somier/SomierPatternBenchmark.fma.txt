@@ -1,0 +1,119 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsteps=10 -Dn=128
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, single-shot each
+# Measurement: 3 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.somier.SomierPatternBenchmark.fma
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 256.776 s/op
+# Warmup Iteration   2: 250.124 s/op
+# Warmup Iteration   3: 249.704 s/op
+Iteration   1: 249.560 s/op
+Iteration   2: 249.925 s/op
+Iteration   3: 249.856 s/op
+
+
+Result "inf.usi.dag.somier.SomierPatternBenchmark.fma":
+  N = 3
+  mean =    249.780 ±(99.9%) 3.541 s/op
+
+  Histogram, s/op:
+    [249.500, 249.550) = 0 
+    [249.550, 249.600) = 1 
+    [249.600, 249.650) = 0 
+    [249.650, 249.700) = 0 
+    [249.700, 249.750) = 0 
+    [249.750, 249.800) = 0 
+    [249.800, 249.850) = 0 
+    [249.850, 249.900) = 1 
+    [249.900, 249.950) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =    249.560 s/op
+     p(50.0000) =    249.856 s/op
+     p(90.0000) =    249.925 s/op
+     p(95.0000) =    249.925 s/op
+     p(99.0000) =    249.925 s/op
+     p(99.9000) =    249.925 s/op
+     p(99.9900) =    249.925 s/op
+     p(99.9990) =    249.925 s/op
+     p(99.9999) =    249.925 s/op
+    p(100.0000) =    249.925 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsteps=10 -Dn=128
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, single-shot each
+# Measurement: 3 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.somier.SomierPatternBenchmark.fmaScalar
+
+# Run progress: 50.00% complete, ETA 00:25:11
+# Fork: 1 of 1
+# Warmup Iteration   1: 250.898 s/op
+# Warmup Iteration   2: 242.855 s/op
+# Warmup Iteration   3: 242.673 s/op
+Iteration   1: 242.704 s/op
+Iteration   2: 242.355 s/op
+Iteration   3: 242.569 s/op
+
+
+Result "inf.usi.dag.somier.SomierPatternBenchmark.fmaScalar":
+  N = 3
+  mean =    242.543 ±(99.9%) 3.213 s/op
+
+  Histogram, s/op:
+    [242.300, 242.350) = 0 
+    [242.350, 242.400) = 1 
+    [242.400, 242.450) = 0 
+    [242.450, 242.500) = 0 
+    [242.500, 242.550) = 0 
+    [242.550, 242.600) = 1 
+    [242.600, 242.650) = 0 
+    [242.650, 242.700) = 0 
+    [242.700, 242.750) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =    242.355 s/op
+     p(50.0000) =    242.569 s/op
+     p(90.0000) =    242.704 s/op
+     p(95.0000) =    242.704 s/op
+     p(99.0000) =    242.704 s/op
+     p(99.9000) =    242.704 s/op
+     p(99.9900) =    242.704 s/op
+     p(99.9990) =    242.704 s/op
+     p(99.9999) =    242.704 s/op
+    p(100.0000) =    242.704 s/op
+
+
+# Run complete. Total time: 00:49:40
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                         Mode  Cnt    Score   Error  Units
+SomierPatternBenchmark.fma          ss    3  249.780 ± 3.541   s/op
+SomierPatternBenchmark.fmaScalar    ss    3  242.543 ± 3.213   s/op
+
+Benchmark result is saved to paper/jdk19/p620/pattern/performance/2022-08-01_11:10:47/somier/SomierPatternBenchmark.fma.csv

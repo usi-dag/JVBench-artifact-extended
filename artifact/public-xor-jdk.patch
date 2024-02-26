@@ -1,0 +1,35 @@
+diff --git a/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/VectorMask.java b/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/VectorMask.java
+index 14f0594121b..d5254137abb 100644
+--- a/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/VectorMask.java
++++ b/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/VectorMask.java
+@@ -397,6 +397,14 @@ public abstract class VectorMask<E> extends jdk.internal.vm.vector.VectorSupport
+      */
+     public abstract VectorMask<E> or(VectorMask<E> m);
+ 
++    /**
++     * Computes the logical xor
++     *
++     * @param m the input mask
++     * @return xor of two masks
++     */
++    public abstract VectorMask<E> xor(VectorMask<E> m);
++
+     /**
+      * Determines logical equivalence of this mask
+      * to a second input mask (as boolean {@code a==b}
+diff --git a/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/X-VectorBits.java.template b/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/X-VectorBits.java.template
+index 69ff064ec53..0f752a64718 100644
+--- a/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/X-VectorBits.java.template
++++ b/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/X-VectorBits.java.template
+@@ -969,7 +969,7 @@ final class $vectortype$ extends $abstractvectortype$ {
+ 
+         @ForceInline
+         /* package-private */
+-        $masktype$ xor(VectorMask<$Boxtype$> mask) {
++        public $masktype$ xor(VectorMask<$Boxtype$> mask) {
+             Objects.requireNonNull(mask);
+             $masktype$ m = ($masktype$)mask;
+             return VectorSupport.binaryOp(VECTOR_OP_XOR, $masktype$.class, null, $bitstype$.class, VLENGTH,
+diff --git a/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/gen-src.sh b/src/jdk.incubator.vector/share/classes/jdk/incubator/vector/gen-src.sh
+old mode 100644
+new mode 100755

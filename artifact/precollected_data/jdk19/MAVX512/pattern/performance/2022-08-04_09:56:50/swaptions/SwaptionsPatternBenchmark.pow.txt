@@ -1,0 +1,112 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dms=64 -Dns=16384
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.swaptions.SwaptionsPatternBenchmark.pow
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 5.099 s/op
+# Warmup Iteration   2: 3.764 s/op
+# Warmup Iteration   3: 3.693 s/op
+# Warmup Iteration   4: 3.819 s/op
+# Warmup Iteration   5: 3.795 s/op
+# Warmup Iteration   6: 3.707 s/op
+# Warmup Iteration   7: 3.860 s/op
+# Warmup Iteration   8: 3.726 s/op
+# Warmup Iteration   9: 3.723 s/op
+# Warmup Iteration  10: 3.720 s/op
+Iteration   1: 3.898 s/op
+Iteration   2: 3.722 s/op
+Iteration   3: 3.720 s/op
+Iteration   4: 3.721 s/op
+Iteration   5: 3.721 s/op
+Iteration   6: 3.723 s/op
+Iteration   7: 3.721 s/op
+Iteration   8: 3.721 s/op
+Iteration   9: 3.722 s/op
+Iteration  10: 3.723 s/op
+
+# Run progress: 50.00% complete, ETA 00:01:18
+# Fork: 2 of 2
+# Warmup Iteration   1: 5.117 s/op
+# Warmup Iteration   2: 3.759 s/op
+# Warmup Iteration   3: 3.689 s/op
+# Warmup Iteration   4: 3.892 s/op
+# Warmup Iteration   5: 3.703 s/op
+# Warmup Iteration   6: 3.704 s/op
+# Warmup Iteration   7: 3.847 s/op
+# Warmup Iteration   8: 3.721 s/op
+# Warmup Iteration   9: 3.720 s/op
+# Warmup Iteration  10: 3.720 s/op
+Iteration   1: 3.892 s/op
+Iteration   2: 3.726 s/op
+Iteration   3: 3.723 s/op
+Iteration   4: 3.722 s/op
+Iteration   5: 3.822 s/op
+Iteration   6: 3.724 s/op
+Iteration   7: 3.722 s/op
+Iteration   8: 3.724 s/op
+Iteration   9: 3.724 s/op
+Iteration  10: 3.724 s/op
+
+
+Result "inf.usi.dag.swaptions.SwaptionsPatternBenchmark.pow":
+  N = 20
+  mean =      3.745 ±(99.9%) 0.049 s/op
+
+  Histogram, s/op:
+    [3.700, 3.713) = 0 
+    [3.713, 3.725) = 16 
+    [3.725, 3.738) = 1 
+    [3.738, 3.750) = 0 
+    [3.750, 3.763) = 0 
+    [3.763, 3.775) = 0 
+    [3.775, 3.788) = 0 
+    [3.788, 3.800) = 0 
+    [3.800, 3.813) = 0 
+    [3.813, 3.825) = 1 
+    [3.825, 3.838) = 0 
+    [3.838, 3.850) = 0 
+    [3.850, 3.863) = 0 
+    [3.863, 3.875) = 0 
+    [3.875, 3.888) = 0 
+    [3.888, 3.900) = 2 
+
+  Percentiles, s/op:
+      p(0.0000) =      3.720 s/op
+     p(50.0000) =      3.723 s/op
+     p(90.0000) =      3.885 s/op
+     p(95.0000) =      3.897 s/op
+     p(99.0000) =      3.898 s/op
+     p(99.9000) =      3.898 s/op
+     p(99.9900) =      3.898 s/op
+     p(99.9990) =      3.898 s/op
+     p(99.9999) =      3.898 s/op
+    p(100.0000) =      3.898 s/op
+
+
+# Run complete. Total time: 00:02:36
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                      Mode  Cnt  Score   Error  Units
+SwaptionsPatternBenchmark.pow    ss   20  3.745 ± 0.049   s/op
+
+Benchmark result is saved to paper/jdk19/tower/pattern/performance/2022-08-04_09:56:50/swaptions/SwaptionsPatternBenchmark.pow.csv

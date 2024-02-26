@@ -1,0 +1,115 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dms=64 -Dns=16384
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.swaptions.SwaptionsPatternBenchmark.pow
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 24.877 s/op
+# Warmup Iteration   2: 22.050 s/op
+# Warmup Iteration   3: 20.867 s/op
+# Warmup Iteration   4: 21.170 s/op
+# Warmup Iteration   5: 20.883 s/op
+# Warmup Iteration   6: 21.112 s/op
+# Warmup Iteration   7: 20.730 s/op
+# Warmup Iteration   8: 21.073 s/op
+# Warmup Iteration   9: 20.941 s/op
+# Warmup Iteration  10: 20.808 s/op
+# Warmup Iteration  11: 20.736 s/op
+# Warmup Iteration  12: 20.538 s/op
+# Warmup Iteration  13: 20.444 s/op
+# Warmup Iteration  14: 20.662 s/op
+# Warmup Iteration  15: 20.379 s/op
+# Warmup Iteration  16: 20.579 s/op
+# Warmup Iteration  17: 20.322 s/op
+# Warmup Iteration  18: 20.625 s/op
+# Warmup Iteration  19: 20.557 s/op
+# Warmup Iteration  20: 20.417 s/op
+# Warmup Iteration  21: 20.452 s/op
+# Warmup Iteration  22: 20.461 s/op
+# Warmup Iteration  23: 20.353 s/op
+# Warmup Iteration  24: 20.419 s/op
+# Warmup Iteration  25: 20.195 s/op
+# Warmup Iteration  26: 20.418 s/op
+# Warmup Iteration  27: 20.225 s/op
+# Warmup Iteration  28: 20.376 s/op
+# Warmup Iteration  29: 20.312 s/op
+# Warmup Iteration  30: 20.198 s/op
+# Warmup Iteration  31: 20.512 s/op
+# Warmup Iteration  32: 20.175 s/op
+# Warmup Iteration  33: 20.170 s/op
+# Warmup Iteration  34: 20.379 s/op
+# Warmup Iteration  35: 20.217 s/op
+# Warmup Iteration  36: 20.408 s/op
+# Warmup Iteration  37: 20.485 s/op
+# Warmup Iteration  38: 20.448 s/op
+# Warmup Iteration  39: 20.394 s/op
+# Warmup Iteration  40: 20.368 s/op
+Iteration   1: 20.318 s/op
+Iteration   2: 20.266 s/op
+Iteration   3: 20.172 s/op
+Iteration   4: 20.209 s/op
+Iteration   5: 20.309 s/op
+Iteration   6: 20.106 s/op
+Iteration   7: 20.377 s/op
+Iteration   8: 20.215 s/op
+Iteration   9: 20.271 s/op
+Iteration  10: 20.246 s/op
+
+
+Result "inf.usi.dag.swaptions.SwaptionsPatternBenchmark.pow":
+  N = 10
+  mean =     20.249 ±(99.9%) 0.118 s/op
+
+  Histogram, s/op:
+    [20.100, 20.125) = 1 
+    [20.125, 20.150) = 0 
+    [20.150, 20.175) = 1 
+    [20.175, 20.200) = 0 
+    [20.200, 20.225) = 2 
+    [20.225, 20.250) = 1 
+    [20.250, 20.275) = 2 
+    [20.275, 20.300) = 0 
+    [20.300, 20.325) = 2 
+    [20.325, 20.350) = 0 
+    [20.350, 20.375) = 0 
+    [20.375, 20.400) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =     20.106 s/op
+     p(50.0000) =     20.256 s/op
+     p(90.0000) =     20.372 s/op
+     p(95.0000) =     20.377 s/op
+     p(99.0000) =     20.377 s/op
+     p(99.9000) =     20.377 s/op
+     p(99.9900) =     20.377 s/op
+     p(99.9990) =     20.377 s/op
+     p(99.9999) =     20.377 s/op
+    p(100.0000) =     20.377 s/op
+
+
+# Run complete. Total time: 00:17:16
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                      Mode  Cnt   Score   Error  Units
+SwaptionsPatternBenchmark.pow    ss   10  20.249 ± 0.118   s/op
+
+Benchmark result is saved to paper/jdk19/p620/pattern/performance/2022-08-01_11:10:47/swaptions/SwaptionsPatternBenchmark.pow.csv

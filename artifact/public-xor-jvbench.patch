@@ -1,0 +1,46 @@
+diff --git a/src/main/java/jvbench/particlefilter/ParticlefilterPatternBenchmark.java b/src/main/java/jvbench/particlefilter/ParticlefilterPatternBenchmark.java
+index cadfdf20..bd764471 100755
+--- a/src/main/java/jvbench/particlefilter/ParticlefilterPatternBenchmark.java
++++ b/src/main/java/jvbench/particlefilter/ParticlefilterPatternBenchmark.java
+@@ -277,6 +277,25 @@ public class ParticlefilterPatternBenchmark {
+         );
+     }
+ 
++    @Benchmark
++    @OutputTimeUnit(TimeUnit.SECONDS)
++    @BenchmarkMode(Mode.SingleShotTime)
++    @Fork(value = 5)
++    @Warmup(iterations = 10)
++    @Measurement(iterations = 10)
++    public void xorPublic(XorState state) { // xor public
++        jvbench.particlefilterXorPublic.ParticleFilter.particleFilterVector(
++                state.I,
++                state.IszX,
++                state.IszY,
++                state.Nfr,
++                state.seed,
++                state.randuVectorResult,
++                state.randuVectorNum,
++                state.Nparticles
++        );
++    }
++
+     @Benchmark
+     @OutputTimeUnit(TimeUnit.SECONDS)
+     @BenchmarkMode(Mode.SingleShotTime)
+diff --git a/src/test/java/jvbench/particlefilterXor/ParticleFilterTest.java b/src/test/java/jvbench/particlefilterXor/ParticleFilterTest.java
+index dbf9044a..38633b7c 100755
+--- a/src/test/java/jvbench/particlefilterXor/ParticleFilterTest.java
++++ b/src/test/java/jvbench/particlefilterXor/ParticleFilterTest.java
+@@ -1,9 +1,9 @@
+ package jvbench.particlefilterXor;
+ 
++import static org.junit.jupiter.api.Assertions.assertEquals;
+ import org.junit.jupiter.api.Test;
+-import static jvbench.particlefilterXor.ParticleFilter.DOUBLE_SPECIES_LENGTH;
+ 
+-import static org.junit.jupiter.api.Assertions.*;
++import static jvbench.particlefilterXor.ParticleFilter.DOUBLE_SPECIES_LENGTH;
+ 
+ class ParticleFilterTest {
+ 

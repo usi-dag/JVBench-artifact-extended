@@ -1,0 +1,112 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dx=128 -Dy=128 -Dz=24 -Dnp=32768
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.particlefilter.ParticlefilterPatternBenchmark.noSecondMask
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 5.920 s/op
+# Warmup Iteration   2: 5.215 s/op
+# Warmup Iteration   3: 2.661 s/op
+# Warmup Iteration   4: 2.918 s/op
+# Warmup Iteration   5: 2.064 s/op
+# Warmup Iteration   6: 2.071 s/op
+# Warmup Iteration   7: 2.066 s/op
+# Warmup Iteration   8: 2.068 s/op
+# Warmup Iteration   9: 2.065 s/op
+# Warmup Iteration  10: 2.068 s/op
+Iteration   1: 2.068 s/op
+Iteration   2: 2.072 s/op
+Iteration   3: 2.066 s/op
+Iteration   4: 2.064 s/op
+Iteration   5: 2.063 s/op
+Iteration   6: 2.067 s/op
+Iteration   7: 2.069 s/op
+Iteration   8: 2.065 s/op
+Iteration   9: 2.068 s/op
+Iteration  10: 2.067 s/op
+
+# Run progress: 50.00% complete, ETA 00:00:52
+# Fork: 2 of 2
+# Warmup Iteration   1: 5.938 s/op
+# Warmup Iteration   2: 3.315 s/op
+# Warmup Iteration   3: 2.974 s/op
+# Warmup Iteration   4: 3.238 s/op
+# Warmup Iteration   5: 2.048 s/op
+# Warmup Iteration   6: 2.048 s/op
+# Warmup Iteration   7: 2.043 s/op
+# Warmup Iteration   8: 2.049 s/op
+# Warmup Iteration   9: 2.045 s/op
+# Warmup Iteration  10: 2.047 s/op
+Iteration   1: 2.048 s/op
+Iteration   2: 2.046 s/op
+Iteration   3: 2.043 s/op
+Iteration   4: 2.046 s/op
+Iteration   5: 2.045 s/op
+Iteration   6: 2.043 s/op
+Iteration   7: 2.048 s/op
+Iteration   8: 2.044 s/op
+Iteration   9: 2.047 s/op
+Iteration  10: 2.047 s/op
+
+
+Result "inf.usi.dag.particlefilter.ParticlefilterPatternBenchmark.noSecondMask":
+  N = 20
+  mean =      2.056 ±(99.9%) 0.010 s/op
+
+  Histogram, s/op:
+    [2.040, 2.043) = 0 
+    [2.043, 2.045) = 3 
+    [2.045, 2.048) = 5 
+    [2.048, 2.050) = 2 
+    [2.050, 2.053) = 0 
+    [2.053, 2.055) = 0 
+    [2.055, 2.058) = 0 
+    [2.058, 2.060) = 0 
+    [2.060, 2.063) = 0 
+    [2.063, 2.065) = 3 
+    [2.065, 2.068) = 3 
+    [2.068, 2.070) = 3 
+    [2.070, 2.073) = 1 
+    [2.073, 2.075) = 0 
+    [2.075, 2.078) = 0 
+    [2.078, 2.080) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      2.043 s/op
+     p(50.0000) =      2.056 s/op
+     p(90.0000) =      2.069 s/op
+     p(95.0000) =      2.072 s/op
+     p(99.0000) =      2.072 s/op
+     p(99.9000) =      2.072 s/op
+     p(99.9900) =      2.072 s/op
+     p(99.9990) =      2.072 s/op
+     p(99.9999) =      2.072 s/op
+    p(100.0000) =      2.072 s/op
+
+
+# Run complete. Total time: 00:01:42
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                    Mode  Cnt  Score   Error  Units
+ParticlefilterPatternBenchmark.noSecondMask    ss   20  2.056 ± 0.010   s/op
+
+Benchmark result is saved to paper/jdk19/tower/pattern/performance/2022-08-27_13:39:12/particlefilter/ParticlefilterPatternBenchmark.noSecondMask.csv

@@ -1,0 +1,423 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsize=10000 -Dtsteps=14
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.jacobi2d.Jacobi2dBenchmark.autoVec
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 7.799 s/op
+# Warmup Iteration   2: 7.326 s/op
+# Warmup Iteration   3: 7.253 s/op
+# Warmup Iteration   4: 7.463 s/op
+# Warmup Iteration   5: 7.380 s/op
+# Warmup Iteration   6: 7.307 s/op
+# Warmup Iteration   7: 7.485 s/op
+# Warmup Iteration   8: 7.514 s/op
+# Warmup Iteration   9: 7.323 s/op
+# Warmup Iteration  10: 7.291 s/op
+# Warmup Iteration  11: 5.521 s/op
+# Warmup Iteration  12: 5.628 s/op
+# Warmup Iteration  13: 5.698 s/op
+# Warmup Iteration  14: 5.496 s/op
+# Warmup Iteration  15: 5.493 s/op
+# Warmup Iteration  16: 5.480 s/op
+# Warmup Iteration  17: 5.492 s/op
+# Warmup Iteration  18: 5.582 s/op
+# Warmup Iteration  19: 5.629 s/op
+# Warmup Iteration  20: 5.562 s/op
+# Warmup Iteration  21: 5.558 s/op
+# Warmup Iteration  22: 5.479 s/op
+# Warmup Iteration  23: 5.495 s/op
+# Warmup Iteration  24: 5.478 s/op
+# Warmup Iteration  25: 5.493 s/op
+# Warmup Iteration  26: 5.583 s/op
+# Warmup Iteration  27: 5.553 s/op
+# Warmup Iteration  28: 5.628 s/op
+# Warmup Iteration  29: 5.550 s/op
+# Warmup Iteration  30: 5.497 s/op
+# Warmup Iteration  31: 5.479 s/op
+# Warmup Iteration  32: 5.497 s/op
+# Warmup Iteration  33: 5.478 s/op
+# Warmup Iteration  34: 5.479 s/op
+# Warmup Iteration  35: 5.521 s/op
+# Warmup Iteration  36: 5.556 s/op
+# Warmup Iteration  37: 5.554 s/op
+# Warmup Iteration  38: 5.628 s/op
+# Warmup Iteration  39: 5.551 s/op
+# Warmup Iteration  40: 5.494 s/op
+Iteration   1: 5.479 s/op
+Iteration   2: 5.494 s/op
+Iteration   3: 5.480 s/op
+Iteration   4: 5.478 s/op
+Iteration   5: 5.478 s/op
+Iteration   6: 5.493 s/op
+Iteration   7: 5.506 s/op
+Iteration   8: 5.556 s/op
+Iteration   9: 5.554 s/op
+Iteration  10: 5.552 s/op
+
+
+Result "inf.usi.dag.jacobi2d.Jacobi2dBenchmark.autoVec":
+  N = 10
+  mean =      5.507 ±(99.9%) 0.051 s/op
+
+  Histogram, s/op:
+    [5.470, 5.475) = 0 
+    [5.475, 5.480) = 3 
+    [5.480, 5.485) = 1 
+    [5.485, 5.490) = 0 
+    [5.490, 5.495) = 2 
+    [5.495, 5.500) = 0 
+    [5.500, 5.505) = 0 
+    [5.505, 5.510) = 1 
+    [5.510, 5.515) = 0 
+    [5.515, 5.520) = 0 
+    [5.520, 5.525) = 0 
+    [5.525, 5.530) = 0 
+    [5.530, 5.535) = 0 
+    [5.535, 5.540) = 0 
+    [5.540, 5.545) = 0 
+    [5.545, 5.550) = 0 
+    [5.550, 5.555) = 2 
+    [5.555, 5.560) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      5.478 s/op
+     p(50.0000) =      5.493 s/op
+     p(90.0000) =      5.556 s/op
+     p(95.0000) =      5.556 s/op
+     p(99.0000) =      5.556 s/op
+     p(99.9000) =      5.556 s/op
+     p(99.9900) =      5.556 s/op
+     p(99.9990) =      5.556 s/op
+     p(99.9999) =      5.556 s/op
+    p(100.0000) =      5.556 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsize=10000 -Dtsteps=14 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.jacobi2d.Jacobi2dBenchmark.explicitVec
+
+# Run progress: 25.00% complete, ETA 00:15:01
+# Fork: 1 of 1
+# Warmup Iteration   1: 6.185 s/op
+# Warmup Iteration   2: 5.330 s/op
+# Warmup Iteration   3: 5.230 s/op
+# Warmup Iteration   4: 5.271 s/op
+# Warmup Iteration   5: 5.459 s/op
+# Warmup Iteration   6: 5.392 s/op
+# Warmup Iteration   7: 5.244 s/op
+# Warmup Iteration   8: 5.226 s/op
+# Warmup Iteration   9: 5.350 s/op
+# Warmup Iteration  10: 5.377 s/op
+# Warmup Iteration  11: 5.391 s/op
+# Warmup Iteration  12: 5.232 s/op
+# Warmup Iteration  13: 5.240 s/op
+# Warmup Iteration  14: 5.242 s/op
+# Warmup Iteration  15: 5.333 s/op
+# Warmup Iteration  16: 5.377 s/op
+# Warmup Iteration  17: 5.378 s/op
+# Warmup Iteration  18: 5.245 s/op
+# Warmup Iteration  19: 5.244 s/op
+# Warmup Iteration  20: 5.227 s/op
+# Warmup Iteration  21: 5.242 s/op
+# Warmup Iteration  22: 5.332 s/op
+# Warmup Iteration  23: 5.378 s/op
+# Warmup Iteration  24: 5.301 s/op
+# Warmup Iteration  25: 5.318 s/op
+# Warmup Iteration  26: 5.228 s/op
+# Warmup Iteration  27: 5.243 s/op
+# Warmup Iteration  28: 5.226 s/op
+# Warmup Iteration  29: 5.226 s/op
+# Warmup Iteration  30: 5.272 s/op
+# Warmup Iteration  31: 5.381 s/op
+# Warmup Iteration  32: 5.302 s/op
+# Warmup Iteration  33: 5.375 s/op
+# Warmup Iteration  34: 5.242 s/op
+# Warmup Iteration  35: 5.228 s/op
+# Warmup Iteration  36: 5.242 s/op
+# Warmup Iteration  37: 5.228 s/op
+# Warmup Iteration  38: 5.226 s/op
+# Warmup Iteration  39: 5.243 s/op
+# Warmup Iteration  40: 5.255 s/op
+Iteration   1: 5.304 s/op
+Iteration   2: 5.302 s/op
+Iteration   3: 5.377 s/op
+Iteration   4: 5.299 s/op
+Iteration   5: 5.242 s/op
+Iteration   6: 5.227 s/op
+Iteration   7: 5.242 s/op
+Iteration   8: 5.227 s/op
+Iteration   9: 5.226 s/op
+Iteration  10: 5.226 s/op
+
+
+Result "inf.usi.dag.jacobi2d.Jacobi2dBenchmark.explicitVec":
+  N = 10
+  mean =      5.267 ±(99.9%) 0.077 s/op
+
+  Histogram, s/op:
+    [5.200, 5.213) = 0 
+    [5.213, 5.225) = 0 
+    [5.225, 5.238) = 4 
+    [5.238, 5.250) = 2 
+    [5.250, 5.263) = 0 
+    [5.263, 5.275) = 0 
+    [5.275, 5.288) = 0 
+    [5.288, 5.300) = 1 
+    [5.300, 5.313) = 2 
+    [5.313, 5.325) = 0 
+    [5.325, 5.338) = 0 
+    [5.338, 5.350) = 0 
+    [5.350, 5.363) = 0 
+    [5.363, 5.375) = 0 
+    [5.375, 5.388) = 1 
+    [5.388, 5.400) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      5.226 s/op
+     p(50.0000) =      5.242 s/op
+     p(90.0000) =      5.369 s/op
+     p(95.0000) =      5.377 s/op
+     p(99.0000) =      5.377 s/op
+     p(99.9000) =      5.377 s/op
+     p(99.9900) =      5.377 s/op
+     p(99.9990) =      5.377 s/op
+     p(99.9999) =      5.377 s/op
+    p(100.0000) =      5.377 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsize=10000 -Dtsteps=14
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.jacobi2d.Jacobi2dBenchmark.fullVec
+
+# Run progress: 50.00% complete, ETA 00:09:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 6.008 s/op
+# Warmup Iteration   2: 5.431 s/op
+# Warmup Iteration   3: 5.209 s/op
+# Warmup Iteration   4: 5.190 s/op
+# Warmup Iteration   5: 5.387 s/op
+# Warmup Iteration   6: 5.414 s/op
+# Warmup Iteration   7: 5.208 s/op
+# Warmup Iteration   8: 5.207 s/op
+# Warmup Iteration   9: 5.206 s/op
+# Warmup Iteration  10: 5.371 s/op
+# Warmup Iteration  11: 5.340 s/op
+# Warmup Iteration  12: 5.284 s/op
+# Warmup Iteration  13: 5.208 s/op
+# Warmup Iteration  14: 5.190 s/op
+# Warmup Iteration  15: 5.234 s/op
+# Warmup Iteration  16: 5.343 s/op
+# Warmup Iteration  17: 5.340 s/op
+# Warmup Iteration  18: 5.280 s/op
+# Warmup Iteration  19: 5.192 s/op
+# Warmup Iteration  20: 5.207 s/op
+# Warmup Iteration  21: 5.190 s/op
+# Warmup Iteration  22: 5.234 s/op
+# Warmup Iteration  23: 5.268 s/op
+# Warmup Iteration  24: 5.339 s/op
+# Warmup Iteration  25: 5.339 s/op
+# Warmup Iteration  26: 5.209 s/op
+# Warmup Iteration  27: 5.205 s/op
+# Warmup Iteration  28: 5.192 s/op
+# Warmup Iteration  29: 5.191 s/op
+# Warmup Iteration  30: 5.207 s/op
+# Warmup Iteration  31: 5.223 s/op
+# Warmup Iteration  32: 5.338 s/op
+# Warmup Iteration  33: 5.268 s/op
+# Warmup Iteration  34: 5.336 s/op
+# Warmup Iteration  35: 5.209 s/op
+# Warmup Iteration  36: 5.190 s/op
+# Warmup Iteration  37: 5.206 s/op
+# Warmup Iteration  38: 5.191 s/op
+# Warmup Iteration  39: 5.190 s/op
+# Warmup Iteration  40: 5.206 s/op
+Iteration   1: 5.219 s/op
+Iteration   2: 5.267 s/op
+Iteration   3: 5.339 s/op
+Iteration   4: 5.265 s/op
+Iteration   5: 5.263 s/op
+Iteration   6: 5.206 s/op
+Iteration   7: 5.192 s/op
+Iteration   8: 5.205 s/op
+Iteration   9: 5.193 s/op
+Iteration  10: 5.190 s/op
+
+
+Result "inf.usi.dag.jacobi2d.Jacobi2dBenchmark.fullVec":
+  N = 10
+  mean =      5.234 ±(99.9%) 0.073 s/op
+
+  Histogram, s/op:
+    [5.100, 5.125) = 0 
+    [5.125, 5.150) = 0 
+    [5.150, 5.175) = 0 
+    [5.175, 5.200) = 3 
+    [5.200, 5.225) = 3 
+    [5.225, 5.250) = 0 
+    [5.250, 5.275) = 3 
+    [5.275, 5.300) = 0 
+    [5.300, 5.325) = 0 
+    [5.325, 5.350) = 1 
+    [5.350, 5.375) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      5.190 s/op
+     p(50.0000) =      5.213 s/op
+     p(90.0000) =      5.332 s/op
+     p(95.0000) =      5.339 s/op
+     p(99.0000) =      5.339 s/op
+     p(99.9000) =      5.339 s/op
+     p(99.9900) =      5.339 s/op
+     p(99.9990) =      5.339 s/op
+     p(99.9999) =      5.339 s/op
+    p(100.0000) =      5.339 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsize=10000 -Dtsteps=14 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.jacobi2d.Jacobi2dBenchmark.serial
+
+# Run progress: 75.00% complete, ETA 00:04:39
+# Fork: 1 of 1
+# Warmup Iteration   1: 7.828 s/op
+# Warmup Iteration   2: 7.326 s/op
+# Warmup Iteration   3: 7.327 s/op
+# Warmup Iteration   4: 7.509 s/op
+# Warmup Iteration   5: 7.338 s/op
+# Warmup Iteration   6: 7.322 s/op
+# Warmup Iteration   7: 7.488 s/op
+# Warmup Iteration   8: 7.550 s/op
+# Warmup Iteration   9: 7.326 s/op
+# Warmup Iteration  10: 7.308 s/op
+# Warmup Iteration  11: 5.678 s/op
+# Warmup Iteration  12: 5.707 s/op
+# Warmup Iteration  13: 5.708 s/op
+# Warmup Iteration  14: 5.577 s/op
+# Warmup Iteration  15: 5.575 s/op
+# Warmup Iteration  16: 5.559 s/op
+# Warmup Iteration  17: 5.601 s/op
+# Warmup Iteration  18: 5.636 s/op
+# Warmup Iteration  19: 5.707 s/op
+# Warmup Iteration  20: 5.706 s/op
+# Warmup Iteration  21: 5.576 s/op
+# Warmup Iteration  22: 5.573 s/op
+# Warmup Iteration  23: 5.561 s/op
+# Warmup Iteration  24: 5.559 s/op
+# Warmup Iteration  25: 5.601 s/op
+# Warmup Iteration  26: 5.635 s/op
+# Warmup Iteration  27: 5.708 s/op
+# Warmup Iteration  28: 5.707 s/op
+# Warmup Iteration  29: 5.575 s/op
+# Warmup Iteration  30: 5.559 s/op
+# Warmup Iteration  31: 5.573 s/op
+# Warmup Iteration  32: 5.560 s/op
+# Warmup Iteration  33: 5.558 s/op
+# Warmup Iteration  34: 5.574 s/op
+# Warmup Iteration  35: 5.587 s/op
+# Warmup Iteration  36: 5.712 s/op
+# Warmup Iteration  37: 5.634 s/op
+# Warmup Iteration  38: 5.634 s/op
+# Warmup Iteration  39: 5.649 s/op
+# Warmup Iteration  40: 5.560 s/op
+Iteration   1: 5.558 s/op
+Iteration   2: 5.576 s/op
+Iteration   3: 5.559 s/op
+Iteration   4: 5.558 s/op
+Iteration   5: 5.573 s/op
+Iteration   6: 5.587 s/op
+Iteration   7: 5.637 s/op
+Iteration   8: 5.633 s/op
+Iteration   9: 5.636 s/op
+Iteration  10: 5.633 s/op
+
+
+Result "inf.usi.dag.jacobi2d.Jacobi2dBenchmark.serial":
+  N = 10
+  mean =      5.595 ±(99.9%) 0.053 s/op
+
+  Histogram, s/op:
+    [5.550, 5.555) = 0 
+    [5.555, 5.560) = 3 
+    [5.560, 5.565) = 0 
+    [5.565, 5.570) = 0 
+    [5.570, 5.575) = 1 
+    [5.575, 5.580) = 1 
+    [5.580, 5.585) = 0 
+    [5.585, 5.590) = 1 
+    [5.590, 5.595) = 0 
+    [5.595, 5.600) = 0 
+    [5.600, 5.605) = 0 
+    [5.605, 5.610) = 0 
+    [5.610, 5.615) = 0 
+    [5.615, 5.620) = 0 
+    [5.620, 5.625) = 0 
+    [5.625, 5.630) = 0 
+    [5.630, 5.635) = 2 
+
+  Percentiles, s/op:
+      p(0.0000) =      5.558 s/op
+     p(50.0000) =      5.581 s/op
+     p(90.0000) =      5.637 s/op
+     p(95.0000) =      5.637 s/op
+     p(99.0000) =      5.637 s/op
+     p(99.9000) =      5.637 s/op
+     p(99.9900) =      5.637 s/op
+     p(99.9990) =      5.637 s/op
+     p(99.9999) =      5.637 s/op
+    p(100.0000) =      5.637 s/op
+
+
+# Run complete. Total time: 00:19:03
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                      Mode  Cnt  Score   Error  Units
+Jacobi2dBenchmark.autoVec        ss   10  5.507 ± 0.051   s/op
+Jacobi2dBenchmark.explicitVec    ss   10  5.267 ± 0.077   s/op
+Jacobi2dBenchmark.fullVec        ss   10  5.234 ± 0.073   s/op
+Jacobi2dBenchmark.serial         ss   10  5.595 ± 0.053   s/op
+
+Benchmark result is saved to paper/jdk19/p620/benchmark/performance/2022-08-02_02:50:05/jacobi2d/Jacobi2dBenchmark.csv

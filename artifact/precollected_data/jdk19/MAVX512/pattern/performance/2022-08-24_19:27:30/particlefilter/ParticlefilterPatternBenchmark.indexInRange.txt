@@ -1,0 +1,113 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dx=128 -Dy=128 -Dz=24 -Dnp=32768
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.particlefilter.ParticlefilterPatternBenchmark.indexInRange
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 8.947 s/op
+# Warmup Iteration   2: 7.524 s/op
+# Warmup Iteration   3: 3.247 s/op
+# Warmup Iteration   4: 3.250 s/op
+# Warmup Iteration   5: 3.484 s/op
+# Warmup Iteration   6: 3.486 s/op
+# Warmup Iteration   7: 3.486 s/op
+# Warmup Iteration   8: 3.485 s/op
+# Warmup Iteration   9: 3.479 s/op
+# Warmup Iteration  10: 3.485 s/op
+Iteration   1: 3.483 s/op
+Iteration   2: 3.482 s/op
+Iteration   3: 3.483 s/op
+Iteration   4: 3.487 s/op
+Iteration   5: 3.483 s/op
+Iteration   6: 3.484 s/op
+Iteration   7: 3.485 s/op
+Iteration   8: 3.484 s/op
+Iteration   9: 3.548 s/op
+Iteration  10: 3.475 s/op
+
+# Run progress: 50.00% complete, ETA 00:01:20
+# Fork: 2 of 2
+# Warmup Iteration   1: 8.916 s/op
+# Warmup Iteration   2: 7.509 s/op
+# Warmup Iteration   3: 3.248 s/op
+# Warmup Iteration   4: 3.251 s/op
+# Warmup Iteration   5: 3.487 s/op
+# Warmup Iteration   6: 3.483 s/op
+# Warmup Iteration   7: 3.484 s/op
+# Warmup Iteration   8: 3.487 s/op
+# Warmup Iteration   9: 3.486 s/op
+# Warmup Iteration  10: 3.486 s/op
+Iteration   1: 3.487 s/op
+Iteration   2: 3.488 s/op
+Iteration   3: 3.487 s/op
+Iteration   4: 3.486 s/op
+Iteration   5: 3.485 s/op
+Iteration   6: 3.483 s/op
+Iteration   7: 3.485 s/op
+Iteration   8: 3.488 s/op
+Iteration   9: 3.551 s/op
+Iteration  10: 3.476 s/op
+
+
+Result "inf.usi.dag.particlefilter.ParticlefilterPatternBenchmark.indexInRange":
+  N = 20
+  mean =      3.491 ±(99.9%) 0.018 s/op
+
+  Histogram, s/op:
+    [3.470, 3.475) = 1 
+    [3.475, 3.480) = 1 
+    [3.480, 3.485) = 7 
+    [3.485, 3.490) = 9 
+    [3.490, 3.495) = 0 
+    [3.495, 3.500) = 0 
+    [3.500, 3.505) = 0 
+    [3.505, 3.510) = 0 
+    [3.510, 3.515) = 0 
+    [3.515, 3.520) = 0 
+    [3.520, 3.525) = 0 
+    [3.525, 3.530) = 0 
+    [3.530, 3.535) = 0 
+    [3.535, 3.540) = 0 
+    [3.540, 3.545) = 0 
+    [3.545, 3.550) = 1 
+    [3.550, 3.555) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      3.475 s/op
+     p(50.0000) =      3.485 s/op
+     p(90.0000) =      3.542 s/op
+     p(95.0000) =      3.551 s/op
+     p(99.0000) =      3.551 s/op
+     p(99.9000) =      3.551 s/op
+     p(99.9900) =      3.551 s/op
+     p(99.9990) =      3.551 s/op
+     p(99.9999) =      3.551 s/op
+    p(100.0000) =      3.551 s/op
+
+
+# Run complete. Total time: 00:02:40
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                    Mode  Cnt  Score   Error  Units
+ParticlefilterPatternBenchmark.indexInRange    ss   20  3.491 ± 0.018   s/op
+
+Benchmark result is saved to paper/jdk19/tower/pattern/performance/2022-08-24_19:27:30/particlefilter/ParticlefilterPatternBenchmark.indexInRange.csv

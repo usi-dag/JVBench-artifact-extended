@@ -1,0 +1,110 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.matteo.jdk19u
+# VM invoker: /home/matteo/dev/jdk-sources/jva/jdk19u/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dms=64 -Dns=16384
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.swaptions.SwaptionsPatternBenchmark.indexInRange
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 1.889 s/op
+# Warmup Iteration   2: 1.514 s/op
+# Warmup Iteration   3: 1.515 s/op
+# Warmup Iteration   4: 1.518 s/op
+# Warmup Iteration   5: 1.525 s/op
+# Warmup Iteration   6: 1.521 s/op
+# Warmup Iteration   7: 1.516 s/op
+# Warmup Iteration   8: 1.500 s/op
+# Warmup Iteration   9: 1.498 s/op
+# Warmup Iteration  10: 1.503 s/op
+Iteration   1: 1.523 s/op
+Iteration   2: 1.532 s/op
+Iteration   3: 1.560 s/op
+Iteration   4: 1.561 s/op
+Iteration   5: 1.558 s/op
+Iteration   6: 1.563 s/op
+Iteration   7: 1.564 s/op
+Iteration   8: 1.549 s/op
+Iteration   9: 1.540 s/op
+Iteration  10: 1.530 s/op
+
+# Run progress: 50.00% complete, ETA 00:00:31
+# Fork: 2 of 2
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 1.874 s/op
+# Warmup Iteration   2: 1.544 s/op
+# Warmup Iteration   3: 1.542 s/op
+# Warmup Iteration   4: 1.544 s/op
+# Warmup Iteration   5: 1.539 s/op
+# Warmup Iteration   6: 1.542 s/op
+# Warmup Iteration   7: 1.528 s/op
+# Warmup Iteration   8: 1.523 s/op
+# Warmup Iteration   9: 1.520 s/op
+# Warmup Iteration  10: 1.528 s/op
+Iteration   1: 1.531 s/op
+Iteration   2: 1.515 s/op
+Iteration   3: 1.518 s/op
+Iteration   4: 1.519 s/op
+Iteration   5: 1.516 s/op
+Iteration   6: 1.521 s/op
+Iteration   7: 1.510 s/op
+Iteration   8: 1.519 s/op
+Iteration   9: 1.520 s/op
+Iteration  10: 1.528 s/op
+
+
+Result "inf.usi.dag.swaptions.SwaptionsPatternBenchmark.indexInRange":
+  N = 20
+  mean =      1.534 ±(99.9%) 0.016 s/op
+
+  Histogram, s/op:
+    [1.510, 1.515) = 1 
+    [1.515, 1.520) = 5 
+    [1.520, 1.525) = 3 
+    [1.525, 1.530) = 2 
+    [1.530, 1.535) = 2 
+    [1.535, 1.540) = 0 
+    [1.540, 1.545) = 1 
+    [1.545, 1.550) = 1 
+    [1.550, 1.555) = 0 
+    [1.555, 1.560) = 2 
+    [1.560, 1.565) = 3 
+    [1.565, 1.570) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      1.510 s/op
+     p(50.0000) =      1.529 s/op
+     p(90.0000) =      1.562 s/op
+     p(95.0000) =      1.564 s/op
+     p(99.0000) =      1.564 s/op
+     p(99.9000) =      1.564 s/op
+     p(99.9900) =      1.564 s/op
+     p(99.9990) =      1.564 s/op
+     p(99.9999) =      1.564 s/op
+    p(100.0000) =      1.564 s/op
+
+
+# Run complete. Total time: 00:01:02
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                               Mode  Cnt  Score   Error  Units
+SwaptionsPatternBenchmark.indexInRange    ss   20  1.534 ± 0.016   s/op
+
+Benchmark result is saved to paper/jdk19/matteo/pattern/performance/2022-08-07_02:44:55/swaptions/SwaptionsPatternBenchmark.indexInRange.csv
