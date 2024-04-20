@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # $1: configuration, one of [short, full].
+# $2: pin tool type, one of [none, vectorial, total].
 
 . config
 
@@ -12,6 +13,12 @@ fi
 mode=$1
 if [ ! $mode == "short" ] && [ ! $mode == "full" ]; then
     echo -e "\n\nInvalid evaluation setting provided.\nPlease chose one of [short, full]\n\n"
+    exit 3
+fi
+
+pin_tool_type=$2
+if [ ! $pin_tool_type == "none" ] && [ ! $pin_tool_type == "vectorial" ] && [ ! $pin_tool_type == "total" ]; then
+    echo -e "\n\nPin Tool setting provided.\nPlease chose one of [none, vectorial, total]\n\n"
     exit 3
 fi
 
@@ -37,7 +44,7 @@ if [ $? -ne 0 ]; then
 fi
 echo
 
-LOCAL_VOLUME_OUT_DIR=$SHARED_VOLUME/$mode
+LOCAL_VOLUME_OUT_DIR=$SHARED_VOLUME/$mode/$pin_tool_type
 VOLUME_OUT_DIR=$(pwd)/$LOCAL_VOLUME_OUT_DIR
 RUNNER_OUT_DIR=$VOLUME_OUT_DIR/data/jdk19
 FIGURES_OUT_DIR=$VOLUME_OUT_DIR/figures
@@ -68,11 +75,21 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 benchmark_runner_folder=$(pwd)/benchmark_runner
 
-# python3.9 $benchmark_runner_folder/runner.py -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
-# python3.9 $benchmark_runner_folder/runner.py -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+if [ $pin_tool_type == "none" ]; then
+    echo "Running JVBench without Pin Tool"
+    python3.9 $benchmark_runner_folder/runner.py -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+    python3.9 $benchmark_runner_folder/runner.py -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+elif [ $pin_tool_type == "vectorial" ]; then
+    echo "Running JVBench with Pin Vectorial Instruction Counter"
+    python3.9 $benchmark_runner_folder/runner.py -prof pin_vectorial -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+    python3.9 $benchmark_runner_folder/runner.py -prof pin_vectorial -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+elif [ $pin_tool_type == "total" ]; then
+    echo "Running JVBench with Pin Total Instruction Counter"
+    python3.9 $benchmark_runner_folder/runner.py -prof pin_total -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+    python3.9 $benchmark_runner_folder/runner.py -prof pin_total -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+fi 
 
-python3.9 $benchmark_runner_folder/runner.py -prof pin -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
-python3.9 $benchmark_runner_folder/runner.py -prof pin -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+
 
 
 export JAVA_HOME=$JVBENCH_JAVA_HOME_XOR

@@ -24,7 +24,7 @@ def run():
 
     parser = argparse.ArgumentParser(description='Command line to run Benchmark suite configuration')
 
-    parser.add_argument('-prof', '--profiler', choices=['jfr', 'gc', 'stack', 'perfasm', 'pin'], help='run the benchmark with the '
+    parser.add_argument('-prof', '--profiler', choices=['jfr', 'gc', 'stack', 'perfasm', 'pin_vectorial', 'pin_total'], help='run the benchmark with the '
                                                                                                'selected profiler')
     parser.add_argument('-bm', '--benchmark', nargs='*', help='Run the following benchmarks', default=BENCHMARKS, choices=BENCHMARKS)
     parser.add_argument('-ex', '--exclude', nargs='*', help='exclude the following benchmarks', choices=BENCHMARKS,

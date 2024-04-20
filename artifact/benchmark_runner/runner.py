@@ -14,10 +14,12 @@ def helper_benchmark_options(execution, jdk_home, jvbench_jar, benchmark, jvm_ar
     # TODO se pin la prima, senno la seconda
     # How I run pin personally:
     # pin-3.28-98749-g6643ecee5-gcc-linux/pin -t pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/MyPinTool/obj-intel64/MyPinTool.so -- java -cp plugin/SocketPlugin.jar:JVBench/target/JVBench-1.0.1.jar --add-modules jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin org.openjdk.jmh.Main "AxpyBenchmark"
-    
-    if args['name'] == 'pin' and 'xor' not in jvbench_jar.lower():
-        return args['prefix'] + jdk_home + '/bin/java -cp ' + args['classpath'] + ':' + jvbench_jar + ' ' + \
-            '--add-modules jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin' + \
+    if 'pin' in args['name'] and 'xor' not in jvbench_jar.lower():
+        # Adds flags for Log Compilation files (first flag is need to use it)
+        # And -cp to my plugin etc
+        return args['prefix'] + jdk_home + '/bin/java -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=' + output_path + '/' + benchmark + '_LogCompilation_%p.log' + \
+            ' -cp ' + args['classpath'] + ':' + jvbench_jar + \
+            ' --add-modules jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin' + \
             jvm_arguments + \
             ' -jar ' + jvbench_jar + ' ' + \
             '-f' + str(execution['fork']) + \
@@ -57,8 +59,11 @@ def select_profiler(profiler_name, path=None):
         args["options"] = '-prof stack'
     elif profiler_name == 'perfasm':
         args["options"] = ' -v EXTRA '
-    elif profiler_name == 'pin':
-        args["prefix"] = '/artifact/pin-3.28-98749-g6643ecee5-gcc-linux/pin -t /artifact/pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/MyPinTool/obj-intel64/MyPinTool.so -- '
+    elif profiler_name == 'pin_vectorial':
+        args["prefix"] = '/artifact/pin-3.28-98749-g6643ecee5-gcc-linux/pin -t /artifact/pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/VectorialInstructionsCounter/obj-intel64/VectorialInstructionsCounter.so -- '
+        args["classpath"] = '/artifact/SocketPlugin.jar'
+    elif profiler_name == 'pin_total':
+        args["prefix"] = '/artifact/pin-3.28-98749-g6643ecee5-gcc-linux/pin -t /artifact/pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/TotalInstructionsCounter/obj-intel64/TotalInstructionsCounter.so -- '
         args["classpath"] = '/artifact/SocketPlugin.jar'
     
     return args
