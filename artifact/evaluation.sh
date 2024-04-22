@@ -24,25 +24,25 @@ fi
 
 . utils
 
-approximate_time="1.5"
-if [ $mode == "full" ]; then
-    approximate_time="24"
-fi
+# approximate_time="1.5"
+# if [ $mode == "full" ]; then
+#     approximate_time="24"
+# fi
 
-echo
-echo "This command will run the JVBench workloads and then generate the figures from the collected data."
-echo "Approximate running time: $approximate_time hours (may vary depending on the underlying hardware capabilities)"
-echo
-echo "Note: the figures will be generate only after the execution of all the benchmarks. No intermediate figure is generated."
-echo
-yes_or_no "Do you wish to continue?"
-if [ $? -ne 0 ]; then
-    echo 
-    echo "Aborted"
-    echo
-    exit 4
-fi
-echo
+# echo
+# echo "This command will run the JVBench workloads and then generate the figures from the collected data."
+# echo "Approximate running time: $approximate_time hours (may vary depending on the underlying hardware capabilities)"
+# echo
+# echo "Note: the figures will be generate only after the execution of all the benchmarks. No intermediate figure is generated."
+# echo
+# yes_or_no "Do you wish to continue?"
+# if [ $? -ne 0 ]; then
+#     echo 
+#     echo "Aborted"
+#     echo
+#     exit 4
+# fi
+# echo
 
 LOCAL_VOLUME_OUT_DIR=$SHARED_VOLUME/$mode/$pin_tool_type
 VOLUME_OUT_DIR=$(pwd)/$LOCAL_VOLUME_OUT_DIR
@@ -53,17 +53,17 @@ PIN_RESULTS_DIR=$VOLUME_OUT_DIR/pin
 if [[ -d "$VOLUME_OUT_DIR" ]]; then
     echo
     echo "WARNING: The $LOCAL_VOLUME_OUT_DIR folder already exists on your filesystem. If you do not delete its content, data will be merged and figures will be overwritten."
-    yes_or_no "Do you wish to delete the $LOCAL_VOLUME_OUT_DIR folder?"
+    # yes_or_no "Do you wish to delete the $LOCAL_VOLUME_OUT_DIR folder?"
 
-    if [ $? -eq 0 ]; then
-        echo 
-        echo "Deleting folder $LOCAL_VOLUME_OUT_DIR... (requires sudo)"
-        echo
-        sudo rm -rf $(pwd)/$VOLUME_OUT_DIR
-        echo
-        echo "The $LOCAL_VOLUME_OUT_DIR folder has been deleted"
-        echo
-    fi 
+    # if [ $? -eq 0 ]; then
+    echo 
+    echo "Deleting folder $LOCAL_VOLUME_OUT_DIR... (requires sudo)"
+    echo
+    sudo rm -rf $(pwd)/$VOLUME_OUT_DIR
+    echo
+    echo "The $LOCAL_VOLUME_OUT_DIR folder has been deleted"
+    echo
+    # fi 
 fi
 
 mkdir -p $VOLUME_OUT_DIR
