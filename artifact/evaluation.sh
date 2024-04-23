@@ -102,7 +102,8 @@ cd postprocessing
 python3.9 main.py -pprx new -i $RUNNER_OUT_DIR -o $FIGURES_OUT_DIR
 
 # Move pin results csv to output folder
-mv /artifact/results $PIN_RESULTS_DIR
+mv /artifact/results_total_instructions $PIN_RESULTS_DIR
+mv /artifact/results_vectorial_instructions $PIN_RESULTS_DIR
 
 echo
 echo

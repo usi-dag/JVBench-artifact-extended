@@ -14,7 +14,7 @@ def helper_benchmark_options(execution, jdk_home, jvbench_jar, benchmark, jvm_ar
     # TODO se pin la prima, senno la seconda
     # How I run pin personally:
     # pin-3.28-98749-g6643ecee5-gcc-linux/pin -t pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/MyPinTool/obj-intel64/MyPinTool.so -- java -cp plugin/SocketPlugin.jar:JVBench/target/JVBench-1.0.1.jar --add-modules jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin org.openjdk.jmh.Main "AxpyBenchmark"
-    if 'pin' in args['name'] and 'xor' not in jvbench_jar.lower():
+    if args['name'] is not None and 'pin' in args['name'] and 'xor' not in jvbench_jar.lower():
         # Adds flags for Log Compilation files (first flag is need to use it)
         # And -cp to my plugin etc
         return args['prefix'] + jdk_home + '/bin/java -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=' + output_path + '/' + benchmark + '_LogCompilation_%p.log' + \
