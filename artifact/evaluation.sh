@@ -44,7 +44,7 @@ fi
 # fi
 # echo
 
-LOCAL_VOLUME_OUT_DIR=$SHARED_VOLUME/$mode/$pin_tool_type
+LOCAL_VOLUME_OUT_DIR=$SHARED_VOLUME/$mode
 VOLUME_OUT_DIR=$(pwd)/$LOCAL_VOLUME_OUT_DIR
 RUNNER_OUT_DIR=$VOLUME_OUT_DIR/data/jdk19
 FIGURES_OUT_DIR=$VOLUME_OUT_DIR/figures
@@ -75,12 +75,15 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 benchmark_runner_folder=$(pwd)/benchmark_runner
 
+
 if [ $pin_tool_type == "vectorial" ]; then
     echo "Running JVBench with Pin Vectorial Instruction Counter"
+    mkdir results_vectorial_instructions
     python3.9 $benchmark_runner_folder/runner.py -prof pin_vectorial -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
     python3.9 $benchmark_runner_folder/runner.py -prof pin_vectorial -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
 elif [ $pin_tool_type == "total" ]; then
     echo "Running JVBench with Pin Total Instruction Counter"
+    mkdir results_total_instructions
     python3.9 $benchmark_runner_folder/runner.py -prof pin_total -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
     python3.9 $benchmark_runner_folder/runner.py -prof pin_total -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
 else
@@ -102,8 +105,13 @@ cd postprocessing
 python3.9 main.py -pprx new -i $RUNNER_OUT_DIR -o $FIGURES_OUT_DIR
 
 # Move pin results csv to output folder
-mv /artifact/results_total_instructions $PIN_RESULTS_DIR
-mv /artifact/results_vectorial_instructions $PIN_RESULTS_DIR
+cd ..
+mkdir -p $PIN_RESULTS_DIR
+if [ $pin_tool_type == "vectorial" ]; then
+    mv results_vectorial_instructions $PIN_RESULTS_DIR
+elif [ $pin_tool_type == "total" ]; then
+    mv results_total_instructions $PIN_RESULTS_DIR
+fi
 
 echo
 echo
