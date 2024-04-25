@@ -29,7 +29,8 @@ def helper_benchmark_options(execution, jdk_home, jvbench_jar, benchmark, jvm_ar
             ' ' + '"' + benchmark + '" ' + \
             '-rf csv -rff "' + output_path + '/' + benchmark + '.csv" | tee ' + output_path + '/' + benchmark + '.txt'
         
-    return jdk_home + '/bin/java --add-modules jdk.incubator.vector ' + \
+    return jdk_home + '/bin/java -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=' + output_path + '/' + benchmark + '_LogCompilation_%p.log' + \
+        ' --add-modules jdk.incubator.vector ' + \
         ' -cp ' + jvbench_jar + ' ' + \
         jvm_arguments + \
         ' -jar ' + jvbench_jar + ' ' + \
