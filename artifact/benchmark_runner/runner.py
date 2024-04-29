@@ -61,10 +61,10 @@ def select_profiler(profiler_name, path=None):
     elif profiler_name == 'perfasm':
         args["options"] = ' -v EXTRA '
     elif profiler_name == 'pin_vectorial':
-        args["prefix"] = '/artifact/pin-3.28-98749-g6643ecee5-gcc-linux/pin -t /artifact/pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/VectorialInstructionsCounter/obj-intel64/VectorialInstructionsCounter.so -- '
+        args["prefix"] = '/artifact/pin-3.28-98749-g6643ecee5-gcc-linux/pin -follow_execv -t /artifact/pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/VectorialInstructionsCounter/obj-intel64/VectorialInstructionsCounter.so -- '
         args["classpath"] = '/artifact/SocketPlugin.jar'
     elif profiler_name == 'pin_total':
-        args["prefix"] = '/artifact/pin-3.28-98749-g6643ecee5-gcc-linux/pin -t /artifact/pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/TotalInstructionsCounter/obj-intel64/TotalInstructionsCounter.so -- '
+        args["prefix"] = '/artifact/pin-3.28-98749-g6643ecee5-gcc-linux/pin -follow_execv -t /artifact/pin-3.28-98749-g6643ecee5-gcc-linux/source/tools/TotalInstructionsCounter/obj-intel64/TotalInstructionsCounter.so -- '
         args["classpath"] = '/artifact/SocketPlugin.jar'
     
     return args

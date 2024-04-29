@@ -106,10 +106,43 @@ python3.9 main.py -pprx new -i $RUNNER_OUT_DIR -o $FIGURES_OUT_DIR
 
 # Move pin results csv to output folder
 cd ..
+if [[ -d "$VOLUME_OUT_DIR" ]]; then
+    echo
+    echo "WARNING: The $LOCAL_VOLUME_OUT_DIR folder already exists on your filesystem. If you do not delete its content, data will be merged and figures will be overwritten."
+    # yes_or_no "Do you wish to delete the $LOCAL_VOLUME_OUT_DIR folder?"
+
+    # if [ $? -eq 0 ]; then
+    echo 
+    echo "Deleting folder $LOCAL_VOLUME_OUT_DIR... (requires sudo)"
+    echo
+    sudo rm -rf $(pwd)/$VOLUME_OUT_DIR
+    echo
+    echo "The $LOCAL_VOLUME_OUT_DIR folder has been deleted"
+    echo
+    # fi 
+fi
+
 mkdir -p $PIN_RESULTS_DIR
 if [ $pin_tool_type == "vectorial" ]; then
+    if [[ -d "$PIN_RESULTS_DIR/results_vectorial_instructions" ]]; then
+        echo "Deleting folder $PIN_RESULTS_DIR/results_vectorial_instructions..."
+        echo
+        sudo rm -rf $PIN_RESULTS_DIR/results_vectorial_instructions
+        echo
+        echo "The $PIN_RESULTS_DIR/results_vectorial_instructions folder has been deleted"
+        echo
+
     mv results_vectorial_instructions $PIN_RESULTS_DIR
+
 elif [ $pin_tool_type == "total" ]; then
+    if [[ -d "$PIN_RESULTS_DIR/results_total_instructions" ]]; then
+        echo "Deleting folder $PIN_RESULTS_DIR/results_total_instructions..."
+        echo
+        sudo rm -rf $PIN_RESULTS_DIR/results_total_instructions
+        echo
+        echo "The $PIN_RESULTS_DIR/results_total_instructions folder has been deleted"
+        echo
+
     mv results_total_instructions $PIN_RESULTS_DIR
 fi
 
