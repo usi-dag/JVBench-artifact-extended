@@ -131,6 +131,7 @@ if [ $pin_tool_type == "vectorial" ]; then
         echo
         echo "The $PIN_RESULTS_DIR/results_vectorial_instructions folder has been deleted"
         echo
+    fi
 
     mv results_vectorial_instructions $PIN_RESULTS_DIR
 
@@ -142,6 +143,7 @@ elif [ $pin_tool_type == "total" ]; then
         echo
         echo "The $PIN_RESULTS_DIR/results_total_instructions folder has been deleted"
         echo
+    fi
 
     mv results_total_instructions $PIN_RESULTS_DIR
 fi
