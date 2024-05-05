@@ -120,7 +120,7 @@ def merge_benchmark_files(directory='.'):
             os.rename(merged_path, benchmark_path)
             print(f"Merged file created as {benchmark_path}")
         else:
-            print(f"One or both files for {benchmark_name} do not exist.")
+            print(f"Failed to merge '{benchmark_path}' and '{pattern_path}'. One or both files for {benchmark_name} do not exist.")
 
 
                 
