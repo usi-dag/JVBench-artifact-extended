@@ -26,6 +26,7 @@ def helper_benchmark_options(execution, jdk_home, jvbench_jar, benchmark, jvm_ar
             ' -wi ' + str(execution['warmup_iterations']) + \
             ' -i' + str(execution['iterations']) + \
             ' -bm ' + execution['mode'] + \
+            ' -prof gc ' + \
             ' ' + '"' + benchmark + '" ' + \
             '-rf csv -rff "' + output_path + '/' + benchmark + '.csv" | tee ' + output_path + '/' + benchmark + '.txt'
         
@@ -39,6 +40,7 @@ def helper_benchmark_options(execution, jdk_home, jvbench_jar, benchmark, jvm_ar
         ' -i' + str(execution['iterations']) + \
         ' ' +  args['options'] + \
         ' -bm ' + execution['mode'] + \
+        ' -prof gc ' + \
         ' ' + '"' + benchmark + '" ' + \
         '-rf csv -rff "' + output_path + '/' + benchmark + '.csv" | tee ' + output_path + '/' + benchmark + '.txt'
         
