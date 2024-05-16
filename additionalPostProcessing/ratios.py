@@ -107,7 +107,8 @@ def compute_ratios():
             df = pd.read_csv(filepath)
             
             # Rename the 'Ratio' column to include the part of the filename from the third dot to the first underscore
-            new_ratio_column_name = "Ratio " + filename.split('.')[3].split('_')[0]
+            # new_ratio_column_name = "Ratio " + filename.split('.')[3].split('_')[0]
+            new_ratio_column_name = filename.split('.')[3].split('_')[0]
             df.rename(columns={'Ratio': new_ratio_column_name}, inplace=True)
             
             # If the group key is new, initialize a new dataframe
