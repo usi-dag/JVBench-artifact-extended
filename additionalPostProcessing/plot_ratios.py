@@ -1,37 +1,40 @@
-import os
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
-def plot_vectorial_instructions(directory):
-    # Initialize an empty DataFrame to store all data
-    all_data = pd.DataFrame()
+def create_bar_plot(csv_file, output_dir='figures', plot_filename='bar_plot.pdf'):
+    # Read the CSV file into a DataFrame
+    df = pd.read_csv(csv_file)
     
-    # Iterate over all CSV files in the specified directory
-    for filename in os.listdir(directory):
-        if filename.endswith('.csv'):
-            file_path = os.path.join(directory, filename)
-            # Load the CSV file
-            data = pd.read_csv(file_path)
-            # Append the data to the all_data DataFrame
-            all_data = pd.concat([all_data, data], ignore_index=True)
+    # Set the benchmark column as the index
+    df.set_index('benchmark', inplace=True)
     
-    # Calculate mean values for each column
-    mean_values = all_data.mean()
+    # Define the plot colors
+    plt_colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
+    bar_colors = [plt_colors[3], plt_colors[0], plt_colors[2]]
     
-    # Exclude the 'serial' column
-    mean_values = mean_values.drop('serial')
+    # Create the bar plot
+    ax = df.plot(kind='bar', color=bar_colors, width=0.85, figsize=(10, 6))
     
-    # Create a bar plot
-    plt.figure(figsize=(10, 6))
-    mean_values.plot(kind='bar', color=['blue', 'green', 'red'])
-    plt.title('Mean Ratio of Vectorial Total Instructions')
-    plt.xlabel('Configuration')
-    plt.ylabel('Mean Ratio')
-    plt.xticks(rotation=45)
-    plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+    # Set y-axis to log scale
+    ax.set_yscale('log')
+    
+    # Customize the plot
+    ax.set_xlabel('Benchmark', fontsize=12.5)
+    ax.set_ylabel('Percentage Vectorial Instructions', fontsize=12.5)
+    # ax.set_title('Benchmark Comparison', fontsize=15)
+    # ax.legend(title='Configuration', fontsize=10)
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
+    plt.xticks(rotation=45, ha='right')
+    
+    # Ensure the output directory exists
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Save the plot to a file
+    plot_path = os.path.join(output_dir, plot_filename)
     plt.tight_layout()
-    plt.savefig('bar_plot.pdf', format='pdf', bbox_inches='tight', pad_inches=0)
+    plt.savefig(plot_path, bbox_inches='tight', pad_inches=0.1)
     plt.close()
 
-# Usage example:
-plot_vectorial_instructions('mean_ratio_vectorial_total_instructions')
+# Example usage
+create_bar_plot('graphData/merged_mean_ratios.csv')
