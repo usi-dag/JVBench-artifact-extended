@@ -1,6 +1,7 @@
 import os
 import csv
 import pandas as pd
+import shutil
 from datetime import datetime
 
 def parse_compilation_times(file_path):
@@ -70,7 +71,7 @@ def save_results(results, output_dir):
             # Write the times in the predefined order
             row = [variants.get(variant, '') for variant in columns]
             writer.writerow(row)
-                
+            
 def merge_benchmark_files(directory='.'):
     # List all files in the directory
     files = os.listdir(directory)
@@ -120,14 +121,17 @@ def merge_benchmark_files(directory='.'):
             os.rename(merged_path, benchmark_path)
             print(f"Merged file created as {benchmark_path}")
         else:
-            print(f"Failed to merge '{benchmark_path}' and '{pattern_path}'. One or both files for {benchmark_name} do not exist.")
+            # Commented out as we are not interested in pattern benchmarks
+            # print(f"Failed to merge '{benchmark_path}' and '{pattern_path}'. One or both files for {benchmark_name} do not exist.") 
+            pass
 
 
                 
 def parse_compile_times():
-    tools = ["performance"]
-    output_name = {"performance" : "no"}
-    types = {"benchmark", "pattern"}
+    tools = ["performance", "pin_vectorial", "pin_total"]
+    output_name = {"performance" : "no", "pin_vectorial" : "vectorial", "pin_total" : "total"}
+    # types = {"benchmark", "pattern"} Don't consider pattern benchmarks
+    types = {"benchmark"}
     for tool in tools:
         for type in types:
             print(f"Parsing compilation times for {tool}...")
@@ -137,13 +141,71 @@ def parse_compile_times():
             output_dir = f"compilation_times_{output_name[tool]}_profiler"
             save_results(results, output_dir)
         print(f"Saved parsed times in {output_dir}")
+
+def merge_csv_files(directory, output_name):
+    
+    # Create the compilation_times directory if it doesn't exist
+    if not os.path.exists("compilation_times"):
+        os.makedirs("compilation_times")
+    
+    # Output file path
+    output_file = f"compilation_times/{output_name}.csv"
+    
+    # Get a list of all CSV files in the directory
+    csv_files = [file for file in os.listdir(directory) if file.endswith(".csv")]
+    
+    # Initialize an empty list to store the merged rows
+    merged_rows = []
+    
+    # Iterate over each CSV file
+    for file in csv_files:
+        file_path = os.path.join(directory, file)
+        
+        # Read the CSV file
+        with open(file_path, "r") as csv_file:
+            reader = csv.reader(csv_file)
             
+            # Skip the header row
+            next(reader)
+            
+            # Iterate over each row in the CSV file
+            for row in reader:
+                # Format the numbers to have only 4 values after the comma
+                formatted_row = [f"{float(value):.4f}" for value in row]
+                # Get the benchmark name from the file name (excluding the ".csv" extension)
+                benchmark_name = os.path.splitext(file)[0]
+                benchmark_name = benchmark_name.split('Benchmark')[0]
+                benchmark_name = benchmark_name.lower()
+                # Add the benchmark name as the first column
+                formatted_row.insert(0, benchmark_name)
+                
+                merged_rows.append(formatted_row)
+    
+    # Sort the merged rows by the "benchmark" column
+    merged_rows.sort(key=lambda row: row[0])
+    
+    # Write the merged rows to the output file
+    with open(output_file, "w", newline="") as output_csv:
+        writer = csv.writer(output_csv)
+        
+        # Write the header row (including the "benchmark" column)
+        writer.writerow(["benchmark", "autoVec", "explicitVec", "fullVec", "serial"])
+        
+        # Write the merged rows
+        writer.writerows(merged_rows)
+    
+    print(f"Merged CSV files saved to: {output_file}")
+    
+    # Delete the input directories
+    shutil.rmtree(directory)
+    print(f"Deleted input directory: {directory}")
+
 def compute_overheads():
-    output_dir = "compile_overheads_no_profiler"
+    output_dir = "compilation_overheads"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    input_dir = "compilation_times_no_profiler"
+    input_dir = "compilation_times"
     for filename in os.listdir(input_dir):
         input_file_path = os.path.join(input_dir, filename)
         
@@ -157,27 +219,34 @@ def compute_overheads():
             # Prepare data for the output file
             output_data = []
             for row in data:
+                benchmark_name = row['benchmark']
                 serial_time = float(row['serial'])
-                overheads = {}
+                overheads = {'benchmark': benchmark_name}
                 for key, value in row.items():
-                    if key != 'serial':
+                    if key != 'benchmark' and key != 'serial':
                         overheads[key] = float(value) / serial_time
                 output_data.append(overheads)
 
             # Write the overheads to a new CSV file in the output directory
             output_file_path = os.path.join(output_dir, filename)
             with open(output_file_path, mode='w', newline='') as file:
-                writer = csv.DictWriter(file, fieldnames=output_data[0].keys())
+                fieldnames = ['benchmark'] + [key for key in output_data[0].keys() if key != 'benchmark']
+                writer = csv.DictWriter(file, fieldnames=fieldnames)
                 writer.writeheader()
                 writer.writerows(output_data)
                 
     print(f"Saved overheads in {output_dir}")
-
-    
         
 def main():
     parse_compile_times()
     merge_benchmark_files("compilation_times_no_profiler")
+    
+    input_directories = ["compilation_times_no_profiler", "compilation_times_vectorial_profiler", "compilation_times_total_profiler"]
+    output_names = {"compilation_times_no_profiler": "no_profiler", "compilation_times_vectorial_profiler": "vectorial_profiler", "compilation_times_total_profiler": "total_profiler"}
+    
+    for dir in input_directories:
+        merge_csv_files(dir, output_names[dir])
+        
     compute_overheads()
     
 

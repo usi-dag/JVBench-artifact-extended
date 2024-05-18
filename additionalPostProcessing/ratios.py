@@ -26,22 +26,11 @@ def compute_ratios():
             # Step 2a: Path for the new file in the directory "sum_vectorial_instructions"
             output_file_path = os.path.join(output_dir, filename)
 
-            # Step 2b: Copy the column "Iteration" from the current file
-            df_output = df[['Iteration']].copy()
-
-            # Step 2c: Sum all the values of each row, excluding the "Iteration" column
+            # Step 2b: Sum all the values of each row, excluding the "Iteration" column
             df['Total Vectorial Instructions'] = df.drop('Iteration', axis=1).sum(axis=1).astype(int)
 
-            # Step 3: Make a new column called "Total Vectorial Instructions"
-            # (This step is effectively done in step 2c)
-
-            # Include the new column in the output DataFrame
-            df_output['Total Vectorial Instructions'] = df['Total Vectorial Instructions']
-
             # Step 4: Store the sum in the column "Total Vectorial Instructions"
-            df_output.to_csv(output_file_path, index=False)
-
-
+            df.to_csv(output_file_path, index=False)
 
     # COMPUTE THE RATIOS
     print("Computing the ratios...")
@@ -67,18 +56,20 @@ def compute_ratios():
         df_total = pd.read_csv(file_path_total)
         
         # Compute the ratio of 'Total Vectorial Instructions' to 'Total Number of (any) instructions'
-        ratio = df_vec['Total Vectorial Instructions'] / df_total['Total Number of (any) instructions']
+        total_vectorial_instructions_sum = df_vec['Total Vectorial Instructions'].sum()
+        total_instructions_sum = df_total['Total Number of (any) instructions'].sum()
+
+        # Calculate the ratio
+        ratio = total_vectorial_instructions_sum / total_instructions_sum
         
-        # Create a new DataFrame with 'Iteration' and the computed ratio
+        # Create a new DataFrame with the computed ratio
         result_df = pd.DataFrame({
-            'Iteration': df_vec['Iteration'],
-            'Ratio': ratio
+            'Ratio': [ratio]
         })
         
         # Write the result to a new CSV file in the output directory
         output_file_path = os.path.join(output_dir, file)
         result_df.to_csv(output_file_path, index=False)
-
 
     # MERGE THE RESULTS
     print("Ratios computed, merging results...")
@@ -107,7 +98,6 @@ def compute_ratios():
             df = pd.read_csv(filepath)
             
             # Rename the 'Ratio' column to include the part of the filename from the third dot to the first underscore
-            # new_ratio_column_name = "Ratio " + filename.split('.')[3].split('_')[0]
             new_ratio_column_name = filename.split('.')[3].split('_')[0]
             df.rename(columns={'Ratio': new_ratio_column_name}, inplace=True)
             
@@ -116,7 +106,7 @@ def compute_ratios():
                 grouped_dataframes[group_key] = df
             else:
                 # Otherwise, merge this dataframe with the existing one for the group
-                grouped_dataframes[group_key] = pd.merge(grouped_dataframes[group_key], df, on='Iteration')
+                grouped_dataframes[group_key] = pd.concat([grouped_dataframes[group_key], df], axis=1)
             
             # Delete the file after it has been read
             os.remove(filepath)
@@ -169,10 +159,60 @@ def compute_ratios_overhead():
             # Save the results to the output directory
             output_filepath = os.path.join(output_dir, filename)
             overheads.to_csv(output_filepath, index=False)
+            
+def merge_ratios():
+    # Define the directory containing the CSV files
+    input_directory = 'ratio_vectorial_total_instructions'
+    output_directory = 'graphData'
+    output_file = os.path.join(output_directory, 'merged_mean_ratios.csv')
+
+    # Create the output directory if it doesn't exist
+    os.makedirs(output_directory, exist_ok=True)
+
+    # Initialize an empty list to store DataFrames
+    data_frames = []
+
+    # Iterate over all files in the directory
+    for file_name in os.listdir(input_directory):
+        if file_name.endswith('.csv') and 'Pattern' not in file_name:
+            # Construct full file path
+            file_path = os.path.join(input_directory, file_name)
+            
+            # Read the CSV file into a DataFrame
+            df = pd.read_csv(file_path)
+            
+            # Add a new column for the benchmark (file name without extension)
+            benchmark = os.path.splitext(file_name)[0]
+            benchmark = benchmark.split('.')[2].split('Benchmark')[0]
+            benchmark = benchmark.lower()
+            df['benchmark'] = benchmark
+            
+            # Append the DataFrame to the list
+            data_frames.append(df)
+
+    # Concatenate all DataFrames in the list
+    merged_df = pd.concat(data_frames, ignore_index=True)
+
+    # Reorder columns to have 'benchmark' first
+    merged_df = merged_df[['benchmark', 'autoVec', 'explicitVec', 'fullVec']]
+
+    # Convert values to percentages and format to two decimal places
+    merged_df['autoVec'] = (merged_df['autoVec'] * 100).map('{:.4f}'.format)
+    merged_df['explicitVec'] = (merged_df['explicitVec'] * 100).map('{:.4f}'.format)
+    merged_df['fullVec'] = (merged_df['fullVec'] * 100).map('{:.4f}'.format)
+
+    # Sort the DataFrame by the 'benchmark' column
+    merged_df.sort_values(by='benchmark', inplace=True)
+
+    # Save the merged DataFrame to a new CSV file in the output directory
+    merged_df.to_csv(output_file, index=False)
+
+    print(f'Merged CSV saved as {output_file}')
 
 def main():
     compute_ratios()
     compute_ratios_overhead()
+    merge_ratios()
     
 
 if __name__ == "__main__":
