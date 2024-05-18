@@ -1,6 +1,6 @@
 import os
 import csv
-import pandas as pd
+import shutil
 from datetime import datetime
 
 def parse_benchmark_times(file_path):
@@ -8,29 +8,17 @@ def parse_benchmark_times(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
         benchmark_name = None
-        iteration_times = []
+        mean_time = None
         collecting = False
 
         for line in lines:
             if line.startswith("# Benchmark: "):
-                if benchmark_name and iteration_times:
-                    benchmark_times[benchmark_name] = iteration_times
                 benchmark_name = line.split("# Benchmark: ")[1].strip()
-                iteration_times = []
                 collecting = True
-            elif collecting and line.startswith("Iteration"):
-                time = line.split(":")[1].strip().split(" ")[0]
-                iteration_times.append(time)
-            elif collecting and line.startswith("  mean ="): # Append the mean value as the last iteration -> Later renamed to "MEAN"
-                mean = line.split("=")[1].strip().split(" ")[0]
-                iteration_times.append(mean)
-                if iteration_times:
-                    benchmark_times[benchmark_name] = iteration_times
+            elif collecting and line.startswith("  mean ="):
+                mean_time = line.split("=")[1].strip().split(" ")[0]
+                benchmark_times[benchmark_name] = mean_time
                 collecting = False
-
-        # Add the last benchmark data
-        if benchmark_name and iteration_times:
-            benchmark_times[benchmark_name] = iteration_times
 
     return benchmark_times
 
@@ -46,7 +34,7 @@ def process_benchmarks(directory):
         full_path = os.path.join(directory, benchmark_dir)
         if os.path.isdir(full_path):
             txt_file = next((f for f in os.listdir(full_path) if f.endswith('.txt')), None)
-            if txt_file and txt_file:
+            if txt_file:
                 txt_file_path = os.path.join(full_path, txt_file)
                 benchmark_results = parse_benchmark_times(txt_file_path)
                 all_benchmark_results.update(benchmark_results)
@@ -58,155 +46,109 @@ def save_results(results, output_dir):
     
     # Organize data by benchmark type
     organized_results = {}
-    for key, times in results.items():
+    for key, time in results.items():
         parts = key.split('.')
         benchmark_type = '.'.join(parts[:3])
         variant = parts[-1]
         
         if benchmark_type not in organized_results:
             organized_results[benchmark_type] = {}
-        organized_results[benchmark_type][variant] = times
-    
+        organized_results[benchmark_type][variant] = time
+        
     # Write results to CSV files
     for benchmark_type, variants in organized_results.items():
         file_name = f"{benchmark_type.split('.')[-1]}.csv"
         file_path = os.path.join(output_dir, file_name)
         
         # Determine the order of columns based on variant names
-        columns = ['Iteration'] + sorted(variants.keys())
-        
+        columns = sorted(variants.keys())
+
         with open(file_path, 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(columns)
             
-            # Assuming all variants have the same number of iterations
-            num_iterations = len(next(iter(variants.values())))
-            for i in range(num_iterations):
-                if i == num_iterations - 1:
-                    row = ["MEAN"]  # Rename the last iteration to "MEAN"
-                else:
-                    row = [i + 1]  # Iteration number starts from 1
-                for variant in sorted(variants.keys()):
-                    row.append(variants[variant][i])
-                writer.writerow(row)
-                
-    # Delete all Pattern files (remove this part if you want them )
-    for file in os.listdir(output_dir):
-        if 'Pattern' in file:
-            os.remove(os.path.join(output_dir, file))
+            # Write the mean times in the predefined order
+            row = [variants.get(variant, '') for variant in columns]
+            writer.writerow(row)
             
+def merge_benchmark_files(directory='.'):
+    # List all files in the directory
+    files = os.listdir(directory)
+    benchmarks = set()
+
+    # Identify all benchmarks
+    for file in files:
+        if 'Benchmark.csv' in file and 'PatternBenchmark' not in file:
+            benchmark_name = file.split('Benchmark.csv')[0]
+            benchmarks.add(benchmark_name)
+
+    # Process each benchmark
+    for benchmark_name in benchmarks:
+        benchmark_file = f"{benchmark_name}Benchmark.csv"
+        pattern_file = f"{benchmark_name}PatternBenchmark.csv"
+        merged_file = f"{benchmark_name}MergedBenchmark.csv"
+
+        benchmark_path = os.path.join(directory, benchmark_file)
+        pattern_path = os.path.join(directory, pattern_file)
+        merged_path = os.path.join(directory, merged_file)
+
+        # Check if both files exist
+        if os.path.exists(benchmark_path) and os.path.exists(pattern_path):
+            # Read data from both files
+            with open(benchmark_path, mode='r', newline='') as bf, open(pattern_path, mode='r', newline='') as pf:
+                benchmark_reader = csv.reader(bf)
+                pattern_reader = csv.reader(pf)
+                benchmark_header = next(benchmark_reader)
+                pattern_header = next(pattern_reader)
+
+                # Combine headers and prepare to write to the merged file
+                combined_header = benchmark_header + pattern_header
+
+                with open(merged_path, mode='w', newline='') as mf:
+                    writer = csv.writer(mf)
+                    writer.writerow(combined_header)  # Write the combined header
+
+                    # Write benchmark file contents
+                    for row in benchmark_reader:
+                        pattern_row = next(pattern_reader)
+                        combined_row = row + pattern_row
+                        writer.writerow(combined_row)
+
+            # Optionally, rename the merged file to replace the original benchmark file
+            os.remove(benchmark_path)  # Remove the original benchmark file
+            os.remove(pattern_path)
+            os.rename(merged_path, benchmark_path)
+            print(f"Merged file created as {benchmark_path}")
+        else:
+            # Commented out as we are not interested in pattern benchmarks
+            # print(f"Failed to merge '{benchmark_path}' and '{pattern_path}'. One or both files for {benchmark_name} do not exist.") 
+            pass
+
+
                 
 def parse_execution_times():
-    tools = ["pin_vectorial", "pin_total", "performance"]
-    types  = ["benchmark", "pattern"]
-    output_name = {"pin_vectorial" : "vectorial", "pin_total" : "total", "performance" : "no"}
+    tools = ["performance", "pin_vectorial", "pin_total"]
+    output_name = {"performance" : "no", "pin_vectorial" : "vectorial", "pin_total" : "total"}
+    # types = {"benchmark", "pattern"} Don't consider pattern benchmarks
+    types = {"benchmark"}
     for tool in tools:
-        print(f"Parsing execution times for {tool}...")
         for type in types:
+            print(f"Parsing execution times for {tool}...")
             base_directory = f"../output/short/data/jdk19/dockerimg/{type}/{tool}"
             latest_directory = find_latest_directory(base_directory)
             results = process_benchmarks(latest_directory)
             output_dir = f"execution_times_{output_name[tool]}_profiler"
             save_results(results, output_dir)
-        print(f"Saved in {output_dir}")
-            
-def compute_overheads():
-    denominator_dir = "execution_times_no_profiler"
-    
-    tools = ["pin_vectorial", "pin_total"]
-    output_name = {"pin_vectorial" : "vectorial", "pin_total" : "total"}
-    
-    for tool in tools:
-        print(f"Computing execution overheads for profiler {tool} vs no profiler...")
-        numerator_dir = f"execution_times_{output_name[tool]}_profiler"
-        output_dir = f"overheads_{output_name[tool]}_profiler"
+        print(f"Saved parsed times in {output_dir}")
 
-        # Ensure output directory exists
-        if not os.path.exists(output_dir):
-            os.makedirs(output_dir)
-
-        # List all files in the total profiler directory
-        total_files = os.listdir(numerator_dir)
-
-        for file in total_files:
-            profiler_file_path = os.path.join(numerator_dir, file)
-            no_profiler_file_path = os.path.join(denominator_dir, file)
-
-            # Check if the corresponding file exists in the no_profiler directory
-            if os.path.exists(no_profiler_file_path):
-                # Read both files
-                df_profiler = pd.read_csv(profiler_file_path)
-                df_no_profiler = pd.read_csv(no_profiler_file_path)
-
-                # Compute overheads
-                overheads = df_profiler.copy()
-                for col in df_profiler.columns:
-                    if col != 'Iteration':
-                        try:
-                            overheads[col] = df_profiler[col] / df_no_profiler[col]
-                        except:
-                            overheads[col] = "N/A" # Sometimes we don't have the same benchmark in both directories e.g. xorPublic in no profiler and indexInRange in total and vectorial profilers
-
-                # Write the result to a new file in the output directory
-                output_file_path = os.path.join(output_dir, file)
-                overheads.to_csv(output_file_path, index=False)
-                
-        print(f"Saved in {output_dir}")
-    
-def merge_benchmark_files():
-    # Define the directory containing the CSV files
-    input_directory = 'ratio_vectorial_total_instructions'
-    output_directory = 'graphData'
-    output_file = os.path.join(output_directory, 'merged_mean_ratios.csv')
-
-    # Create the output directory if it doesn't exist
-    os.makedirs(output_directory, exist_ok=True)
-
-    # Initialize an empty list to store DataFrames
-    data_frames = []
-
-    # Iterate over all files in the directory
-    for file_name in os.listdir(input_directory):
-        if file_name.endswith('.csv') and 'Pattern' not in file_name:
-            # Construct full file path
-            file_path = os.path.join(input_directory, file_name)
-            
-            # Read the CSV file into a DataFrame
-            df = pd.read_csv(file_path)
-            
-            # Add a new column for the benchmark (file name without extension)
-            benchmark = os.path.splitext(file_name)[0]
-            benchmark = benchmark.split('.')[2].split('Benchmark')[0]
-            benchmark = benchmark.lower()
-            df['benchmark'] = benchmark
-            
-            # Append the DataFrame to the list
-            data_frames.append(df)
-
-    # Concatenate all DataFrames in the list
-    merged_df = pd.concat(data_frames, ignore_index=True)
-
-    # Reorder columns to have 'benchmark' first
-    merged_df = merged_df[['benchmark', 'autoVec', 'explicitVec', 'fullVec']]
-
-    # Convert values to percentages and format to two decimal places
-    merged_df['autoVec'] = (merged_df['autoVec'] * 100).map('{:.4f}'.format)
-    merged_df['explicitVec'] = (merged_df['explicitVec'] * 100).map('{:.4f}'.format)
-    merged_df['fullVec'] = (merged_df['fullVec'] * 100).map('{:.4f}'.format)
-
-    # Sort the DataFrame by the 'benchmark' column
-    merged_df.sort_values(by='benchmark', inplace=True)
-
-    # Save the merged DataFrame to a new CSV file in the output directory
-    merged_df.to_csv(output_file, index=False)
-
-    print(f'Merged CSV saved as {output_file}')
-        
 def merge_csv_files(directory, output_name):
     
+    # Create the execution_times directory if it doesn't exist
+    if not os.path.exists("execution_times"):
+        os.makedirs("execution_times")
+    
     # Output file path
-    print(directory)
-    output_file = f"graphData/merged_overheads_{output_name}_profiler.csv"
+    output_file = f"execution_times/{output_name}.csv"
     
     # Get a list of all CSV files in the directory
     csv_files = [file for file in os.listdir(directory) if file.endswith(".csv")]
@@ -227,21 +169,19 @@ def merge_csv_files(directory, output_name):
             
             # Iterate over each row in the CSV file
             for row in reader:
-                # Check if the row contains "MEAN" in the "Iteration" column
-                if row[0] == "MEAN":
-                    # Format the numbers to have only 4 values after the comma
-                    formatted_row = [f"{float(value):.4f}" for value in row[1:]]
-                    
-                    # Get the benchmark name from the file name (excluding the ".csv" extension)
-                    benchmark_name = os.path.splitext(file)[0]
-                    benchmark_name = benchmark_name.split('Benchmark')[0]
-                    benchmark_name = benchmark_name.lower()
-                    
-                    # Add the benchmark name as the first column
-                    formatted_row.insert(0, benchmark_name)
-                    
-                    merged_rows.append(formatted_row)
+                # Format the numbers to have only 4 values after the comma
+                formatted_row = [f"{float(value):.4f}" for value in row]
+                
+                # Get the benchmark name from the file name (excluding the ".csv" extension)
+                benchmark_name = os.path.splitext(file)[0]
+                benchmark_name = benchmark_name.split('Benchmark')[0]
+                benchmark_name = benchmark_name.lower()
+                # Add the benchmark name as the first column
+                formatted_row.insert(0, benchmark_name)
+                
+                merged_rows.append(formatted_row)
     
+    # Sort the merged rows by the "benchmark" column
     merged_rows.sort(key=lambda row: row[0])
     
     # Write the merged rows to the output file
@@ -256,15 +196,59 @@ def merge_csv_files(directory, output_name):
     
     print(f"Merged CSV files saved to: {output_file}")
     
+    # Delete the input directories
+    shutil.rmtree(directory)
+    print(f"Deleted input directory: {directory}")
+
+def compute_overheads():
+    output_dir = "execution_overheads"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    input_dir = "execution_times"
+    for filename in os.listdir(input_dir):
+        input_file_path = os.path.join(input_dir, filename)
+        
+        # Check if the file is a CSV
+        if filename.endswith('.csv'):
+            with open(input_file_path, mode='r', newline='') as file:
+                reader = csv.DictReader(file)
+                headers = reader.fieldnames
+                data = list(reader)
+
+            # Prepare data for the output file
+            output_data = []
+            for row in data:
+                benchmark_name = row['benchmark']
+                serial_time = float(row['serial'])
+                overheads = {'benchmark': benchmark_name}
+                for key, value in row.items():
+                    if key != 'benchmark' and key != 'serial':
+                        overheads[key] = float(value) / serial_time
+                output_data.append(overheads)
+
+            # Write the overheads to a new CSV file in the output directory
+            output_file_path = os.path.join(output_dir, filename)
+            with open(output_file_path, mode='w', newline='') as file:
+                fieldnames = ['benchmark'] + [key for key in output_data[0].keys() if key != 'benchmark']
+                writer = csv.DictWriter(file, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(output_data)
+                
+    print(f"Saved overheads in {output_dir}")
+        
 def main():
     parse_execution_times()
-    compute_overheads()
-    merge_benchmark_files()
+    merge_benchmark_files("execution_times_no_profiler")
     
-    input_directories = ["overheads_total_profiler", "overheads_vectorial_profiler"]
-    output_name = {"overheads_total_profiler" : "total", "overheads_vectorial_profiler" : "vectorial"}
+    input_directories = ["execution_times_no_profiler", "execution_times_vectorial_profiler", "execution_times_total_profiler"]
+    output_names = {"execution_times_no_profiler": "no_profiler", "execution_times_vectorial_profiler": "vectorial_profiler", "execution_times_total_profiler": "total_profiler"}
+    
     for dir in input_directories:
-        merge_csv_files(dir, output_name[dir])
+        merge_csv_files(dir, output_names[dir])
+        
+    compute_overheads()
+    
 
 if __name__ == "__main__":
     main()

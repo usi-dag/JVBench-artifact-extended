@@ -235,7 +235,7 @@ def compute_overheads():
                 writer.writeheader()
                 writer.writerows(output_data)
                 
-    print(f"Saved overheads in {output_dir}")
+    
         
 def main():
     parse_compile_times()
