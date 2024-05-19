@@ -42,7 +42,7 @@ def process_benchmarks(directory):
                 all_benchmark_results.update(benchmark_results)
     return all_benchmark_results
 
-def save_results(results, file_name, gc_type):
+def save_results(results, file_name, gc_type, avx_type):
     # Create a dictionary to store the parsed results
     parsed_results = {}
 
@@ -69,11 +69,11 @@ def save_results(results, file_name, gc_type):
                 parsed_results[benchmark]["serial"] = value
 
     # Create the "gc_memory" directory if it doesn't exist
-    os.makedirs("gc_memory", exist_ok=True)
+    os.makedirs(f"{avx_type}/gc_memory", exist_ok=True)
     parsed_results = dict(sorted(parsed_results.items()))
 
     # Write the parsed results to a CSV file in the "gc_memory" directory
-    file_path = os.path.join("gc_memory", file_name)
+    file_path = os.path.join(f"{avx_type}/gc_memory", file_name)
     with open(file_path, "w", newline="") as csv_file:
         fieldnames = ["benchmark", "autoVec", "explicitVec", "fullVec", "serial"]
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
@@ -83,7 +83,7 @@ def save_results(results, file_name, gc_type):
             row = {"benchmark": benchmark, **values}
             writer.writerow(row)
         
-def parse_memory_values():
+def parse_memory_values(avx_type):
     tools = ["pin_vectorial", "pin_total", "performance"]
     types  = ["benchmark"]
     # types  = ["benchmark", "pattern"]
@@ -92,25 +92,25 @@ def parse_memory_values():
     for tool in tools:
         print(f"Parsing memory values for {tool}...")
         for type in types:
-            base_directory = f"../output/short/data/jdk19/dockerimg/{type}/{tool}"
+            base_directory = f"../precollected_data/{avx_type}/short/data/jdk19/dockerimg/{type}/{tool}"
             latest_directory = find_latest_directory(base_directory)
             results = process_benchmarks(latest_directory)
             for gc_type in gc_types:
                 file_name = f"{output_name[tool]}_profiler_memory_gc.{gc_type}"
                 file_name = file_name.replace(".", "_")
                 file_name = file_name + ".csv"
-                save_results(results, file_name, gc_type)
+                save_results(results, file_name, gc_type, avx_type)
         # print(f"Saved in {output_dir}")
             
-def compute_overheads():
+def compute_overheads(avx_type):
     # Check if the source directory exists
-    source_dir = 'gc_memory'
+    source_dir = f'{avx_type}/gc_memory'
     if not os.path.exists(source_dir):
         print(f"Directory {source_dir} does not exist.")
         return
     
     # Create the target directory if it doesn't exist
-    target_dir = 'graphData'
+    target_dir = f'{avx_type}/graphData'
     os.makedirs(target_dir, exist_ok=True)
     
     # Iterate over each file in the source directory
@@ -137,8 +137,10 @@ def compute_overheads():
 
         
 def main():
-    parse_memory_values()
-    compute_overheads()
+    avx_types = ["MAVX", "MAVX2", "MAVX512"]
+    for avx_type in avx_types:
+        parse_memory_values(avx_type)
+        compute_overheads(avx_type)
 
 if __name__ == "__main__":
     main()

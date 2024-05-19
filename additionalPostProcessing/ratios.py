@@ -2,18 +2,18 @@ import os
 import pandas as pd
 import shutil
 
-def compute_ratios():
+def compute_ratios(avx_type):
     # COMPUTE THE SUM OF VECTORIAL INSTRUCTIONS
     print("Computing the sum of vectorial instructions...")
     # Base directory where the script is located
     base_dir = os.path.dirname(os.path.abspath(__file__))
 
     # Step 0: Create directory "sum_vectorial_instructions"
-    output_dir = os.path.join(base_dir, "sum_vectorial_instructions")
+    output_dir = os.path.join(base_dir, f"{avx_type}/sum_vectorial_instructions")
     os.makedirs(output_dir, exist_ok=True)
 
     # Step 1: Path to the directory "../output/short/pin/results_vectorial_instructions"
-    input_dir = os.path.join(base_dir, "../output/short/pin/results_vectorial_instructions")
+    input_dir = os.path.join(base_dir, f"../precollected_data/{avx_type}/short/pin/results_vectorial_instructions")
 
     # Step 2: For every file in the directory
     for filename in os.listdir(input_dir):
@@ -35,13 +35,13 @@ def compute_ratios():
     # COMPUTE THE RATIOS
     print("Computing the ratios...")
     # Create the new directory if it doesn't exist
-    output_dir = "ratio_vectorial_total_instructions_raw"
+    output_dir = f"{avx_type}/ratio_vectorial_total_instructions_raw"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
     # Directories containing the CSV files
-    dir_vec_instructions = "sum_vectorial_instructions"
-    dir_total_instructions = "../output/short/pin/results_total_instructions"
+    dir_vec_instructions = f"{avx_type}/sum_vectorial_instructions"
+    dir_total_instructions = f"../precollected_data/{avx_type}/short/pin/results_total_instructions"
 
     # Get the list of files in the vectorial instructions directory
     files = os.listdir(dir_vec_instructions)
@@ -75,8 +75,8 @@ def compute_ratios():
     print("Ratios computed, merging results...")
 
     # Directory containing the CSV files
-    input_directory = "ratio_vectorial_total_instructions_raw"
-    output_directory = "percentage_vectorial_instructions"
+    input_directory = f"{avx_type}/ratio_vectorial_total_instructions_raw"
+    output_directory = f"{avx_type}/percentage_vectorial_instructions"
 
     # Create the output directory if it doesn't exist
     if not os.path.exists(output_directory):
@@ -123,13 +123,13 @@ def compute_ratios():
         
     # Delete directory "sum_vectorial_instructions"
     print("Deleting directoris 'ratio_vectorial_total_intructions_raw' and 'sum_vectorial_instructions'...")
-    shutil.rmtree("ratio_vectorial_total_instructions_raw")
-    shutil.rmtree("sum_vectorial_instructions")
+    shutil.rmtree(f"{avx_type}/ratio_vectorial_total_instructions_raw")
+    shutil.rmtree(f"{avx_type}/sum_vectorial_instructions")
 
 # Computes by how many times more vectorial instructions are executed compared to serial instructions, for each vectorization type
-def compare_ratios_vs_serial():
-    input_dir = "percentage_vectorial_instructions"
-    output_dir = "ratio_of_percentage_vectorial_instructions_to_serial"
+def compare_ratios_vs_serial(avx_type):
+    input_dir = f"{avx_type}/percentage_vectorial_instructions"
+    output_dir = f"{avx_type}/ratio_of_percentage_vectorial_instructions_to_serial"
     
     # Create the output directory if it does not exist
     if not os.path.exists(output_dir):
@@ -159,9 +159,9 @@ def compare_ratios_vs_serial():
             output_filepath = os.path.join(output_dir, filename)
             overheads.to_csv(output_filepath, index=False)
             
-def merge_csv_files(input_directory, output_file, use_percentage):
+def merge_csv_files(input_directory, output_file, avx_type, use_percentage):
     # Define the directory containing the CSV files
-    output_directory = 'graphData'
+    output_directory = f'{avx_type}/graphData'
     output_file = os.path.join(output_directory, output_file)
 
     # Create the output directory if it doesn't exist
@@ -208,15 +208,17 @@ def merge_csv_files(input_directory, output_file, use_percentage):
     print(f'Merged CSV saved as {output_file}')
 
 def main():
-    compute_ratios()
-    compare_ratios_vs_serial()
-    
-    input_directories = ["percentage_vectorial_instructions", "ratio_of_percentage_vectorial_instructions_to_serial"]
-    output_files = {"percentage_vectorial_instructions": "percentage_vectorial_instructions.csv", "ratio_of_percentage_vectorial_instructions_to_serial": "ratio_of_percentage_vectorial_instructions_to_serial.csv"}
-    
-    for dir in input_directories:
-        use_percentage = True if dir == "percentage_vectorial_instructions" else False
-        merge_csv_files(dir, output_files[dir], use_percentage)
+    avx_types = ["MAVX", "MAVX2", "MAVX512"]
+    for avx_type in avx_types:
+        compute_ratios(avx_type)
+        compare_ratios_vs_serial(avx_type)
+        
+        input_directories = ["percentage_vectorial_instructions", "ratio_of_percentage_vectorial_instructions_to_serial"]
+        output_files = {"percentage_vectorial_instructions": "percentage_vectorial_instructions.csv", "ratio_of_percentage_vectorial_instructions_to_serial": "ratio_of_percentage_vectorial_instructions_to_serial.csv"}
+        
+        for dir in input_directories:
+            use_percentage = True if dir == "percentage_vectorial_instructions" else False
+            merge_csv_files(f"{avx_type}/{dir}", output_files[dir], avx_type, use_percentage)
         
     
 

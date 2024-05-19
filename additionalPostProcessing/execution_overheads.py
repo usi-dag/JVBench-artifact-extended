@@ -96,30 +96,31 @@ def save_results(results, output_dir):
             os.remove(os.path.join(output_dir, file))
             
                 
-def parse_execution_times():
+def parse_execution_times(avx_type):
     tools = ["pin_vectorial", "pin_total", "performance"]
-    types  = ["benchmark", "pattern"]
+    # types  = ["benchmark", "pattern"]
+    types  = ["benchmark"] # We dont care about pattern benchmarks
     output_name = {"pin_vectorial" : "vectorial", "pin_total" : "total", "performance" : "no"}
     for tool in tools:
         print(f"Parsing execution times for {tool}...")
         for type in types:
-            base_directory = f"../output/short/data/jdk19/dockerimg/{type}/{tool}"
+            base_directory = f"../precollected_data/{avx_type}/short/data/jdk19/dockerimg/{type}/{tool}"
             latest_directory = find_latest_directory(base_directory)
             results = process_benchmarks(latest_directory)
-            output_dir = f"execution_times_{output_name[tool]}_profiler"
+            output_dir = f"{avx_type}/execution_times_{output_name[tool]}_profiler"
             save_results(results, output_dir)
         print(f"Saved in {output_dir}")
             
-def compute_overheads():
-    denominator_dir = "execution_times_no_profiler"
+def compute_overheads(avx_type):
+    denominator_dir = f"{avx_type}/execution_times_no_profiler"
     
     tools = ["pin_vectorial", "pin_total"]
     output_name = {"pin_vectorial" : "vectorial", "pin_total" : "total"}
     
     for tool in tools:
         print(f"Computing execution overheads for profiler {tool} vs no profiler...")
-        numerator_dir = f"execution_times_{output_name[tool]}_profiler"
-        output_dir = f"overheads_{output_name[tool]}_profiler"
+        numerator_dir = f"{avx_type}/execution_times_{output_name[tool]}_profiler"
+        output_dir = f"{avx_type}/overheads_{output_name[tool]}_profiler"
 
         # Ensure output directory exists
         if not os.path.exists(output_dir):
@@ -153,10 +154,10 @@ def compute_overheads():
                 
         print(f"Saved in {output_dir}")
     
-def merge_benchmark_files():
+def merge_benchmark_files(avx_type):
     # Define the directory containing the CSV files
-    input_directory = 'percentage_vectorial_instructions'
-    output_directory = 'graphData'
+    input_directory = f'{avx_type}/percentage_vectorial_instructions'
+    output_directory = f'{avx_type}/graphData'
     output_file = os.path.join(output_directory, 'merged_mean_ratios.csv')
 
     # Create the output directory if it doesn't exist
@@ -166,21 +167,24 @@ def merge_benchmark_files():
     data_frames = []
 
     # Iterate over all files in the directory
-    for file_name in os.listdir(input_directory):
-        if file_name.endswith('.csv') and 'Pattern' not in file_name:
-            # Construct full file path
-            file_path = os.path.join(input_directory, file_name)
-            
-            # Read the CSV file into a DataFrame
-            df = pd.read_csv(file_path)
-            
-            # Add a new column for the benchmark (file name without extension)
-            benchmark = os.path.splitext(file_name)[0]
-            benchmark = benchmark.split('.')[1]
-            df['benchmark'] = benchmark
-            
-            # Append the DataFrame to the list
-            data_frames.append(df)
+    if not os.path.exists(input_directory):
+        raise ValueError("Please use ratios.py before using this file")
+    else:
+        for file_name in os.listdir(input_directory):
+            if file_name.endswith('.csv') and 'Pattern' not in file_name:
+                # Construct full file path
+                file_path = os.path.join(input_directory, file_name)
+                
+                # Read the CSV file into a DataFrame
+                df = pd.read_csv(file_path)
+                
+                # Add a new column for the benchmark (file name without extension)
+                benchmark = os.path.splitext(file_name)[0]
+                benchmark = benchmark.split('.')[1]
+                df['benchmark'] = benchmark
+                
+                # Append the DataFrame to the list
+                data_frames.append(df)
 
     # Concatenate all DataFrames in the list
     merged_df = pd.concat(data_frames, ignore_index=True)
@@ -201,11 +205,10 @@ def merge_benchmark_files():
 
     print(f'Merged CSV saved as {output_file}')
         
-def merge_csv_files(directory, output_name):
+def merge_csv_files(directory, output_name, avx_type):
     
     # Output file path
-    print(directory)
-    output_file = f"graphData/merged_overheads_{output_name}_profiler.csv"
+    output_file = f"{avx_type}/graphData/merged_overheads_{output_name}_profiler.csv"
     
     # Get a list of all CSV files in the directory
     csv_files = [file for file in os.listdir(directory) if file.endswith(".csv")]
@@ -256,14 +259,17 @@ def merge_csv_files(directory, output_name):
     print(f"Merged CSV files saved to: {output_file}")
     
 def main():
-    parse_execution_times()
-    compute_overheads()
-    merge_benchmark_files()
-    
-    input_directories = ["overheads_total_profiler", "overheads_vectorial_profiler"]
-    output_name = {"overheads_total_profiler" : "total", "overheads_vectorial_profiler" : "vectorial"}
-    for dir in input_directories:
-        merge_csv_files(dir, output_name[dir])
+    avx_types = ["MAVX", "MAVX2", "MAVX512"]
+    for avx_type in avx_types:
+        parse_execution_times(avx_type)
+        compute_overheads(avx_type)
+        merge_benchmark_files(avx_type)
+        
+        input_directories = ["overheads_total_profiler", "overheads_vectorial_profiler"]
+        output_name = {"overheads_total_profiler" : "total", "overheads_vectorial_profiler" : "vectorial"}
+        for dir in input_directories:
+            merge_csv_files(f"{avx_type}/{dir}", output_name[dir], avx_type)
+            
 
 if __name__ == "__main__":
     main()

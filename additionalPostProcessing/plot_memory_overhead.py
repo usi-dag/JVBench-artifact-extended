@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
-def create_bar_plot(csv_file, plot_filename, output_dir='figures'):
+def create_bar_plot(csv_file, plot_filename, output_dir):
     # Read the CSV file into a DataFrame
     df = pd.read_csv(csv_file)
     
@@ -59,20 +59,22 @@ def create_bar_plot(csv_file, plot_filename, output_dir='figures'):
 
 def main():
     
-    directory = "graphData"
-    
-    # Iterate over files in the directory
-    for filename in os.listdir(directory):
-        file_path = os.path.join(directory, filename)
+    avx_types = ["MAVX", "MAVX2", "MAVX512"]
+    for avx_type in avx_types:
+        directory = f"{avx_type}/graphData"
         
-        # WARNING: REMOVE THIS TO PLOT ALL FILES - ONLY PLOTTING NO_PROFILER FILES BECAUSE I THINK THIS IS ALL WE CARE ABOUT
-        # WARNING: ALSO ONLY PLOTTING RATE_NORM CAUSE WE DON'T HAVE ALL VALUES FOR THE OTHER 2
-        
-        if 'no_profiler' not in file_path or "_gc_" not in file_path or "alloc_rate_norm" not in file_path:
-            continue
-        
-        if os.path.isfile(file_path):
-            create_bar_plot(file_path, filename.replace('.csv', '.pdf'))
+        # Iterate over files in the directory
+        for filename in os.listdir(directory):
+            file_path = os.path.join(directory, filename)
+            
+            # WARNING: REMOVE THIS TO PLOT ALL FILES - ONLY PLOTTING NO_PROFILER FILES BECAUSE I THINK THIS IS ALL WE CARE ABOUT
+            # WARNING: ALSO ONLY PLOTTING RATE_NORM CAUSE WE DON'T HAVE ALL VALUES FOR THE OTHER 2
+            
+            if 'no_profiler' not in file_path or "_gc_" not in file_path or "alloc_rate_norm" not in file_path:
+                continue
+            
+            if os.path.isfile(file_path):
+                create_bar_plot(file_path, filename.replace('.csv', '.pdf'), f"{avx_type}/figures")
 
 
 if __name__ == "__main__":
