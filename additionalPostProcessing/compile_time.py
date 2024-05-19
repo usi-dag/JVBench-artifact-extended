@@ -127,7 +127,7 @@ def merge_benchmark_files(directory='.'):
 
 
                 
-def parse_compile_times():
+def parse_compile_times(avx_type):
     tools = ["performance", "pin_vectorial", "pin_total"]
     output_name = {"performance" : "no", "pin_vectorial" : "vectorial", "pin_total" : "total"}
     # types = {"benchmark", "pattern"} Don't consider pattern benchmarks
@@ -135,21 +135,21 @@ def parse_compile_times():
     for tool in tools:
         for type in types:
             print(f"Parsing compilation times for {tool}...")
-            base_directory = f"../output/short/data/jdk19/dockerimg/{type}/{tool}"
+            base_directory = f"../precollected_data/{avx_type}/short/data/jdk19/dockerimg/{type}/{tool}"
             latest_directory = find_latest_directory(base_directory)
             results = process_benchmarks(latest_directory)
-            output_dir = f"compilation_times_{output_name[tool]}_profiler"
+            output_dir = f"{avx_type}/compilation_times_{output_name[tool]}_profiler"
             save_results(results, output_dir)
         print(f"Saved parsed times in {output_dir}")
 
-def merge_csv_files(directory, output_name):
+def merge_csv_files(directory, output_name, avx_type):
     
     # Create the compilation_times directory if it doesn't exist
-    if not os.path.exists("compilation_times"):
-        os.makedirs("compilation_times")
+    if not os.path.exists(f"{avx_type}/compilation_times"):
+        os.makedirs(f"{avx_type}/compilation_times")
     
     # Output file path
-    output_file = f"compilation_times/{output_name}.csv"
+    output_file = f"{avx_type}/compilation_times/{output_name}.csv"
     
     # Get a list of all CSV files in the directory
     csv_files = [file for file in os.listdir(directory) if file.endswith(".csv")]
@@ -200,12 +200,12 @@ def merge_csv_files(directory, output_name):
     shutil.rmtree(directory)
     print(f"Deleted input directory: {directory}")
 
-def compute_overheads():
-    output_dir = "compilation_overheads"
+def compute_overheads(avx_type):
+    output_dir = f"{avx_type}/compilation_overheads"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    input_dir = "compilation_times"
+    input_dir = f"{avx_type}/compilation_times"
     for filename in os.listdir(input_dir):
         input_file_path = os.path.join(input_dir, filename)
         
@@ -238,16 +238,18 @@ def compute_overheads():
     
         
 def main():
-    parse_compile_times()
-    merge_benchmark_files("compilation_times_no_profiler")
-    
-    input_directories = ["compilation_times_no_profiler", "compilation_times_vectorial_profiler", "compilation_times_total_profiler"]
-    output_names = {"compilation_times_no_profiler": "no_profiler", "compilation_times_vectorial_profiler": "vectorial_profiler", "compilation_times_total_profiler": "total_profiler"}
-    
-    for dir in input_directories:
-        merge_csv_files(dir, output_names[dir])
+    avx_types = ["MAVX", "MAVX2", "MAVX512"]
+    for avx_type in avx_types:
+        parse_compile_times(avx_type)
+        merge_benchmark_files(f"{avx_type}/compilation_times_no_profiler")
         
-    compute_overheads()
+        input_directories = ["compilation_times_no_profiler", "compilation_times_vectorial_profiler", "compilation_times_total_profiler"]
+        output_names = {"compilation_times_no_profiler": "no_profiler", "compilation_times_vectorial_profiler": "vectorial_profiler", "compilation_times_total_profiler": "total_profiler"}
+        
+        for dir in input_directories:
+            merge_csv_files(f"{avx_type}/{dir}", output_names[dir], avx_type)
+            
+        compute_overheads(avx_type)
     
 
 if __name__ == "__main__":
