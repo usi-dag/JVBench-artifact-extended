@@ -76,7 +76,7 @@ def compute_ratios():
 
     # Directory containing the CSV files
     input_directory = "ratio_vectorial_total_instructions_raw"
-    output_directory = "ratio_vectorial_total_instructions"
+    output_directory = "percentage_vectorial_instructions"
 
     # Create the output directory if it doesn't exist
     if not os.path.exists(output_directory):
@@ -128,8 +128,8 @@ def compute_ratios():
 
 # Computes by how many times more vectorial instructions are executed compared to serial instructions, for each vectorization type
 def compare_ratios_vs_serial():
-    input_dir = "ratio_vectorial_total_instructions"
-    output_dir = "ratio_of_ratio_vectorization_vs_serial"
+    input_dir = "percentage_vectorial_instructions"
+    output_dir = "ratio_of_percentage_vectorial_instructions_to_serial"
     
     # Create the output directory if it does not exist
     if not os.path.exists(output_dir):
@@ -159,11 +159,10 @@ def compare_ratios_vs_serial():
             output_filepath = os.path.join(output_dir, filename)
             overheads.to_csv(output_filepath, index=False)
             
-def merge_ratios():
+def merge_csv_files(input_directory, output_file, use_percentage):
     # Define the directory containing the CSV files
-    input_directory = 'ratio_vectorial_total_instructions'
     output_directory = 'graphData'
-    output_file = os.path.join(output_directory, 'ratio_vectorial_total_instructions.csv')
+    output_file = os.path.join(output_directory, output_file)
 
     # Create the output directory if it doesn't exist
     os.makedirs(output_directory, exist_ok=True)
@@ -196,9 +195,10 @@ def merge_ratios():
     merged_df = merged_df[['benchmark', 'autoVec', 'explicitVec', 'fullVec']]
 
     # Convert values to percentages and format to two decimal places
-    merged_df['autoVec'] = (merged_df['autoVec'] * 100).map('{:.4f}'.format)
-    merged_df['explicitVec'] = (merged_df['explicitVec'] * 100).map('{:.4f}'.format)
-    merged_df['fullVec'] = (merged_df['fullVec'] * 100).map('{:.4f}'.format)
+    percentage = 100 if use_percentage else 1
+    merged_df['autoVec'] = (merged_df['autoVec'] * percentage).map('{:.4f}'.format)
+    merged_df['explicitVec'] = (merged_df['explicitVec'] * percentage).map('{:.4f}'.format)
+    merged_df['fullVec'] = (merged_df['fullVec'] * percentage).map('{:.4f}'.format)
 
     # Sort the DataFrame by the 'benchmark' column
     merged_df.sort_values(by='benchmark', inplace=True)
@@ -211,7 +211,14 @@ def merge_ratios():
 def main():
     compute_ratios()
     compare_ratios_vs_serial()
-    merge_ratios()
+    
+    input_directories = ["percentage_vectorial_instructions", "ratio_of_percentage_vectorial_instructions_to_serial"]
+    output_files = {"percentage_vectorial_instructions": "percentage_vectorial_instructions.csv", "ratio_of_percentage_vectorial_instructions_to_serial": "ratio_of_percentage_vectorial_instructions_to_serial.csv"}
+    
+    for dir in input_directories:
+        use_percentage = True if dir == "percentage_vectorial_instructions" else False
+        merge_csv_files(dir, output_files[dir], use_percentage)
+        
     
 
 if __name__ == "__main__":
