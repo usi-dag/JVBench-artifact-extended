@@ -181,8 +181,7 @@ def merge_csv_files(input_directory, output_file, use_percentage):
             
             # Add a new column for the benchmark (file name without extension)
             benchmark = os.path.splitext(file_name)[0]
-            benchmark = benchmark.split('.')[2].split('Benchmark')[0]
-            benchmark = benchmark.lower()
+            benchmark = benchmark.split('.')[1]
             df['benchmark'] = benchmark
             
             # Append the DataFrame to the list
