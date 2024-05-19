@@ -42,7 +42,11 @@ def create_bar_plot(csv_file, plot_filename, output_dir='figures'):
     ax.legend(loc='upper left', bbox_to_anchor=(1.02, 1), borderaxespad=0)
     
     # Make title
-    plt.title("gc.alloc.rate Overhead over serial", fontsize=15, y=1.25)
+    name = csv_file.split("gc_")[1].split(".")[0]
+    name = name.replace("_", ".")
+    name = "gc." + name
+    
+    plt.title(f"{name} overhead w.r.t. serial", fontsize=15, y=1.25)
     
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
