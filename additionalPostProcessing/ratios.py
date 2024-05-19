@@ -126,9 +126,10 @@ def compute_ratios():
     shutil.rmtree("ratio_vectorial_total_instructions_raw")
     shutil.rmtree("sum_vectorial_instructions")
 
-def compute_ratios_overhead():
+# Computes by how many times more vectorial instructions are executed compared to serial instructions, for each vectorization type
+def compare_ratios_vs_serial():
     input_dir = "ratio_vectorial_total_instructions"
-    output_dir = "ratio_overheads_vectorial_total_instructions"
+    output_dir = "ratio_of_ratio_vectorization_vs_serial"
     
     # Create the output directory if it does not exist
     if not os.path.exists(output_dir):
@@ -141,20 +142,18 @@ def compute_ratios_overhead():
             df = pd.read_csv(filepath)
             
             # Check if the file contains the column "Ratio serial"
-            if "Ratio serial" not in df.columns:
-                print(f"Skipping file {filename} as it does not contain 'Ratio serial' column.")
+            if "serial" not in df.columns:
+                print(f"Skipping file {filename} as it does not contain 'serial' column.")
                 continue
             
-            # Compute the overheads for every column (except "Iteration" and "Ratio serial") over "Ratio serial"
+            # Compute the overheads for every column (except "Iteration" and "serial") over "serial"
             overheads = df.copy()
             for col in df.columns:
-                if col != "Iteration" and col != "Ratio serial":
-                    vectorization_type = col.split(' ')[1]
-                    print(vectorization_type)
-                    overheads[f"Overhead {vectorization_type}"] = df[col] / df["Ratio serial"]
-                    overheads.drop(columns=[col], inplace=True)
+                if col != "serial":
+                    overheads[col] = df[col] / df["serial"]
+                    # overheads.drop(columns=[col], inplace=True)
             
-            overheads.drop(columns=["Ratio serial"], inplace=True)
+            overheads.drop(columns=["serial"], inplace=True)
             
             # Save the results to the output directory
             output_filepath = os.path.join(output_dir, filename)
@@ -164,7 +163,7 @@ def merge_ratios():
     # Define the directory containing the CSV files
     input_directory = 'ratio_vectorial_total_instructions'
     output_directory = 'graphData'
-    output_file = os.path.join(output_directory, 'merged_mean_ratios.csv')
+    output_file = os.path.join(output_directory, 'ratio_vectorial_total_instructions.csv')
 
     # Create the output directory if it doesn't exist
     os.makedirs(output_directory, exist_ok=True)
@@ -211,7 +210,7 @@ def merge_ratios():
 
 def main():
     compute_ratios()
-    compute_ratios_overhead()
+    compare_ratios_vs_serial()
     merge_ratios()
     
 
