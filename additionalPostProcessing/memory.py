@@ -3,36 +3,20 @@ import csv
 import pandas as pd
 from datetime import datetime
 
-def parse_benchmark_times(file_path):
-    benchmark_times = {}
+def parse_benchmark_files(file_path):
+    result = {}
+    
     with open(file_path, 'r') as file:
-        lines = file.readlines()
-        benchmark_name = None
-        iteration_times = []
-        collecting = False
-
-        for line in lines:
-            if line.startswith("# Benchmark: "):
-                if benchmark_name and iteration_times:
-                    benchmark_times[benchmark_name] = iteration_times
-                benchmark_name = line.split("# Benchmark: ")[1].strip()
-                iteration_times = []
-                collecting = True
-            elif collecting and line.startswith("Iteration"):
-                time = line.split(":")[1].strip().split(" ")[0]
-                iteration_times.append(time)
-            elif collecting and line.startswith("  mean ="): # Append the mean value as the last iteration -> Later renamed to "MEAN"
-                mean = line.split("=")[1].strip().split(" ")[0]
-                iteration_times.append(mean)
-                if iteration_times:
-                    benchmark_times[benchmark_name] = iteration_times
-                collecting = False
-
-        # Add the last benchmark data
-        if benchmark_name and iteration_times:
-            benchmark_times[benchmark_name] = iteration_times
-
-    return benchmark_times
+        csv_reader = csv.DictReader(file)
+        
+        for row in csv_reader:
+            benchmark = row['Benchmark']
+            score = row['Score']
+            
+            if 'gc.count' in benchmark or 'gc.alloc.rate.norm' in benchmark or 'gc.time' in benchmark:
+                result[benchmark] = score
+    
+    return result
 
 
 def find_latest_directory(base_path):
@@ -45,119 +29,116 @@ def process_benchmarks(directory):
     for benchmark_dir in os.listdir(directory):
         full_path = os.path.join(directory, benchmark_dir)
         if os.path.isdir(full_path):
-            txt_file = next((f for f in os.listdir(full_path) if f.endswith('.txt')), None)
-            if txt_file and txt_file:
-                txt_file_path = os.path.join(full_path, txt_file)
-                benchmark_results = parse_benchmark_times(txt_file_path)
+            csv_file = next((f for f in os.listdir(full_path) if f.endswith('.csv')), None)
+            if csv_file and csv_file:
+                csv_file_path = os.path.join(full_path, csv_file)
+                benchmark_results = parse_benchmark_files(csv_file_path)
                 all_benchmark_results.update(benchmark_results)
     return all_benchmark_results
 
-def save_results(results, output_dir):
+def save_results(results, file_name):
+    output_dir = "graphData"
     # Create the directory for the results
     os.makedirs(output_dir, exist_ok=True)
+    file_path = os.path.join(output_dir, file_name)
     
-    # Organize data by benchmark type
-    organized_results = {}
-    for key, times in results.items():
-        parts = key.split('.')
-        benchmark_type = '.'.join(parts[:3])
-        variant = parts[-1]
-        
-        if benchmark_type not in organized_results:
-            organized_results[benchmark_type] = {}
-        organized_results[benchmark_type][variant] = times
+    gc_types = ["alloc.rate.norm", "count", "time"]
     
-    # Write results to CSV files
-    for benchmark_type, variants in organized_results.items():
-        file_name = f"{benchmark_type.split('.')[-1]}.csv"
-        file_path = os.path.join(output_dir, file_name)
+    for gc_type in gc_types:
+        output_file = f"gc_{gc_type}.csv"
+        benchmarks = set()
+        data = {}
         
-        # Determine the order of columns based on variant names
-        columns = ['Iteration'] + sorted(variants.keys())
+        for key in results.keys():
+            if gc_type in key:
+                benchmark, mode = key.split(":·gc.")
+                benchmark = benchmark.split('.')[2].split('Benchmark')[0]
+                benchmark = benchmark.lower()
+                benchmarks.add(benchmark)
+                if benchmark not in data:
+                    data[benchmark] = {}
+                data[benchmark][mode] = results[key]
         
-        with open(file_path, 'w', newline='') as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerow(columns)
+        with open(output_file, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["benchmark", "autoVec", "explicitVec", "fullVec", "serial"])
             
-            # Assuming all variants have the same number of iterations
-            num_iterations = len(next(iter(variants.values())))
-            for i in range(num_iterations):
-                if i == num_iterations - 1:
-                    row = ["MEAN"]  # Rename the last iteration to "MEAN"
-                else:
-                    row = [i + 1]  # Iteration number starts from 1
-                for variant in sorted(variants.keys()):
-                    row.append(variants[variant][i])
+            for benchmark in benchmarks:
+                row = [benchmark]
+                for mode in ["autoVec", "explicitVec", "fullVec", "serial"]:
+                    print(data[benchmark])
+                    row.append(data[benchmark].get(mode, ""))
                 writer.writerow(row)
-                
-    # Delete all Pattern files (remove this part if you want them )
-    for file in os.listdir(output_dir):
-        if 'Pattern' in file:
-            os.remove(os.path.join(output_dir, file))
+        
+    
             
                 
-def parse_execution_times():
+def parse_memory_values():
     tools = ["pin_vectorial", "pin_total", "performance"]
-    types  = ["benchmark", "pattern"]
+    types  = ["benchmark"]
+    # types  = ["benchmark", "pattern"]
     output_name = {"pin_vectorial" : "vectorial", "pin_total" : "total", "performance" : "no"}
     for tool in tools:
-        print(f"Parsing execution times for {tool}...")
+        print(f"Parsing memory values for {tool}...")
         for type in types:
             base_directory = f"../output/short/data/jdk19/dockerimg/{type}/{tool}"
             latest_directory = find_latest_directory(base_directory)
             results = process_benchmarks(latest_directory)
-            output_dir = f"execution_times_{output_name[tool]}_profiler"
-            save_results(results, output_dir)
-        print(f"Saved in {output_dir}")
+            print("\n")
+            print(results)
+            file_name = f"memory_{output_name[tool]}_profiler.csv"
+            save_results(results, file_name)
+        # print(f"Saved in {output_dir}")
             
-def compute_overheads():
-    denominator_dir = "execution_times_no_profiler"
+# WARNING: this is a copy of the execution_overheads.py function, haven't changed anything about it yet
+# def compute_overheads():
+#     denominator_dir = "memory_no_profiler"
     
-    tools = ["pin_vectorial", "pin_total"]
-    output_name = {"pin_vectorial" : "vectorial", "pin_total" : "total"}
+#     tools = ["pin_vectorial", "pin_total"]
+#     output_name = {"pin_vectorial" : "vectorial", "pin_total" : "total"}
     
-    for tool in tools:
-        print(f"Computing execution overheads for profiler {tool} vs no profiler...")
-        numerator_dir = f"execution_times_{output_name[tool]}_profiler"
-        output_dir = f"overheads_{output_name[tool]}_profiler"
+#     for tool in tools:
+#         print(f"Computing execution overheads for profiler {tool} vs no profiler...")
+#         numerator_dir = f"memory_{output_name[tool]}_profiler"
+#         output_dir = f"overheads_{output_name[tool]}_profiler"
 
-        # Ensure output directory exists
-        if not os.path.exists(output_dir):
-            os.makedirs(output_dir)
+#         # Ensure output directory exists
+#         if not os.path.exists(output_dir):
+#             os.makedirs(output_dir)
 
-        # List all files in the total profiler directory
-        total_files = os.listdir(numerator_dir)
+#         # List all files in the total profiler directory
+#         total_files = os.listdir(numerator_dir)
 
-        for file in total_files:
-            profiler_file_path = os.path.join(numerator_dir, file)
-            no_profiler_file_path = os.path.join(denominator_dir, file)
+#         for file in total_files:
+#             profiler_file_path = os.path.join(numerator_dir, file)
+#             no_profiler_file_path = os.path.join(denominator_dir, file)
 
-            # Check if the corresponding file exists in the no_profiler directory
-            if os.path.exists(no_profiler_file_path):
-                # Read both files
-                df_profiler = pd.read_csv(profiler_file_path)
-                df_no_profiler = pd.read_csv(no_profiler_file_path)
+#             # Check if the corresponding file exists in the no_profiler directory
+#             if os.path.exists(no_profiler_file_path):
+#                 # Read both files
+#                 df_profiler = pd.read_csv(profiler_file_path)
+#                 df_no_profiler = pd.read_csv(no_profiler_file_path)
 
-                # Compute overheads
-                overheads = df_profiler.copy()
-                for col in df_profiler.columns:
-                    if col != 'Iteration':
-                        try:
-                            overheads[col] = df_profiler[col] / df_no_profiler[col]
-                        except:
-                            overheads[col] = "N/A" # Sometimes we don't have the same benchmark in both directories e.g. xorPublic in no profiler and indexInRange in total and vectorial profilers
+#                 # Compute overheads
+#                 overheads = df_profiler.copy()
+#                 for col in df_profiler.columns:
+#                     if col != 'Iteration':
+#                         try:
+#                             overheads[col] = df_profiler[col] / df_no_profiler[col]
+#                         except:
+#                             overheads[col] = "N/A" # Sometimes we don't have the same benchmark in both directories e.g. xorPublic in no profiler and indexInRange in total and vectorial profilers
 
-                # Write the result to a new file in the output directory
-                output_file_path = os.path.join(output_dir, file)
-                overheads.to_csv(output_file_path, index=False)
+#                 # Write the result to a new file in the output directory
+#                 output_file_path = os.path.join(output_dir, file)
+#                 overheads.to_csv(output_file_path, index=False)
                 
-        print(f"Saved in {output_dir}")
+#         print(f"Saved in {output_dir}")
     
 def merge_benchmark_files():
     # Define the directory containing the CSV files
     input_directory = 'percentage_vectorial_instructions'
     output_directory = 'graphData'
-    output_file = os.path.join(output_directory, 'merged_mean_ratios.csv')
+    output_file = os.path.join(output_directory, 'merged_memory_data.csv')
 
     # Create the output directory if it doesn't exist
     os.makedirs(output_directory, exist_ok=True)
@@ -257,8 +238,8 @@ def merge_csv_files(directory, output_name):
     print(f"Merged CSV files saved to: {output_file}")
     
 def main():
-    parse_execution_times()
-    compute_overheads()
+    parse_memory_values()
+    # compute_overheads()
     merge_benchmark_files()
     
     input_directories = ["overheads_total_profiler", "overheads_vectorial_profiler"]
