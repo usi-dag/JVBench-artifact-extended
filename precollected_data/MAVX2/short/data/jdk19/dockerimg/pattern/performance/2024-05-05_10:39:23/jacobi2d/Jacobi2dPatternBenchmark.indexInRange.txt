@@ -1,0 +1,86 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/pattern/performance/2024-05-05_10:39:23/jacobi2d/Jacobi2dPatternBenchmark.indexInRange_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dsize=10000 -Dtsteps=14
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.jacobi2d.Jacobi2dPatternBenchmark.indexInRange
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 26.514 s/op
+# Warmup Iteration   2: 25.584 s/op
+# Warmup Iteration   3: 25.518 s/op
+# Warmup Iteration   4: 25.459 s/op
+# Warmup Iteration   5: 25.475 s/op
+# Warmup Iteration   6: 25.485 s/op
+# Warmup Iteration   7: 25.465 s/op
+# Warmup Iteration   8: 25.544 s/op
+# Warmup Iteration   9: 25.598 s/op
+# Warmup Iteration  10: 25.580 s/op
+Iteration   1: 25.557 s/op
+Iteration   2: 25.563 s/op
+Iteration   3: 25.518 s/op
+Iteration   4: 25.474 s/op
+Iteration   5: 25.460 s/op
+Iteration   6: 25.618 s/op
+Iteration   7: 25.616 s/op
+Iteration   8: 25.637 s/op
+Iteration   9: 25.631 s/op
+Iteration  10: 25.507 s/op
+
+
+Result "jvbench.jacobi2d.Jacobi2dPatternBenchmark.indexInRange":
+  N = 10
+  mean =     25.558 ±(99.9%) 0.100 s/op
+
+  Histogram, s/op:
+    [25.400, 25.425) = 0 
+    [25.425, 25.450) = 0 
+    [25.450, 25.475) = 2 
+    [25.475, 25.500) = 0 
+    [25.500, 25.525) = 2 
+    [25.525, 25.550) = 0 
+    [25.550, 25.575) = 2 
+    [25.575, 25.600) = 0 
+    [25.600, 25.625) = 2 
+    [25.625, 25.650) = 2 
+    [25.650, 25.675) = 0 
+    [25.675, 25.700) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =     25.460 s/op
+     p(50.0000) =     25.560 s/op
+     p(90.0000) =     25.636 s/op
+     p(95.0000) =     25.637 s/op
+     p(99.0000) =     25.637 s/op
+     p(99.9000) =     25.637 s/op
+     p(99.9900) =     25.637 s/op
+     p(99.9990) =     25.637 s/op
+     p(99.9999) =     25.637 s/op
+    p(100.0000) =     25.637 s/op
+
+
+# Run complete. Total time: 00:08:33
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                              Mode  Cnt   Score   Error  Units
+Jacobi2dPatternBenchmark.indexInRange    ss   10  25.558 ± 0.100   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/pattern/performance/2024-05-05_10:39:23/jacobi2d/Jacobi2dPatternBenchmark.indexInRange.csv

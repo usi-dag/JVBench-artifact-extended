@@ -1,0 +1,302 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/swaptions/SwaptionsBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dms=64 -Dns=16384
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.swaptions.SwaptionsBenchmark.autoVec
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 11.705 s/op
+# Warmup Iteration   2: 8.125 s/op
+# Warmup Iteration   3: 8.108 s/op
+# Warmup Iteration   4: 8.106 s/op
+# Warmup Iteration   5: 8.088 s/op
+# Warmup Iteration   6: 8.079 s/op
+# Warmup Iteration   7: 8.085 s/op
+# Warmup Iteration   8: 8.083 s/op
+# Warmup Iteration   9: 8.080 s/op
+# Warmup Iteration  10: 8.077 s/op
+Iteration   1: 8.077 s/op
+Iteration   2: 8.073 s/op
+Iteration   3: 8.076 s/op
+Iteration   4: 8.073 s/op
+Iteration   5: 8.077 s/op
+Iteration   6: 8.073 s/op
+Iteration   7: 8.079 s/op
+Iteration   8: 8.077 s/op
+Iteration   9: 8.072 s/op
+Iteration  10: 8.075 s/op
+
+
+Result "jvbench.swaptions.SwaptionsBenchmark.autoVec":
+  N = 10
+  mean =      8.075 ±(99.9%) 0.003 s/op
+
+  Histogram, s/op:
+    [8.071, 8.072) = 0 
+    [8.072, 8.072) = 1 
+    [8.072, 8.073) = 0 
+    [8.073, 8.073) = 0 
+    [8.073, 8.074) = 3 
+    [8.074, 8.074) = 0 
+    [8.074, 8.075) = 0 
+    [8.075, 8.075) = 0 
+    [8.075, 8.076) = 1 
+    [8.076, 8.076) = 1 
+    [8.076, 8.077) = 0 
+    [8.077, 8.077) = 2 
+    [8.077, 8.078) = 1 
+    [8.078, 8.078) = 0 
+    [8.078, 8.079) = 0 
+    [8.079, 8.079) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      8.072 s/op
+     p(50.0000) =      8.076 s/op
+     p(90.0000) =      8.079 s/op
+     p(95.0000) =      8.079 s/op
+     p(99.0000) =      8.079 s/op
+     p(99.9000) =      8.079 s/op
+     p(99.9900) =      8.079 s/op
+     p(99.9990) =      8.079 s/op
+     p(99.9999) =      8.079 s/op
+    p(100.0000) =      8.079 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/swaptions/SwaptionsBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dms=64 -Dns=16384 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.swaptions.SwaptionsBenchmark.explicitVec
+
+# Run progress: 25.00% complete, ETA 00:09:37
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 13.249 s/op
+# Warmup Iteration   2: 3.409 s/op
+# Warmup Iteration   3: 3.383 s/op
+# Warmup Iteration   4: 3.370 s/op
+# Warmup Iteration   5: 3.372 s/op
+# Warmup Iteration   6: 3.370 s/op
+# Warmup Iteration   7: 3.371 s/op
+# Warmup Iteration   8: 3.370 s/op
+# Warmup Iteration   9: 3.370 s/op
+# Warmup Iteration  10: 3.371 s/op
+Iteration   1: 3.375 s/op
+Iteration   2: 3.371 s/op
+Iteration   3: 3.371 s/op
+Iteration   4: 3.373 s/op
+Iteration   5: 3.372 s/op
+Iteration   6: 3.371 s/op
+Iteration   7: 3.370 s/op
+Iteration   8: 3.371 s/op
+Iteration   9: 3.372 s/op
+Iteration  10: 3.371 s/op
+
+
+Result "jvbench.swaptions.SwaptionsBenchmark.explicitVec":
+  N = 10
+  mean =      3.372 ±(99.9%) 0.002 s/op
+
+  Histogram, s/op:
+    [3.369, 3.370) = 0 
+    [3.370, 3.370) = 1 
+    [3.370, 3.371) = 0 
+    [3.371, 3.371) = 3 
+    [3.371, 3.372) = 2 
+    [3.372, 3.372) = 2 
+    [3.372, 3.373) = 0 
+    [3.373, 3.373) = 1 
+    [3.373, 3.374) = 0 
+    [3.374, 3.374) = 0 
+    [3.374, 3.375) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      3.370 s/op
+     p(50.0000) =      3.371 s/op
+     p(90.0000) =      3.375 s/op
+     p(95.0000) =      3.375 s/op
+     p(99.0000) =      3.375 s/op
+     p(99.9000) =      3.375 s/op
+     p(99.9900) =      3.375 s/op
+     p(99.9990) =      3.375 s/op
+     p(99.9999) =      3.375 s/op
+    p(100.0000) =      3.375 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/swaptions/SwaptionsBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dms=64 -Dns=16384
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.swaptions.SwaptionsBenchmark.fullVec
+
+# Run progress: 50.00% complete, ETA 00:04:56
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 13.505 s/op
+# Warmup Iteration   2: 3.317 s/op
+# Warmup Iteration   3: 3.306 s/op
+# Warmup Iteration   4: 3.289 s/op
+# Warmup Iteration   5: 3.292 s/op
+# Warmup Iteration   6: 3.289 s/op
+# Warmup Iteration   7: 3.291 s/op
+# Warmup Iteration   8: 3.287 s/op
+# Warmup Iteration   9: 3.292 s/op
+# Warmup Iteration  10: 3.288 s/op
+Iteration   1: 3.293 s/op
+Iteration   2: 3.289 s/op
+Iteration   3: 3.293 s/op
+Iteration   4: 3.289 s/op
+Iteration   5: 3.293 s/op
+Iteration   6: 3.288 s/op
+Iteration   7: 3.290 s/op
+Iteration   8: 3.288 s/op
+Iteration   9: 3.292 s/op
+Iteration  10: 3.289 s/op
+
+
+Result "jvbench.swaptions.SwaptionsBenchmark.fullVec":
+  N = 10
+  mean =      3.290 ±(99.9%) 0.003 s/op
+
+  Histogram, s/op:
+    [3.288, 3.289) = 2 
+    [3.289, 3.289) = 1 
+    [3.289, 3.290) = 2 
+    [3.290, 3.290) = 0 
+    [3.290, 3.291) = 1 
+    [3.291, 3.291) = 0 
+    [3.291, 3.292) = 0 
+    [3.292, 3.292) = 1 
+    [3.292, 3.293) = 0 
+    [3.293, 3.293) = 1 
+    [3.293, 3.294) = 2 
+
+  Percentiles, s/op:
+      p(0.0000) =      3.288 s/op
+     p(50.0000) =      3.290 s/op
+     p(90.0000) =      3.293 s/op
+     p(95.0000) =      3.293 s/op
+     p(99.0000) =      3.293 s/op
+     p(99.9000) =      3.293 s/op
+     p(99.9900) =      3.293 s/op
+     p(99.9990) =      3.293 s/op
+     p(99.9999) =      3.293 s/op
+    p(100.0000) =      3.293 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/swaptions/SwaptionsBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dms=64 -Dns=16384 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.swaptions.SwaptionsBenchmark.serial
+
+# Run progress: 75.00% complete, ETA 00:02:12
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 11.058 s/op
+# Warmup Iteration   2: 7.922 s/op
+# Warmup Iteration   3: 7.902 s/op
+# Warmup Iteration   4: 7.905 s/op
+# Warmup Iteration   5: 7.894 s/op
+# Warmup Iteration   6: 7.882 s/op
+# Warmup Iteration   7: 7.892 s/op
+# Warmup Iteration   8: 7.895 s/op
+# Warmup Iteration   9: 7.882 s/op
+# Warmup Iteration  10: 7.888 s/op
+Iteration   1: 7.889 s/op
+Iteration   2: 7.880 s/op
+Iteration   3: 7.884 s/op
+Iteration   4: 7.881 s/op
+Iteration   5: 7.886 s/op
+Iteration   6: 7.888 s/op
+Iteration   7: 7.883 s/op
+Iteration   8: 7.883 s/op
+Iteration   9: 7.880 s/op
+Iteration  10: 7.883 s/op
+
+
+Result "jvbench.swaptions.SwaptionsBenchmark.serial":
+  N = 10
+  mean =      7.884 ±(99.9%) 0.005 s/op
+
+  Histogram, s/op:
+    [7.879, 7.880) = 0 
+    [7.880, 7.880) = 1 
+    [7.880, 7.881) = 1 
+    [7.881, 7.881) = 0 
+    [7.881, 7.882) = 1 
+    [7.882, 7.882) = 0 
+    [7.882, 7.883) = 0 
+    [7.883, 7.883) = 0 
+    [7.883, 7.884) = 3 
+    [7.884, 7.884) = 1 
+    [7.884, 7.885) = 0 
+    [7.885, 7.885) = 0 
+    [7.885, 7.886) = 0 
+    [7.886, 7.886) = 0 
+    [7.886, 7.887) = 1 
+    [7.887, 7.887) = 0 
+    [7.887, 7.888) = 0 
+    [7.888, 7.888) = 1 
+    [7.888, 7.889) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      7.880 s/op
+     p(50.0000) =      7.883 s/op
+     p(90.0000) =      7.889 s/op
+     p(95.0000) =      7.889 s/op
+     p(99.0000) =      7.889 s/op
+     p(99.9000) =      7.889 s/op
+     p(99.9900) =      7.889 s/op
+     p(99.9990) =      7.889 s/op
+     p(99.9999) =      7.889 s/op
+    p(100.0000) =      7.889 s/op
+
+
+# Run complete. Total time: 00:09:45
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                       Mode  Cnt  Score   Error  Units
+SwaptionsBenchmark.autoVec        ss   10  8.075 ± 0.003   s/op
+SwaptionsBenchmark.explicitVec    ss   10  3.372 ± 0.002   s/op
+SwaptionsBenchmark.fullVec        ss   10  3.290 ± 0.003   s/op
+SwaptionsBenchmark.serial         ss   10  7.884 ± 0.005   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/swaptions/SwaptionsBenchmark.csv

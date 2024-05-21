@@ -1,0 +1,294 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/streamcluster/StreamclusterBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=streamcluster/input/streamcluster_128_128.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.streamcluster.StreamclusterBenchmark.autoVec
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 13.547 s/op
+# Warmup Iteration   2: 11.681 s/op
+# Warmup Iteration   3: 10.462 s/op
+# Warmup Iteration   4: 10.556 s/op
+# Warmup Iteration   5: 10.446 s/op
+# Warmup Iteration   6: 10.531 s/op
+# Warmup Iteration   7: 10.392 s/op
+# Warmup Iteration   8: 10.120 s/op
+# Warmup Iteration   9: 10.402 s/op
+# Warmup Iteration  10: 10.495 s/op
+Iteration   1: 10.469 s/op
+Iteration   2: 10.490 s/op
+Iteration   3: 10.530 s/op
+Iteration   4: 10.163 s/op
+Iteration   5: 10.475 s/op
+Iteration   6: 10.196 s/op
+Iteration   7: 10.188 s/op
+Iteration   8: 10.462 s/op
+Iteration   9: 10.224 s/op
+Iteration  10: 10.320 s/op
+
+
+Result "jvbench.streamcluster.StreamclusterBenchmark.autoVec":
+  N = 10
+  mean =     10.352 ±(99.9%) 0.224 s/op
+
+  Histogram, s/op:
+    [10.100, 10.150) = 0 
+    [10.150, 10.200) = 3 
+    [10.200, 10.250) = 1 
+    [10.250, 10.300) = 0 
+    [10.300, 10.350) = 1 
+    [10.350, 10.400) = 0 
+    [10.400, 10.450) = 0 
+    [10.450, 10.500) = 4 
+    [10.500, 10.550) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =     10.163 s/op
+     p(50.0000) =     10.391 s/op
+     p(90.0000) =     10.526 s/op
+     p(95.0000) =     10.530 s/op
+     p(99.0000) =     10.530 s/op
+     p(99.9000) =     10.530 s/op
+     p(99.9900) =     10.530 s/op
+     p(99.9990) =     10.530 s/op
+     p(99.9999) =     10.530 s/op
+    p(100.0000) =     10.530 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/streamcluster/StreamclusterBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=streamcluster/input/streamcluster_128_128.input -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.streamcluster.StreamclusterBenchmark.explicitVec
+
+# Run progress: 25.00% complete, ETA 00:11:56
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 11.346 s/op
+# Warmup Iteration   2: 6.040 s/op
+# Warmup Iteration   3: 5.751 s/op
+# Warmup Iteration   4: 5.859 s/op
+# Warmup Iteration   5: 5.962 s/op
+# Warmup Iteration   6: 5.860 s/op
+# Warmup Iteration   7: 5.807 s/op
+# Warmup Iteration   8: 5.754 s/op
+# Warmup Iteration   9: 5.804 s/op
+# Warmup Iteration  10: 5.832 s/op
+Iteration   1: 5.768 s/op
+Iteration   2: 5.790 s/op
+Iteration   3: 5.807 s/op
+Iteration   4: 5.573 s/op
+Iteration   5: 5.845 s/op
+Iteration   6: 5.686 s/op
+Iteration   7: 5.614 s/op
+Iteration   8: 5.808 s/op
+Iteration   9: 5.705 s/op
+Iteration  10: 5.620 s/op
+
+
+Result "jvbench.streamcluster.StreamclusterBenchmark.explicitVec":
+  N = 10
+  mean =      5.722 ±(99.9%) 0.144 s/op
+
+  Histogram, s/op:
+    [5.500, 5.525) = 0 
+    [5.525, 5.550) = 0 
+    [5.550, 5.575) = 1 
+    [5.575, 5.600) = 0 
+    [5.600, 5.625) = 2 
+    [5.625, 5.650) = 0 
+    [5.650, 5.675) = 0 
+    [5.675, 5.700) = 1 
+    [5.700, 5.725) = 1 
+    [5.725, 5.750) = 0 
+    [5.750, 5.775) = 1 
+    [5.775, 5.800) = 1 
+    [5.800, 5.825) = 2 
+    [5.825, 5.850) = 1 
+    [5.850, 5.875) = 0 
+    [5.875, 5.900) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      5.573 s/op
+     p(50.0000) =      5.736 s/op
+     p(90.0000) =      5.841 s/op
+     p(95.0000) =      5.845 s/op
+     p(99.0000) =      5.845 s/op
+     p(99.9000) =      5.845 s/op
+     p(99.9900) =      5.845 s/op
+     p(99.9990) =      5.845 s/op
+     p(99.9999) =      5.845 s/op
+    p(100.0000) =      5.845 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/streamcluster/StreamclusterBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=streamcluster/input/streamcluster_128_128.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.streamcluster.StreamclusterBenchmark.fullVec
+
+# Run progress: 50.00% complete, ETA 00:06:26
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 10.567 s/op
+# Warmup Iteration   2: 6.040 s/op
+# Warmup Iteration   3: 5.007 s/op
+# Warmup Iteration   4: 5.077 s/op
+# Warmup Iteration   5: 5.122 s/op
+# Warmup Iteration   6: 5.120 s/op
+# Warmup Iteration   7: 5.030 s/op
+# Warmup Iteration   8: 4.866 s/op
+# Warmup Iteration   9: 5.050 s/op
+# Warmup Iteration  10: 4.918 s/op
+Iteration   1: 5.010 s/op
+Iteration   2: 5.151 s/op
+Iteration   3: 4.959 s/op
+Iteration   4: 4.877 s/op
+Iteration   5: 4.971 s/op
+Iteration   6: 4.872 s/op
+Iteration   7: 4.865 s/op
+Iteration   8: 5.040 s/op
+Iteration   9: 4.917 s/op
+Iteration  10: 5.175 s/op
+
+
+Result "jvbench.streamcluster.StreamclusterBenchmark.fullVec":
+  N = 10
+  mean =      4.984 ±(99.9%) 0.168 s/op
+
+  Histogram, s/op:
+    [4.800, 4.825) = 0 
+    [4.825, 4.850) = 0 
+    [4.850, 4.875) = 2 
+    [4.875, 4.900) = 1 
+    [4.900, 4.925) = 1 
+    [4.925, 4.950) = 0 
+    [4.950, 4.975) = 2 
+    [4.975, 5.000) = 0 
+    [5.000, 5.025) = 1 
+    [5.025, 5.050) = 1 
+    [5.050, 5.075) = 0 
+    [5.075, 5.100) = 0 
+    [5.100, 5.125) = 0 
+    [5.125, 5.150) = 0 
+    [5.150, 5.175) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      4.865 s/op
+     p(50.0000) =      4.965 s/op
+     p(90.0000) =      5.173 s/op
+     p(95.0000) =      5.175 s/op
+     p(99.0000) =      5.175 s/op
+     p(99.9000) =      5.175 s/op
+     p(99.9900) =      5.175 s/op
+     p(99.9990) =      5.175 s/op
+     p(99.9999) =      5.175 s/op
+    p(100.0000) =      5.175 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/streamcluster/StreamclusterBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=streamcluster/input/streamcluster_128_128.input -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.streamcluster.StreamclusterBenchmark.serial
+
+# Run progress: 75.00% complete, ETA 00:02:52
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 15.611 s/op
+# Warmup Iteration   2: 15.110 s/op
+# Warmup Iteration   3: 13.848 s/op
+# Warmup Iteration   4: 13.996 s/op
+# Warmup Iteration   5: 13.996 s/op
+# Warmup Iteration   6: 13.906 s/op
+# Warmup Iteration   7: 13.935 s/op
+# Warmup Iteration   8: 13.553 s/op
+# Warmup Iteration   9: 13.988 s/op
+# Warmup Iteration  10: 13.769 s/op
+Iteration   1: 13.954 s/op
+Iteration   2: 13.971 s/op
+Iteration   3: 13.953 s/op
+Iteration   4: 13.546 s/op
+Iteration   5: 13.918 s/op
+Iteration   6: 13.696 s/op
+Iteration   7: 13.700 s/op
+Iteration   8: 13.926 s/op
+Iteration   9: 13.710 s/op
+Iteration  10: 13.713 s/op
+
+
+Result "jvbench.streamcluster.StreamclusterBenchmark.serial":
+  N = 10
+  mean =     13.809 ±(99.9%) 0.229 s/op
+
+  Histogram, s/op:
+    [13.500, 13.550) = 1 
+    [13.550, 13.600) = 0 
+    [13.600, 13.650) = 0 
+    [13.650, 13.700) = 1 
+    [13.700, 13.750) = 3 
+    [13.750, 13.800) = 0 
+    [13.800, 13.850) = 0 
+    [13.850, 13.900) = 0 
+    [13.900, 13.950) = 2 
+
+  Percentiles, s/op:
+      p(0.0000) =     13.546 s/op
+     p(50.0000) =     13.815 s/op
+     p(90.0000) =     13.969 s/op
+     p(95.0000) =     13.971 s/op
+     p(99.0000) =     13.971 s/op
+     p(99.9000) =     13.971 s/op
+     p(99.9900) =     13.971 s/op
+     p(99.9990) =     13.971 s/op
+     p(99.9999) =     13.971 s/op
+    p(100.0000) =     13.971 s/op
+
+
+# Run complete. Total time: 00:13:44
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                           Mode  Cnt   Score   Error  Units
+StreamclusterBenchmark.autoVec        ss   10  10.352 ± 0.224   s/op
+StreamclusterBenchmark.explicitVec    ss   10   5.722 ± 0.144   s/op
+StreamclusterBenchmark.fullVec        ss   10   4.984 ± 0.168   s/op
+StreamclusterBenchmark.serial         ss   10  13.809 ± 0.229   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/streamcluster/StreamclusterBenchmark.csv

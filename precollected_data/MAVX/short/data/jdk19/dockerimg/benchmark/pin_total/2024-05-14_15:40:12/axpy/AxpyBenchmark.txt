@@ -1,0 +1,106 @@
+
+Individual compiler times (for compiled methods only)
+------------------------------------------------
+
+  C1 {speed: 636.058 bytes/s; standard: 17.481 s, 11119 bytes, 228 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 234400 bytes; nmethods_code_size: 168224 bytes}
+  C2 {speed: 40.649 bytes/s; standard: 30.136 s, 1225 bytes, 19 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 11688 bytes; nmethods_code_size: 7392 bytes}
+
+Individual compilation Tier times (for compiled methods only)
+------------------------------------------------
+
+  Tier1 {speed: 909.782 bytes/s; standard:  0.219 s, 199 bytes, 41 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 9944 bytes; nmethods_code_size: 6336 bytes}
+  Tier2 {speed:  0.000 bytes/s; standard:  0.000 s, 0 bytes, 0 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 0 bytes; nmethods_code_size: 0 bytes}
+  Tier3 {speed: 632.589 bytes/s; standard: 17.262 s, 10920 bytes, 187 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 224456 bytes; nmethods_code_size: 161888 bytes}
+  Tier4 {speed: 40.649 bytes/s; standard: 30.136 s, 1225 bytes, 19 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 11688 bytes; nmethods_code_size: 7392 bytes}
+
+Accumulated compiler times
+----------------------------------------------------------
+  Total compilation time   :  47.617 s
+    Standard compilation   :  47.617 s, Average : 0.193 s
+    Bailed out compilation :   0.000 s, Average : 0.000 s
+    On stack replacement   :   0.000 s, Average : 0.000 s
+    Invalidated            :   0.000 s, Average : 0.000 s
+
+    C1 Compile Time:       17.405 s
+       Setup time:            0.068 s
+       Build HIR:             8.661 s
+         Parse:                 6.862 s
+         Optimize blocks:       0.019 s
+         GVN:                   0.501 s
+         Null checks elim:      0.424 s
+         Range checks elim:     0.467 s
+         Other:                 0.389 s
+       Emit LIR:              4.857 s
+         LIR Gen:               2.216 s
+         Linear Scan:           2.552 s
+         Other:                 0.089 s
+       Code Emission:         2.552 s
+       Code Installation:     0.927 s
+       Other:                 0.339 s
+
+    C2 Compile Time:       35.577 s
+       Parse:                 8.969 s
+       Optimize:             11.813 s
+         Escape Analysis:       0.723 s
+           Conn Graph:            0.664 s
+           Macro Eliminate:       0.000 s
+         GVN 1:                 1.966 s
+         Incremental Inline:    0.002 s
+           IdealLoop:             0.000 s
+          (IGVN:                  0.000 s)
+          (Inline:                0.000 s)
+          (Prune Useless:         0.000 s)
+           Other:                 0.002 s
+         Vector:                0.000 s
+           Box elimination:     0.000 s
+             IGVN:              0.000 s
+             Prune Useless:     0.000 s
+         Renumber Live:         0.000 s
+         IdealLoop:             5.827 s
+         IdealLoop Verify:      0.000 s
+         Cond Const Prop:       0.266 s
+         GVN 2:                 0.028 s
+         Macro Expand:          1.151 s
+         Barrier Expand:        0.001 s
+         Graph Reshape:         0.413 s
+         Other:                 1.436 s
+       Matcher:                    3.437 s
+         Post Selection Cleanup:   0.184 s
+       Scheduler:                  3.011 s
+       Regalloc:              4.402 s
+         Ctor Chaitin:          0.007 s
+         Build IFG (virt):      0.160 s
+         Build IFG (phys):      0.513 s
+         Compute Liveness:      1.185 s
+         Regalloc Split:        0.957 s
+         Postalloc Copy Rem:    0.559 s
+         Merge multidefs:       0.047 s
+         Fixup Spills:          0.058 s
+         Compact:               0.013 s
+         Coalesce 1:            0.467 s
+         Coalesce 2:            0.196 s
+         Coalesce 3:            0.017 s
+         Cache LRG:             0.052 s
+         Simplify:              0.149 s
+         Select:                0.126 s
+       Block Ordering:        0.366 s
+       Peephole:              0.046 s
+       Code Emission:           2.377 s
+         Insn Scheduling:       0.000 s
+         Shorten branches:      1.105 s
+         Build OOP maps:        0.270 s
+         Fill buffer:           0.752 s
+         Code Installation:     0.088 s
+         Other:                 0.161 s
+       Other:                 1.068 s
+
+  Total compiled methods    :      247 methods
+    Standard compilation    :      247 methods
+    On stack replacement    :        0 methods
+  Total compiled bytecodes  :    12344 bytes
+    Standard compilation    :    12344 bytes
+    On stack replacement    :        0 bytes
+  Average compilation speed :      259 bytes/s
+
+  nmethod code size         :   246088 bytes
+  nmethod total size        :   175616 bytes

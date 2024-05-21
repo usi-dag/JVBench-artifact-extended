@@ -1,0 +1,299 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-05_11:11:08/jacobi2d/Jacobi2dBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=10000 -Dtsteps=14
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.jacobi2d.Jacobi2dBenchmark.autoVec
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 12.848 s/op
+# Warmup Iteration   2: 11.589 s/op
+# Warmup Iteration   3: 12.001 s/op
+# Warmup Iteration   4: 12.150 s/op
+# Warmup Iteration   5: 12.617 s/op
+# Warmup Iteration   6: 12.622 s/op
+# Warmup Iteration   7: 12.614 s/op
+# Warmup Iteration   8: 12.616 s/op
+# Warmup Iteration   9: 12.619 s/op
+# Warmup Iteration  10: 5.947 s/op
+Iteration   1: 5.937 s/op
+Iteration   2: 5.945 s/op
+Iteration   3: 5.949 s/op
+Iteration   4: 5.928 s/op
+Iteration   5: 5.930 s/op
+Iteration   6: 5.927 s/op
+Iteration   7: 5.931 s/op
+Iteration   8: 5.931 s/op
+Iteration   9: 5.931 s/op
+Iteration  10: 5.929 s/op
+
+
+Result "jvbench.jacobi2d.Jacobi2dBenchmark.autoVec":
+  N = 10
+  mean =      5.934 ±(99.9%) 0.011 s/op
+
+  Histogram, s/op:
+    [5.920, 5.923) = 0 
+    [5.923, 5.925) = 0 
+    [5.925, 5.928) = 1 
+    [5.928, 5.930) = 3 
+    [5.930, 5.933) = 3 
+    [5.933, 5.935) = 0 
+    [5.935, 5.938) = 1 
+    [5.938, 5.940) = 0 
+    [5.940, 5.943) = 0 
+    [5.943, 5.945) = 0 
+    [5.945, 5.948) = 1 
+    [5.948, 5.950) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      5.927 s/op
+     p(50.0000) =      5.931 s/op
+     p(90.0000) =      5.948 s/op
+     p(95.0000) =      5.949 s/op
+     p(99.0000) =      5.949 s/op
+     p(99.9000) =      5.949 s/op
+     p(99.9900) =      5.949 s/op
+     p(99.9990) =      5.949 s/op
+     p(99.9999) =      5.949 s/op
+    p(100.0000) =      5.949 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-05_11:11:08/jacobi2d/Jacobi2dBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=10000 -Dtsteps=14 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.jacobi2d.Jacobi2dBenchmark.explicitVec
+
+# Run progress: 25.00% complete, ETA 00:10:03
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 5.708 s/op
+# Warmup Iteration   2: 2.789 s/op
+# Warmup Iteration   3: 2.785 s/op
+# Warmup Iteration   4: 2.781 s/op
+# Warmup Iteration   5: 2.782 s/op
+# Warmup Iteration   6: 2.782 s/op
+# Warmup Iteration   7: 2.780 s/op
+# Warmup Iteration   8: 2.786 s/op
+# Warmup Iteration   9: 2.781 s/op
+# Warmup Iteration  10: 2.781 s/op
+Iteration   1: 2.789 s/op
+Iteration   2: 2.785 s/op
+Iteration   3: 2.779 s/op
+Iteration   4: 2.781 s/op
+Iteration   5: 2.783 s/op
+Iteration   6: 2.785 s/op
+Iteration   7: 2.785 s/op
+Iteration   8: 2.784 s/op
+Iteration   9: 2.785 s/op
+Iteration  10: 2.787 s/op
+
+
+Result "jvbench.jacobi2d.Jacobi2dBenchmark.explicitVec":
+  N = 10
+  mean =      2.784 ±(99.9%) 0.005 s/op
+
+  Histogram, s/op:
+    [2.770, 2.771) = 0 
+    [2.771, 2.773) = 0 
+    [2.773, 2.774) = 0 
+    [2.774, 2.775) = 0 
+    [2.775, 2.776) = 0 
+    [2.776, 2.778) = 0 
+    [2.778, 2.779) = 1 
+    [2.779, 2.780) = 0 
+    [2.780, 2.781) = 1 
+    [2.781, 2.783) = 0 
+    [2.783, 2.784) = 2 
+    [2.784, 2.785) = 1 
+    [2.785, 2.786) = 3 
+    [2.786, 2.788) = 1 
+    [2.788, 2.789) = 0 
+    [2.789, 2.790) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      2.779 s/op
+     p(50.0000) =      2.785 s/op
+     p(90.0000) =      2.789 s/op
+     p(95.0000) =      2.789 s/op
+     p(99.0000) =      2.789 s/op
+     p(99.9000) =      2.789 s/op
+     p(99.9900) =      2.789 s/op
+     p(99.9990) =      2.789 s/op
+     p(99.9999) =      2.789 s/op
+    p(100.0000) =      2.789 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-05_11:11:08/jacobi2d/Jacobi2dBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=10000 -Dtsteps=14
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.jacobi2d.Jacobi2dBenchmark.fullVec
+
+# Run progress: 50.00% complete, ETA 00:04:43
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 5.777 s/op
+# Warmup Iteration   2: 2.737 s/op
+# Warmup Iteration   3: 2.734 s/op
+# Warmup Iteration   4: 2.736 s/op
+# Warmup Iteration   5: 2.738 s/op
+# Warmup Iteration   6: 2.738 s/op
+# Warmup Iteration   7: 2.736 s/op
+# Warmup Iteration   8: 2.734 s/op
+# Warmup Iteration   9: 2.736 s/op
+# Warmup Iteration  10: 2.735 s/op
+Iteration   1: 2.734 s/op
+Iteration   2: 2.738 s/op
+Iteration   3: 2.736 s/op
+Iteration   4: 2.737 s/op
+Iteration   5: 2.733 s/op
+Iteration   6: 2.736 s/op
+Iteration   7: 2.737 s/op
+Iteration   8: 2.798 s/op
+Iteration   9: 2.736 s/op
+Iteration  10: 2.737 s/op
+
+
+Result "jvbench.jacobi2d.Jacobi2dBenchmark.fullVec":
+  N = 10
+  mean =      2.742 ±(99.9%) 0.030 s/op
+
+  Histogram, s/op:
+    [2.730, 2.735) = 2 
+    [2.735, 2.740) = 7 
+    [2.740, 2.745) = 0 
+    [2.745, 2.750) = 0 
+    [2.750, 2.755) = 0 
+    [2.755, 2.760) = 0 
+    [2.760, 2.765) = 0 
+    [2.765, 2.770) = 0 
+    [2.770, 2.775) = 0 
+    [2.775, 2.780) = 0 
+    [2.780, 2.785) = 0 
+    [2.785, 2.790) = 0 
+    [2.790, 2.795) = 0 
+    [2.795, 2.800) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      2.733 s/op
+     p(50.0000) =      2.737 s/op
+     p(90.0000) =      2.792 s/op
+     p(95.0000) =      2.798 s/op
+     p(99.0000) =      2.798 s/op
+     p(99.9000) =      2.798 s/op
+     p(99.9900) =      2.798 s/op
+     p(99.9990) =      2.798 s/op
+     p(99.9999) =      2.798 s/op
+    p(100.0000) =      2.798 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-05_11:11:08/jacobi2d/Jacobi2dBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=10000 -Dtsteps=14 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.jacobi2d.Jacobi2dBenchmark.serial
+
+# Run progress: 75.00% complete, ETA 00:02:01
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 13.961 s/op
+# Warmup Iteration   2: 12.015 s/op
+# Warmup Iteration   3: 11.969 s/op
+# Warmup Iteration   4: 13.241 s/op
+# Warmup Iteration   5: 13.748 s/op
+# Warmup Iteration   6: 13.752 s/op
+# Warmup Iteration   7: 13.751 s/op
+# Warmup Iteration   8: 13.756 s/op
+# Warmup Iteration   9: 13.776 s/op
+# Warmup Iteration  10: 6.514 s/op
+Iteration   1: 6.506 s/op
+Iteration   2: 6.515 s/op
+Iteration   3: 6.501 s/op
+Iteration   4: 6.507 s/op
+Iteration   5: 6.508 s/op
+Iteration   6: 6.502 s/op
+Iteration   7: 6.508 s/op
+Iteration   8: 6.500 s/op
+Iteration   9: 6.497 s/op
+Iteration  10: 6.502 s/op
+
+
+Result "jvbench.jacobi2d.Jacobi2dBenchmark.serial":
+  N = 10
+  mean =      6.504 ±(99.9%) 0.008 s/op
+
+  Histogram, s/op:
+    [6.490, 6.493) = 0 
+    [6.493, 6.495) = 0 
+    [6.495, 6.498) = 1 
+    [6.498, 6.500) = 1 
+    [6.500, 6.503) = 3 
+    [6.503, 6.505) = 0 
+    [6.505, 6.508) = 2 
+    [6.508, 6.510) = 2 
+    [6.510, 6.513) = 0 
+    [6.513, 6.515) = 1 
+    [6.515, 6.518) = 0 
+    [6.518, 6.520) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      6.497 s/op
+     p(50.0000) =      6.504 s/op
+     p(90.0000) =      6.514 s/op
+     p(95.0000) =      6.515 s/op
+     p(99.0000) =      6.515 s/op
+     p(99.9000) =      6.515 s/op
+     p(99.9900) =      6.515 s/op
+     p(99.9990) =      6.515 s/op
+     p(99.9999) =      6.515 s/op
+    p(100.0000) =      6.515 s/op
+
+
+# Run complete. Total time: 00:09:38
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                      Mode  Cnt  Score   Error  Units
+Jacobi2dBenchmark.autoVec        ss   10  5.934 ± 0.011   s/op
+Jacobi2dBenchmark.explicitVec    ss   10  2.784 ± 0.005   s/op
+Jacobi2dBenchmark.fullVec        ss   10  2.742 ± 0.030   s/op
+Jacobi2dBenchmark.serial         ss   10  6.504 ± 0.008   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-05_11:11:08/jacobi2d/Jacobi2dBenchmark.csv

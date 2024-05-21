@@ -1,0 +1,1045 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+CITime --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=70000
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.axpy.AxpyBenchmark.autoVec
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 1.190 s/op
+# Warmup Iteration   2: 0.826 s/op
+# Warmup Iteration   3: 0.307 s/op
+# Warmup Iteration   4: 0.239 s/op
+# Warmup Iteration   5: 0.258 s/op
+# Warmup Iteration   6: 0.219 s/op
+# Warmup Iteration   7: 0.232 s/op
+# Warmup Iteration   8: 0.222 s/op
+# Warmup Iteration   9: 0.256 s/op
+# Warmup Iteration  10: 0.264 s/op
+Iteration   1: 0.220 s/op
+                 ·gc.alloc.rate:      0.007 MB/sec
+                 ·gc.alloc.rate.norm: 7944.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   2: 0.246 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   3: 0.467 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   4: 0.320 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   5: 0.323 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   6: 0.260 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   7: 0.218 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   8: 0.240 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   9: 0.273 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration  10: 0.250 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+
+Individual compiler times (for compiled methods only)
+------------------------------------------------
+
+  C1 {speed: 2001.479 bytes/s; standard: 29.093 s, 58049 bytes, 806 methods; osr:  0.322 s, 824 bytes, 3 methods; nmethods_size: 1224216 bytes; nmethods_code_size: 869856 bytes}
+  C2 {speed: 124.283 bytes/s; standard: 29.406 s, 4481 bytes, 51 methods; osr:  8.918 s, 282 bytes, 5 methods; nmethods_size: 41328 bytes; nmethods_code_size: 26976 bytes}
+
+Individual compilation Tier times (for compiled methods only)
+------------------------------------------------
+
+  Tier1 {speed: 1485.352 bytes/s; standard:  0.422 s, 627 bytes, 129 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 31000 bytes; nmethods_code_size: 19648 bytes}
+  Tier2 {speed:  0.000 bytes/s; standard:  0.000 s, 0 bytes, 0 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 0 bytes; nmethods_code_size: 0 bytes}
+  Tier3 {speed: 2008.994 bytes/s; standard: 28.671 s, 57422 bytes, 677 methods; osr:  0.322 s, 824 bytes, 3 methods; nmethods_size: 1193216 bytes; nmethods_code_size: 850208 bytes}
+  Tier4 {speed: 124.283 bytes/s; standard: 29.406 s, 4481 bytes, 51 methods; osr:  8.918 s, 282 bytes, 5 methods; nmethods_size: 41328 bytes; nmethods_code_size: 26976 bytes}
+
+Accumulated compiler times
+----------------------------------------------------------
+  Total compilation time   :  68.157 s
+    Standard compilation   :  58.499 s, Average : 0.068 s
+    Bailed out compilation :   0.419 s, Average : 0.419 s
+    On stack replacement   :   9.240 s, Average : 1.155 s
+    Invalidated            :   0.000 s, Average : 0.000 s
+
+    C1 Compile Time:       29.743 s
+       Setup time:            0.189 s
+       Build HIR:            16.791 s
+         Parse:                14.339 s
+         Optimize blocks:       0.014 s
+         GVN:                   0.927 s
+         Null checks elim:      0.566 s
+         Range checks elim:     0.429 s
+         Other:                 0.516 s
+       Emit LIR:              7.655 s
+         LIR Gen:               3.273 s
+         Linear Scan:           4.222 s
+         Other:                 0.160 s
+       Code Emission:         3.384 s
+       Code Installation:     1.103 s
+       Other:                 0.620 s
+
+    C2 Compile Time:       43.768 s
+       Parse:                 9.449 s
+       Optimize:             16.206 s
+         Escape Analysis:       0.860 s
+           Conn Graph:            0.800 s
+           Macro Eliminate:       0.011 s
+         GVN 1:                 2.164 s
+         Incremental Inline:    0.002 s
+           IdealLoop:             0.000 s
+          (IGVN:                  0.000 s)
+          (Inline:                0.000 s)
+          (Prune Useless:         0.000 s)
+           Other:                 0.002 s
+         Vector:                0.000 s
+           Box elimination:     0.000 s
+             IGVN:              0.000 s
+             Prune Useless:     0.000 s
+         Renumber Live:         0.000 s
+         IdealLoop:             9.019 s
+         IdealLoop Verify:      0.000 s
+         Cond Const Prop:       0.282 s
+         GVN 2:                 0.041 s
+         Macro Expand:          1.481 s
+         Barrier Expand:        0.001 s
+         Graph Reshape:         0.563 s
+         Other:                 1.793 s
+       Matcher:                    4.251 s
+         Post Selection Cleanup:   0.357 s
+       Scheduler:                  3.428 s
+       Regalloc:              5.351 s
+         Ctor Chaitin:          0.014 s
+         Build IFG (virt):      0.175 s
+         Build IFG (phys):      0.793 s
+         Compute Liveness:      1.540 s
+         Regalloc Split:        1.161 s
+         Postalloc Copy Rem:    0.593 s
+         Merge multidefs:       0.076 s
+         Fixup Spills:          0.139 s
+         Compact:               0.016 s
+         Coalesce 1:            0.431 s
+         Coalesce 2:            0.207 s
+         Coalesce 3:            0.043 s
+         Cache LRG:             0.006 s
+         Simplify:              0.076 s
+         Select:                0.159 s
+       Block Ordering:        0.455 s
+       Peephole:              0.068 s
+       Code Emission:           3.181 s
+         Insn Scheduling:       0.000 s
+         Shorten branches:      1.616 s
+         Build OOP maps:        0.298 s
+         Fill buffer:           0.999 s
+         Code Installation:     0.090 s
+         Other:                 0.179 s
+       Other:                 1.289 s
+
+  Total compiled methods    :      865 methods
+    Standard compilation    :      857 methods
+    On stack replacement    :        8 methods
+  Total compiled bytecodes  :    63636 bytes
+    Standard compilation    :    62530 bytes
+    On stack replacement    :     1106 bytes
+  Average compilation speed :      933 bytes/s
+
+  nmethod code size         :  1265544 bytes
+  nmethod total size        :   896832 bytes
+
+
+Result "jvbench.axpy.AxpyBenchmark.autoVec":
+  N = 10
+  mean =      0.282 ±(99.9%) 0.113 s/op
+
+  Histogram, s/op:
+    [0.200, 0.225) = 2 
+    [0.225, 0.250) = 2 
+    [0.250, 0.275) = 3 
+    [0.275, 0.300) = 0 
+    [0.300, 0.325) = 2 
+    [0.325, 0.350) = 0 
+    [0.350, 0.375) = 0 
+    [0.375, 0.400) = 0 
+    [0.400, 0.425) = 0 
+    [0.425, 0.450) = 0 
+    [0.450, 0.475) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      0.218 s/op
+     p(50.0000) =      0.255 s/op
+     p(90.0000) =      0.453 s/op
+     p(95.0000) =      0.467 s/op
+     p(99.0000) =      0.467 s/op
+     p(99.9000) =      0.467 s/op
+     p(99.9900) =      0.467 s/op
+     p(99.9990) =      0.467 s/op
+     p(99.9999) =      0.467 s/op
+    p(100.0000) =      0.467 s/op
+
+Secondary result "jvbench.axpy.AxpyBenchmark.autoVec:·gc.alloc.rate":
+  0.002 ±(99.9%) 0.003 MB/sec [Average]
+  (min, avg, max) = (0.001, 0.002, 0.007), stdev = 0.002
+  CI (99.9%): [≈ 0, 0.004] (assumes normal distribution)
+
+Secondary result "jvbench.axpy.AxpyBenchmark.autoVec:·gc.alloc.rate.norm":
+  1723.200 ±(99.9%) 3304.567 B/op [Average]
+  (min, avg, max) = (1032.000, 1723.200, 7944.000), stdev = 2185.766
+  CI (99.9%): [≈ 0, 5027.767] (assumes normal distribution)
+
+Secondary result "jvbench.axpy.AxpyBenchmark.autoVec:·gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+CITime --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=70000 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.axpy.AxpyBenchmark.explicitVec
+
+# Run progress: 25.00% complete, ETA 00:04:20
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 10.259 s/op
+# Warmup Iteration   2: 4.628 s/op
+# Warmup Iteration   3: 0.655 s/op
+# Warmup Iteration   4: 0.281 s/op
+# Warmup Iteration   5: 0.194 s/op
+# Warmup Iteration   6: 0.702 s/op
+# Warmup Iteration   7: 0.408 s/op
+# Warmup Iteration   8: 0.478 s/op
+# Warmup Iteration   9: 0.449 s/op
+# Warmup Iteration  10: 0.665 s/op
+Iteration   1: 0.580 s/op
+                 ·gc.alloc.rate:      0.005 MB/sec
+                 ·gc.alloc.rate.norm: 7960.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   2: 0.329 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1048.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   3: 0.426 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1048.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   4: 0.635 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1048.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   5: 0.610 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1048.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   6: 0.453 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1048.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   7: 0.417 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1048.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   8: 0.328 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1048.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   9: 0.547 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1048.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration  10: 0.435 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1048.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+
+Individual compiler times (for compiled methods only)
+------------------------------------------------
+
+  C1 {speed: 2048.586 bytes/s; standard: 32.014 s, 66029 bytes, 953 methods; osr:  0.676 s, 941 bytes, 3 methods; nmethods_size: 1503736 bytes; nmethods_code_size: 1076416 bytes}
+  C2 {speed: 146.098 bytes/s; standard: 48.916 s, 6655 bytes, 83 methods; osr:  6.335 s, 1417 bytes, 8 methods; nmethods_size: 73312 bytes; nmethods_code_size: 45888 bytes}
+
+Individual compilation Tier times (for compiled methods only)
+------------------------------------------------
+
+  Tier1 {speed: 1596.056 bytes/s; standard:  0.419 s, 669 bytes, 138 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 33136 bytes; nmethods_code_size: 20992 bytes}
+  Tier2 {speed:  0.000 bytes/s; standard:  0.000 s, 0 bytes, 0 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 0 bytes; nmethods_code_size: 0 bytes}
+  Tier3 {speed: 2054.463 bytes/s; standard: 31.595 s, 65360 bytes, 815 methods; osr:  0.676 s, 941 bytes, 3 methods; nmethods_size: 1470600 bytes; nmethods_code_size: 1055424 bytes}
+  Tier4 {speed: 146.098 bytes/s; standard: 48.916 s, 6655 bytes, 83 methods; osr:  6.335 s, 1417 bytes, 8 methods; nmethods_size: 73312 bytes; nmethods_code_size: 45888 bytes}
+
+Accumulated compiler times
+----------------------------------------------------------
+  Total compilation time   :  88.429 s
+    Standard compilation   :  80.931 s, Average : 0.078 s
+    Bailed out compilation :   0.487 s, Average : 0.487 s
+    On stack replacement   :   7.011 s, Average : 0.637 s
+    Invalidated            :   0.000 s, Average : 0.000 s
+
+    C1 Compile Time:       33.068 s
+       Setup time:            0.139 s
+       Build HIR:            17.931 s
+         Parse:                15.466 s
+         Optimize blocks:       0.014 s
+         GVN:                   0.887 s
+         Null checks elim:      0.589 s
+         Range checks elim:     0.389 s
+         Other:                 0.586 s
+       Emit LIR:              9.302 s
+         LIR Gen:               3.755 s
+         Linear Scan:           5.468 s
+         Other:                 0.079 s
+       Code Emission:         3.550 s
+       Code Installation:     1.592 s
+       Other:                 0.555 s
+
+    C2 Compile Time:       60.583 s
+       Parse:                15.025 s
+       Optimize:             20.377 s
+         Escape Analysis:       1.173 s
+           Conn Graph:            0.923 s
+           Macro Eliminate:       0.073 s
+         GVN 1:                 2.413 s
+         Incremental Inline:    0.507 s
+           IdealLoop:             0.000 s
+          (IGVN:                  0.066 s)
+          (Inline:                0.392 s)
+          (Prune Useless:         0.035 s)
+           Other:                 0.507 s
+         Vector:                0.749 s
+           Box elimination:     0.747 s
+             IGVN:              0.153 s
+             Prune Useless:     0.049 s
+         Renumber Live:         0.025 s
+         IdealLoop:            10.556 s
+         IdealLoop Verify:      0.000 s
+         Cond Const Prop:       0.348 s
+         GVN 2:                 0.062 s
+         Macro Expand:          1.825 s
+         Barrier Expand:        0.002 s
+         Graph Reshape:         0.508 s
+         Other:                 2.211 s
+       Matcher:                    5.746 s
+         Post Selection Cleanup:   0.439 s
+       Scheduler:                  5.085 s
+       Regalloc:              8.639 s
+         Ctor Chaitin:          0.028 s
+         Build IFG (virt):      0.333 s
+         Build IFG (phys):      1.285 s
+         Compute Liveness:      2.904 s
+         Regalloc Split:        1.307 s
+         Postalloc Copy Rem:    1.686 s
+         Merge multidefs:       0.190 s
+         Fixup Spills:          0.150 s
+         Compact:               0.017 s
+         Coalesce 1:            0.546 s
+         Coalesce 2:            0.167 s
+         Coalesce 3:            0.049 s
+         Cache LRG:             0.013 s
+         Simplify:              0.118 s
+         Select:                0.231 s
+       Block Ordering:        0.400 s
+       Peephole:              0.061 s
+       Code Emission:           3.838 s
+         Insn Scheduling:       0.000 s
+         Shorten branches:      1.786 s
+         Build OOP maps:        0.504 s
+         Fill buffer:           1.252 s
+         Code Installation:     0.124 s
+         Other:                 0.173 s
+       Other:                 1.288 s
+
+  Total compiled methods    :     1047 methods
+    Standard compilation    :     1036 methods
+    On stack replacement    :       11 methods
+  Total compiled bytecodes  :    75042 bytes
+    Standard compilation    :    72684 bytes
+    On stack replacement    :     2358 bytes
+  Average compilation speed :      848 bytes/s
+
+  nmethod code size         :  1577048 bytes
+  nmethod total size        :  1122304 bytes
+
+
+Result "jvbench.axpy.AxpyBenchmark.explicitVec":
+  N = 10
+  mean =      0.476 ±(99.9%) 0.168 s/op
+
+  Histogram, s/op:
+    [0.300, 0.325) = 0 
+    [0.325, 0.350) = 2 
+    [0.350, 0.375) = 0 
+    [0.375, 0.400) = 0 
+    [0.400, 0.425) = 1 
+    [0.425, 0.450) = 2 
+    [0.450, 0.475) = 1 
+    [0.475, 0.500) = 0 
+    [0.500, 0.525) = 0 
+    [0.525, 0.550) = 1 
+    [0.550, 0.575) = 0 
+    [0.575, 0.600) = 1 
+    [0.600, 0.625) = 1 
+    [0.625, 0.650) = 1 
+    [0.650, 0.675) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      0.328 s/op
+     p(50.0000) =      0.444 s/op
+     p(90.0000) =      0.633 s/op
+     p(95.0000) =      0.635 s/op
+     p(99.0000) =      0.635 s/op
+     p(99.9000) =      0.635 s/op
+     p(99.9900) =      0.635 s/op
+     p(99.9990) =      0.635 s/op
+     p(99.9999) =      0.635 s/op
+    p(100.0000) =      0.635 s/op
+
+Secondary result "jvbench.axpy.AxpyBenchmark.explicitVec:·gc.alloc.rate":
+  0.001 ±(99.9%) 0.002 MB/sec [Average]
+  (min, avg, max) = (0.001, 0.001, 0.005), stdev = 0.001
+  CI (99.9%): [≈ 0, 0.003] (assumes normal distribution)
+
+Secondary result "jvbench.axpy.AxpyBenchmark.explicitVec:·gc.alloc.rate.norm":
+  1739.200 ±(99.9%) 3304.567 B/op [Average]
+  (min, avg, max) = (1048.000, 1739.200, 7960.000), stdev = 2185.766
+  CI (99.9%): [≈ 0, 5043.767] (assumes normal distribution)
+
+Secondary result "jvbench.axpy.AxpyBenchmark.explicitVec:·gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+CITime --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=70000
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.axpy.AxpyBenchmark.fullVec
+
+# Run progress: 50.00% complete, ETA 00:03:12
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 9.385 s/op
+# Warmup Iteration   2: 4.927 s/op
+# Warmup Iteration   3: 0.455 s/op
+# Warmup Iteration   4: 0.406 s/op
+# Warmup Iteration   5: 0.531 s/op
+# Warmup Iteration   6: 0.467 s/op
+# Warmup Iteration   7: 0.890 s/op
+# Warmup Iteration   8: 0.400 s/op
+# Warmup Iteration   9: 0.414 s/op
+# Warmup Iteration  10: 0.406 s/op
+Iteration   1: 0.400 s/op
+                 ·gc.alloc.rate:      0.006 MB/sec
+                 ·gc.alloc.rate.norm: 7944.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   2: 0.399 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   3: 0.402 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   4: 0.592 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   5: 0.495 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   6: 0.726 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   7: 0.401 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   8: 0.416 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   9: 0.430 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration  10: 0.417 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+
+Individual compiler times (for compiled methods only)
+------------------------------------------------
+
+  C1 {speed: 2086.893 bytes/s; standard: 31.795 s, 66475 bytes, 958 methods; osr:  0.510 s, 941 bytes, 3 methods; nmethods_size: 1514768 bytes; nmethods_code_size: 1083776 bytes}
+  C2 {speed: 152.281 bytes/s; standard: 48.098 s, 6863 bytes, 83 methods; osr:  6.275 s, 1417 bytes, 8 methods; nmethods_size: 72968 bytes; nmethods_code_size: 45472 bytes}
+
+Individual compilation Tier times (for compiled methods only)
+------------------------------------------------
+
+  Tier1 {speed: 660.239 bytes/s; standard:  0.983 s, 649 bytes, 134 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 32112 bytes; nmethods_code_size: 20320 bytes}
+  Tier2 {speed:  0.000 bytes/s; standard:  0.000 s, 0 bytes, 0 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 0 bytes; nmethods_code_size: 0 bytes}
+  Tier3 {speed: 2131.667 bytes/s; standard: 30.812 s, 65826 bytes, 824 methods; osr:  0.510 s, 941 bytes, 3 methods; nmethods_size: 1482656 bytes; nmethods_code_size: 1063456 bytes}
+  Tier4 {speed: 152.281 bytes/s; standard: 48.098 s, 6863 bytes, 83 methods; osr:  6.275 s, 1417 bytes, 8 methods; nmethods_size: 72968 bytes; nmethods_code_size: 45472 bytes}
+
+Accumulated compiler times
+----------------------------------------------------------
+  Total compilation time   :  87.005 s
+    Standard compilation   :  79.892 s, Average : 0.077 s
+    Bailed out compilation :   0.327 s, Average : 0.327 s
+    On stack replacement   :   6.785 s, Average : 0.617 s
+    Invalidated            :   0.000 s, Average : 0.000 s
+
+    C1 Compile Time:       32.458 s
+       Setup time:            0.230 s
+       Build HIR:            17.607 s
+         Parse:                15.170 s
+         Optimize blocks:       0.017 s
+         GVN:                   0.850 s
+         Null checks elim:      0.567 s
+         Range checks elim:     0.452 s
+         Other:                 0.552 s
+       Emit LIR:              8.706 s
+         LIR Gen:               3.422 s
+         Linear Scan:           5.155 s
+         Other:                 0.129 s
+       Code Emission:         3.496 s
+       Code Installation:     1.849 s
+       Other:                 0.570 s
+
+    C2 Compile Time:       59.592 s
+       Parse:                14.600 s
+       Optimize:             20.913 s
+         Escape Analysis:       1.258 s
+           Conn Graph:            1.027 s
+           Macro Eliminate:       0.079 s
+         GVN 1:                 2.453 s
+         Incremental Inline:    0.361 s
+           IdealLoop:             0.000 s
+          (IGVN:                  0.097 s)
+          (Inline:                0.197 s)
+          (Prune Useless:         0.055 s)
+           Other:                 0.361 s
+         Vector:                0.892 s
+           Box elimination:     0.889 s
+             IGVN:              0.088 s
+             Prune Useless:     0.100 s
+         Renumber Live:         0.025 s
+         IdealLoop:            10.815 s
+         IdealLoop Verify:      0.000 s
+         Cond Const Prop:       0.329 s
+         GVN 2:                 0.111 s
+         Macro Expand:          1.791 s
+         Barrier Expand:        0.002 s
+         Graph Reshape:         0.558 s
+         Other:                 2.318 s
+       Matcher:                    4.851 s
+         Post Selection Cleanup:   0.345 s
+       Scheduler:                  4.923 s
+       Regalloc:              8.155 s
+         Ctor Chaitin:          0.020 s
+         Build IFG (virt):      0.215 s
+         Build IFG (phys):      1.350 s
+         Compute Liveness:      2.451 s
+         Regalloc Split:        1.489 s
+         Postalloc Copy Rem:    1.175 s
+         Merge multidefs:       0.209 s
+         Fixup Spills:          0.201 s
+         Compact:               0.017 s
+         Coalesce 1:            0.577 s
+         Coalesce 2:            0.188 s
+         Coalesce 3:            0.099 s
+         Cache LRG:             0.015 s
+         Simplify:              0.160 s
+         Select:                0.232 s
+       Block Ordering:        0.396 s
+       Peephole:              0.071 s
+       Code Emission:           4.383 s
+         Insn Scheduling:       0.000 s
+         Shorten branches:      1.993 s
+         Build OOP maps:        0.413 s
+         Fill buffer:           1.494 s
+         Code Installation:     0.241 s
+         Other:                 0.242 s
+       Other:                 1.059 s
+
+  Total compiled methods    :     1052 methods
+    Standard compilation    :     1041 methods
+    On stack replacement    :       11 methods
+  Total compiled bytecodes  :    75696 bytes
+    Standard compilation    :    73338 bytes
+    On stack replacement    :     2358 bytes
+  Average compilation speed :      870 bytes/s
+
+  nmethod code size         :  1587736 bytes
+  nmethod total size        :  1129248 bytes
+
+
+Result "jvbench.axpy.AxpyBenchmark.fullVec":
+  N = 10
+  mean =      0.468 ±(99.9%) 0.166 s/op
+
+  Histogram, s/op:
+    [0.300, 0.350) = 0 
+    [0.350, 0.400) = 2 
+    [0.400, 0.450) = 5 
+    [0.450, 0.500) = 1 
+    [0.500, 0.550) = 0 
+    [0.550, 0.600) = 1 
+    [0.600, 0.650) = 0 
+    [0.650, 0.700) = 0 
+    [0.700, 0.750) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      0.399 s/op
+     p(50.0000) =      0.417 s/op
+     p(90.0000) =      0.713 s/op
+     p(95.0000) =      0.726 s/op
+     p(99.0000) =      0.726 s/op
+     p(99.9000) =      0.726 s/op
+     p(99.9900) =      0.726 s/op
+     p(99.9990) =      0.726 s/op
+     p(99.9999) =      0.726 s/op
+    p(100.0000) =      0.726 s/op
+
+Secondary result "jvbench.axpy.AxpyBenchmark.fullVec:·gc.alloc.rate":
+  0.001 ±(99.9%) 0.002 MB/sec [Average]
+  (min, avg, max) = (0.001, 0.001, 0.006), stdev = 0.002
+  CI (99.9%): [≈ 0, 0.004] (assumes normal distribution)
+
+Secondary result "jvbench.axpy.AxpyBenchmark.fullVec:·gc.alloc.rate.norm":
+  1723.200 ±(99.9%) 3304.567 B/op [Average]
+  (min, avg, max) = (1032.000, 1723.200, 7944.000), stdev = 2185.766
+  CI (99.9%): [≈ 0, 5027.767] (assumes normal distribution)
+
+Secondary result "jvbench.axpy.AxpyBenchmark.fullVec:·gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+CITime --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=70000 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.axpy.AxpyBenchmark.serial
+
+# Run progress: 75.00% complete, ETA 00:01:37
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 1.379 s/op
+# Warmup Iteration   2: 1.159 s/op
+# Warmup Iteration   3: 0.766 s/op
+# Warmup Iteration   4: 0.567 s/op
+# Warmup Iteration   5: 0.279 s/op
+# Warmup Iteration   6: 0.759 s/op
+# Warmup Iteration   7: 0.443 s/op
+# Warmup Iteration   8: 0.760 s/op
+# Warmup Iteration   9: 0.412 s/op
+# Warmup Iteration  10: 0.767 s/op
+Iteration   1: 0.395 s/op
+                 ·gc.alloc.rate:      0.006 MB/sec
+                 ·gc.alloc.rate.norm: 7944.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   2: 0.780 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   3: 0.767 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   4: 0.764 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   5: 0.762 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   6: 0.595 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   7: 0.761 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   8: 0.758 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration   9: 0.805 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+Iteration  10: 0.815 s/op
+                 ·gc.alloc.rate:      0.001 MB/sec
+                 ·gc.alloc.rate.norm: 1032.000 B/op
+                 ·gc.count:           ≈ 0 counts
+
+
+Individual compiler times (for compiled methods only)
+------------------------------------------------
+
+  C1 {speed: 2049.309 bytes/s; standard: 28.776 s, 58901 bytes, 833 methods; osr:  0.368 s, 824 bytes, 3 methods; nmethods_size: 1240264 bytes; nmethods_code_size: 881888 bytes}
+  C2 {speed: 119.218 bytes/s; standard: 34.730 s, 4155 bytes, 50 methods; osr:  1.725 s, 191 bytes, 4 methods; nmethods_size: 39480 bytes; nmethods_code_size: 26272 bytes}
+
+Individual compilation Tier times (for compiled methods only)
+------------------------------------------------
+
+  Tier1 {speed: 1270.678 bytes/s; standard:  0.523 s, 664 bytes, 137 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 32952 bytes; nmethods_code_size: 20896 bytes}
+  Tier2 {speed:  0.000 bytes/s; standard:  0.000 s, 0 bytes, 0 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 0 bytes; nmethods_code_size: 0 bytes}
+  Tier3 {speed: 2063.525 bytes/s; standard: 28.254 s, 58237 bytes, 696 methods; osr:  0.368 s, 824 bytes, 3 methods; nmethods_size: 1207312 bytes; nmethods_code_size: 860992 bytes}
+  Tier4 {speed: 119.218 bytes/s; standard: 34.730 s, 4155 bytes, 50 methods; osr:  1.725 s, 191 bytes, 4 methods; nmethods_size: 39480 bytes; nmethods_code_size: 26272 bytes}
+
+Accumulated compiler times
+----------------------------------------------------------
+  Total compilation time   :  65.598 s
+    Standard compilation   :  63.506 s, Average : 0.072 s
+    Bailed out compilation :   0.000 s, Average : 0.000 s
+    On stack replacement   :   2.092 s, Average : 0.299 s
+    Invalidated            :   0.000 s, Average : 0.000 s
+
+    C1 Compile Time:       29.028 s
+       Setup time:            0.159 s
+       Build HIR:            15.868 s
+         Parse:                13.565 s
+         Optimize blocks:       0.013 s
+         GVN:                   0.811 s
+         Null checks elim:      0.518 s
+         Range checks elim:     0.421 s
+         Other:                 0.540 s
+       Emit LIR:              7.584 s
+         LIR Gen:               3.229 s
+         Linear Scan:           4.268 s
+         Other:                 0.088 s
+       Code Emission:         3.497 s
+       Code Installation:     1.345 s
+       Other:                 0.575 s
+
+    C2 Compile Time:       41.665 s
+       Parse:                 9.674 s
+       Optimize:             13.949 s
+         Escape Analysis:       0.926 s
+           Conn Graph:            0.850 s
+           Macro Eliminate:       0.004 s
+         GVN 1:                 1.904 s
+         Incremental Inline:    0.002 s
+           IdealLoop:             0.000 s
+          (IGVN:                  0.000 s)
+          (Inline:                0.000 s)
+          (Prune Useless:         0.000 s)
+           Other:                 0.002 s
+         Vector:                0.000 s
+           Box elimination:     0.000 s
+             IGVN:              0.000 s
+             Prune Useless:     0.000 s
+         Renumber Live:         0.000 s
+         IdealLoop:             7.277 s
+         IdealLoop Verify:      0.000 s
+         Cond Const Prop:       0.297 s
+         GVN 2:                 0.042 s
+         Macro Expand:          1.587 s
+         Barrier Expand:        0.001 s
+         Graph Reshape:         0.443 s
+         Other:                 1.470 s
+       Matcher:                    4.126 s
+         Post Selection Cleanup:   0.276 s
+       Scheduler:                  3.835 s
+       Regalloc:              5.107 s
+         Ctor Chaitin:          0.016 s
+         Build IFG (virt):      0.200 s
+         Build IFG (phys):      0.629 s
+         Compute Liveness:      1.596 s
+         Regalloc Split:        0.972 s
+         Postalloc Copy Rem:    0.610 s
+         Merge multidefs:       0.108 s
+         Fixup Spills:          0.117 s
+         Compact:               0.030 s
+         Coalesce 1:            0.424 s
+         Coalesce 2:            0.153 s
+         Coalesce 3:            0.031 s
+         Cache LRG:             0.006 s
+         Simplify:              0.070 s
+         Select:                0.174 s
+       Block Ordering:        0.479 s
+       Peephole:              0.053 s
+       Code Emission:           3.070 s
+         Insn Scheduling:       0.000 s
+         Shorten branches:      1.502 s
+         Build OOP maps:        0.285 s
+         Fill buffer:           0.950 s
+         Code Installation:     0.110 s
+         Other:                 0.223 s
+       Other:                 1.261 s
+
+  Total compiled methods    :      890 methods
+    Standard compilation    :      883 methods
+    On stack replacement    :        7 methods
+  Total compiled bytecodes  :    64071 bytes
+    Standard compilation    :    63056 bytes
+    On stack replacement    :     1015 bytes
+  Average compilation speed :      976 bytes/s
+
+  nmethod code size         :  1279744 bytes
+  nmethod total size        :   908160 bytes
+
+
+Result "jvbench.axpy.AxpyBenchmark.serial":
+  N = 10
+  mean =      0.720 ±(99.9%) 0.195 s/op
+
+  Histogram, s/op:
+    [0.300, 0.350) = 0 
+    [0.350, 0.400) = 1 
+    [0.400, 0.450) = 0 
+    [0.450, 0.500) = 0 
+    [0.500, 0.550) = 0 
+    [0.550, 0.600) = 1 
+    [0.600, 0.650) = 0 
+    [0.650, 0.700) = 0 
+    [0.700, 0.750) = 0 
+    [0.750, 0.800) = 6 
+    [0.800, 0.850) = 2 
+
+  Percentiles, s/op:
+      p(0.0000) =      0.395 s/op
+     p(50.0000) =      0.763 s/op
+     p(90.0000) =      0.814 s/op
+     p(95.0000) =      0.815 s/op
+     p(99.0000) =      0.815 s/op
+     p(99.9000) =      0.815 s/op
+     p(99.9900) =      0.815 s/op
+     p(99.9990) =      0.815 s/op
+     p(99.9999) =      0.815 s/op
+    p(100.0000) =      0.815 s/op
+
+Secondary result "jvbench.axpy.AxpyBenchmark.serial:·gc.alloc.rate":
+  0.001 ±(99.9%) 0.003 MB/sec [Average]
+  (min, avg, max) = (0.001, 0.001, 0.006), stdev = 0.002
+  CI (99.9%): [≈ 0, 0.004] (assumes normal distribution)
+
+Secondary result "jvbench.axpy.AxpyBenchmark.serial:·gc.alloc.rate.norm":
+  1723.200 ±(99.9%) 3304.567 B/op [Average]
+  (min, avg, max) = (1032.000, 1723.200, 7944.000), stdev = 2185.766
+  CI (99.9%): [≈ 0, 5027.767] (assumes normal distribution)
+
+Secondary result "jvbench.axpy.AxpyBenchmark.serial:·gc.count":
+  ≈ 0 counts
+
+
+# Run complete. Total time: 00:06:24
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                      Mode  Cnt     Score      Error   Units
+AxpyBenchmark.autoVec                            ss   10     0.282 ±    0.113    s/op
+AxpyBenchmark.autoVec:·gc.alloc.rate             ss   10     0.002 ±    0.003  MB/sec
+AxpyBenchmark.autoVec:·gc.alloc.rate.norm        ss   10  1723.200 ± 3304.567    B/op
+AxpyBenchmark.autoVec:·gc.count                  ss   10       ≈ 0             counts
+AxpyBenchmark.explicitVec                        ss   10     0.476 ±    0.168    s/op
+AxpyBenchmark.explicitVec:·gc.alloc.rate         ss   10     0.001 ±    0.002  MB/sec
+AxpyBenchmark.explicitVec:·gc.alloc.rate.norm    ss   10  1739.200 ± 3304.567    B/op
+AxpyBenchmark.explicitVec:·gc.count              ss   10       ≈ 0             counts
+AxpyBenchmark.fullVec                            ss   10     0.468 ±    0.166    s/op
+AxpyBenchmark.fullVec:·gc.alloc.rate             ss   10     0.001 ±    0.002  MB/sec
+AxpyBenchmark.fullVec:·gc.alloc.rate.norm        ss   10  1723.200 ± 3304.567    B/op
+AxpyBenchmark.fullVec:·gc.count                  ss   10       ≈ 0             counts
+AxpyBenchmark.serial                             ss   10     0.720 ±    0.195    s/op
+AxpyBenchmark.serial:·gc.alloc.rate              ss   10     0.001 ±    0.003  MB/sec
+AxpyBenchmark.serial:·gc.alloc.rate.norm         ss   10  1723.200 ± 3304.567    B/op
+AxpyBenchmark.serial:·gc.count                   ss   10       ≈ 0             counts
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/benchmark/pin_total/2024-05-14_16:31:12/axpy/AxpyBenchmark.csv
+
+Individual compiler times (for compiled methods only)
+------------------------------------------------
+
+  C1 {speed: 3219.304 bytes/s; standard: 32.333 s, 104381 bytes, 1244 methods; osr:  0.292 s, 649 bytes, 1 methods; nmethods_size: 2124896 bytes; nmethods_code_size: 1498112 bytes}
+  C2 {speed: 373.110 bytes/s; standard: 48.137 s, 18175 bytes, 117 methods; osr:  0.752 s, 66 bytes, 2 methods; nmethods_size: 151400 bytes; nmethods_code_size: 93248 bytes}
+
+Individual compilation Tier times (for compiled methods only)
+------------------------------------------------
+
+  Tier1 {speed: 1694.248 bytes/s; standard:  0.416 s, 705 bytes, 149 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 35920 bytes; nmethods_code_size: 22656 bytes}
+  Tier2 {speed:  0.000 bytes/s; standard:  0.000 s, 0 bytes, 0 methods; osr:  0.000 s, 0 bytes, 0 methods; nmethods_size: 0 bytes; nmethods_code_size: 0 bytes}
+  Tier3 {speed: 3239.006 bytes/s; standard: 31.917 s, 103676 bytes, 1095 methods; osr:  0.292 s, 649 bytes, 1 methods; nmethods_size: 2088976 bytes; nmethods_code_size: 1475456 bytes}
+  Tier4 {speed: 373.110 bytes/s; standard: 48.137 s, 18175 bytes, 117 methods; osr:  0.752 s, 66 bytes, 2 methods; nmethods_size: 151400 bytes; nmethods_code_size: 93248 bytes}
+
+Accumulated compiler times
+----------------------------------------------------------
+  Total compilation time   :  81.514 s
+    Standard compilation   :  80.471 s, Average : 0.059 s
+    Bailed out compilation :   0.000 s, Average : 0.000 s
+    On stack replacement   :   1.043 s, Average : 0.348 s
+    Invalidated            :   0.000 s, Average : 0.000 s
+
+    C1 Compile Time:       32.502 s
+       Setup time:            0.175 s
+       Build HIR:            16.908 s
+         Parse:                14.218 s
+         Optimize blocks:       0.016 s
+         GVN:                   0.900 s
+         Null checks elim:      0.611 s
+         Range checks elim:     0.465 s
+         Other:                 0.698 s
+       Emit LIR:              9.382 s
+         LIR Gen:               3.556 s
+         Linear Scan:           5.717 s
+         Other:                 0.109 s
+       Code Emission:         3.932 s
+       Code Installation:     1.492 s
+       Other:                 0.612 s
+
+    C2 Compile Time:       54.377 s
+       Parse:                12.398 s
+       Optimize:             17.491 s
+         Escape Analysis:       1.027 s
+           Conn Graph:            0.953 s
+           Macro Eliminate:       0.004 s
+         GVN 1:                 2.682 s
+         Incremental Inline:    0.002 s
+           IdealLoop:             0.000 s
+          (IGVN:                  0.000 s)
+          (Inline:                0.000 s)
+          (Prune Useless:         0.000 s)
+           Other:                 0.002 s
+         Vector:                0.000 s
+           Box elimination:     0.000 s
+             IGVN:              0.000 s
+             Prune Useless:     0.000 s
+         Renumber Live:         0.027 s
+         IdealLoop:             9.206 s
+         IdealLoop Verify:      0.000 s
+         Cond Const Prop:       0.341 s
+         GVN 2:                 0.078 s
+         Macro Expand:          1.621 s
+         Barrier Expand:        0.001 s
+         Graph Reshape:         0.602 s
+         Other:                 1.904 s
+       Matcher:                    5.450 s
+         Post Selection Cleanup:   0.354 s
+       Scheduler:                  4.642 s
+       Regalloc:              9.278 s
+         Ctor Chaitin:          0.018 s
+         Build IFG (virt):      0.226 s
+         Build IFG (phys):      1.420 s
+         Compute Liveness:      2.373 s
+         Regalloc Split:        1.551 s
+         Postalloc Copy Rem:    2.057 s
+         Merge multidefs:       0.228 s
+         Fixup Spills:          0.148 s
+         Compact:               0.016 s
+         Coalesce 1:            0.550 s
+         Coalesce 2:            0.227 s
+         Coalesce 3:            0.048 s
+         Cache LRG:             0.014 s
+         Simplify:              0.184 s
+         Select:                0.293 s
+       Block Ordering:        0.400 s
+       Peephole:              0.091 s
+       Code Emission:           3.828 s
+         Insn Scheduling:       0.000 s
+         Shorten branches:      1.775 s
+         Build OOP maps:        0.478 s
+         Fill buffer:           1.176 s
+         Code Installation:     0.122 s
+         Other:                 0.276 s
+       Other:                 0.634 s
+
+  Total compiled methods    :     1364 methods
+    Standard compilation    :     1361 methods
+    On stack replacement    :        3 methods
+  Total compiled bytecodes  :   123271 bytes
+    Standard compilation    :   122556 bytes
+    On stack replacement    :      715 bytes
+  Average compilation speed :     1512 bytes/s
+
+  nmethod code size         :  2276296 bytes
+  nmethod total size        :  1591360 bytes

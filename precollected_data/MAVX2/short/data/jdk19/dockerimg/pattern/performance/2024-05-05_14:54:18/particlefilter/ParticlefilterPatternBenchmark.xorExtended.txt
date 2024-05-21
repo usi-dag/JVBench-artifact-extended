@@ -1,0 +1,90 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19-xor/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/pattern/performance/2024-05-05_14:54:18/particlefilter/ParticlefilterPatternBenchmark.xorExtended_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dx=128 -Dy=128 -Dz=24 -Dnp=32768
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.particlefilter.ParticlefilterPatternBenchmark.xorExtended
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 9.055 s/op
+# Warmup Iteration   2: 8.813 s/op
+# Warmup Iteration   3: 5.698 s/op
+# Warmup Iteration   4: 5.614 s/op
+# Warmup Iteration   5: 5.557 s/op
+# Warmup Iteration   6: 5.562 s/op
+# Warmup Iteration   7: 5.550 s/op
+# Warmup Iteration   8: 5.556 s/op
+# Warmup Iteration   9: 5.574 s/op
+# Warmup Iteration  10: 5.579 s/op
+Iteration   1: 5.630 s/op
+Iteration   2: 5.571 s/op
+Iteration   3: 5.529 s/op
+Iteration   4: 5.529 s/op
+Iteration   5: 5.529 s/op
+Iteration   6: 5.537 s/op
+Iteration   7: 5.558 s/op
+Iteration   8: 5.584 s/op
+Iteration   9: 5.637 s/op
+Iteration  10: 5.572 s/op
+
+
+Result "jvbench.particlefilter.ParticlefilterPatternBenchmark.xorExtended":
+  N = 10
+  mean =      5.568 ±(99.9%) 0.061 s/op
+
+  Histogram, s/op:
+    [5.500, 5.513) = 0 
+    [5.513, 5.525) = 0 
+    [5.525, 5.538) = 4 
+    [5.538, 5.550) = 0 
+    [5.550, 5.563) = 1 
+    [5.563, 5.575) = 2 
+    [5.575, 5.588) = 1 
+    [5.588, 5.600) = 0 
+    [5.600, 5.613) = 0 
+    [5.613, 5.625) = 0 
+    [5.625, 5.638) = 2 
+    [5.638, 5.650) = 0 
+    [5.650, 5.663) = 0 
+    [5.663, 5.675) = 0 
+    [5.675, 5.688) = 0 
+    [5.688, 5.700) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      5.529 s/op
+     p(50.0000) =      5.564 s/op
+     p(90.0000) =      5.637 s/op
+     p(95.0000) =      5.637 s/op
+     p(99.0000) =      5.637 s/op
+     p(99.9000) =      5.637 s/op
+     p(99.9900) =      5.637 s/op
+     p(99.9990) =      5.637 s/op
+     p(99.9999) =      5.637 s/op
+    p(100.0000) =      5.637 s/op
+
+
+# Run complete. Total time: 00:01:58
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                   Mode  Cnt  Score   Error  Units
+ParticlefilterPatternBenchmark.xorExtended    ss   10  5.568 ± 0.061   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/pattern/performance/2024-05-05_14:54:18/particlefilter/ParticlefilterPatternBenchmark.xorExtended.csv

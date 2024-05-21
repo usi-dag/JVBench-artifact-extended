@@ -1,0 +1,299 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_total/2024-04-30_09:51:08/axpy/AxpyBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=70000
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.axpy.AxpyBenchmark.autoVec
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 0.842 s/op
+# Warmup Iteration   2: 0.804 s/op
+# Warmup Iteration   3: 0.164 s/op
+# Warmup Iteration   4: 0.167 s/op
+# Warmup Iteration   5: 0.158 s/op
+# Warmup Iteration   6: 0.158 s/op
+# Warmup Iteration   7: 0.159 s/op
+# Warmup Iteration   8: 0.158 s/op
+# Warmup Iteration   9: 0.168 s/op
+# Warmup Iteration  10: 0.189 s/op
+Iteration   1: 0.167 s/op
+Iteration   2: 0.228 s/op
+Iteration   3: 0.160 s/op
+Iteration   4: 0.158 s/op
+Iteration   5: 0.175 s/op
+Iteration   6: 0.161 s/op
+Iteration   7: 0.159 s/op
+Iteration   8: 0.159 s/op
+Iteration   9: 0.157 s/op
+Iteration  10: 0.161 s/op
+
+
+Result "jvbench.axpy.AxpyBenchmark.autoVec":
+  N = 10
+  mean =      0.168 ±(99.9%) 0.033 s/op
+
+  Histogram, s/op:
+    [0.150, 0.155) = 0 
+    [0.155, 0.160) = 5 
+    [0.160, 0.165) = 2 
+    [0.165, 0.170) = 1 
+    [0.170, 0.175) = 1 
+    [0.175, 0.180) = 0 
+    [0.180, 0.185) = 0 
+    [0.185, 0.190) = 0 
+    [0.190, 0.195) = 0 
+    [0.195, 0.200) = 0 
+    [0.200, 0.205) = 0 
+    [0.205, 0.210) = 0 
+    [0.210, 0.215) = 0 
+    [0.215, 0.220) = 0 
+    [0.220, 0.225) = 0 
+    [0.225, 0.230) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      0.157 s/op
+     p(50.0000) =      0.161 s/op
+     p(90.0000) =      0.223 s/op
+     p(95.0000) =      0.228 s/op
+     p(99.0000) =      0.228 s/op
+     p(99.9000) =      0.228 s/op
+     p(99.9900) =      0.228 s/op
+     p(99.9990) =      0.228 s/op
+     p(99.9999) =      0.228 s/op
+    p(100.0000) =      0.228 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_total/2024-04-30_09:51:08/axpy/AxpyBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=70000 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.axpy.AxpyBenchmark.explicitVec
+
+# Run progress: 25.00% complete, ETA 00:03:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 4.930 s/op
+# Warmup Iteration   2: 1.182 s/op
+# Warmup Iteration   3: 0.122 s/op
+# Warmup Iteration   4: 0.119 s/op
+# Warmup Iteration   5: 0.117 s/op
+# Warmup Iteration   6: 0.116 s/op
+# Warmup Iteration   7: 0.117 s/op
+# Warmup Iteration   8: 0.118 s/op
+# Warmup Iteration   9: 0.116 s/op
+# Warmup Iteration  10: 0.128 s/op
+Iteration   1: 0.116 s/op
+Iteration   2: 0.117 s/op
+Iteration   3: 0.119 s/op
+Iteration   4: 0.118 s/op
+Iteration   5: 0.134 s/op
+Iteration   6: 0.117 s/op
+Iteration   7: 0.119 s/op
+Iteration   8: 0.117 s/op
+Iteration   9: 0.118 s/op
+Iteration  10: 0.117 s/op
+
+
+Result "jvbench.axpy.AxpyBenchmark.explicitVec":
+  N = 10
+  mean =      0.119 ±(99.9%) 0.008 s/op
+
+  Histogram, s/op:
+    [0.110, 0.113) = 0 
+    [0.113, 0.115) = 0 
+    [0.115, 0.118) = 5 
+    [0.118, 0.120) = 4 
+    [0.120, 0.123) = 0 
+    [0.123, 0.125) = 0 
+    [0.125, 0.128) = 0 
+    [0.128, 0.130) = 0 
+    [0.130, 0.133) = 0 
+    [0.133, 0.135) = 1 
+    [0.135, 0.138) = 0 
+    [0.138, 0.140) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      0.116 s/op
+     p(50.0000) =      0.117 s/op
+     p(90.0000) =      0.133 s/op
+     p(95.0000) =      0.134 s/op
+     p(99.0000) =      0.134 s/op
+     p(99.9000) =      0.134 s/op
+     p(99.9900) =      0.134 s/op
+     p(99.9990) =      0.134 s/op
+     p(99.9999) =      0.134 s/op
+    p(100.0000) =      0.134 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_total/2024-04-30_09:51:08/axpy/AxpyBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=70000
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.axpy.AxpyBenchmark.fullVec
+
+# Run progress: 50.00% complete, ETA 00:02:02
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 4.725 s/op
+# Warmup Iteration   2: 1.286 s/op
+# Warmup Iteration   3: 0.151 s/op
+# Warmup Iteration   4: 0.146 s/op
+# Warmup Iteration   5: 0.149 s/op
+# Warmup Iteration   6: 0.147 s/op
+# Warmup Iteration   7: 0.146 s/op
+# Warmup Iteration   8: 0.150 s/op
+# Warmup Iteration   9: 0.146 s/op
+# Warmup Iteration  10: 0.151 s/op
+Iteration   1: 0.145 s/op
+Iteration   2: 0.148 s/op
+Iteration   3: 0.145 s/op
+Iteration   4: 0.145 s/op
+Iteration   5: 0.153 s/op
+Iteration   6: 0.148 s/op
+Iteration   7: 0.147 s/op
+Iteration   8: 0.146 s/op
+Iteration   9: 0.146 s/op
+Iteration  10: 0.145 s/op
+
+
+Result "jvbench.axpy.AxpyBenchmark.fullVec":
+  N = 10
+  mean =      0.147 ±(99.9%) 0.004 s/op
+
+  Histogram, s/op:
+    [0.145, 0.146) = 4 
+    [0.146, 0.146) = 1 
+    [0.146, 0.147) = 1 
+    [0.147, 0.147) = 0 
+    [0.147, 0.148) = 1 
+    [0.148, 0.148) = 1 
+    [0.148, 0.149) = 1 
+    [0.149, 0.149) = 0 
+    [0.149, 0.150) = 0 
+    [0.150, 0.150) = 0 
+    [0.150, 0.151) = 0 
+    [0.151, 0.151) = 0 
+    [0.151, 0.152) = 0 
+    [0.152, 0.152) = 0 
+    [0.152, 0.153) = 0 
+    [0.153, 0.153) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      0.145 s/op
+     p(50.0000) =      0.146 s/op
+     p(90.0000) =      0.153 s/op
+     p(95.0000) =      0.153 s/op
+     p(99.0000) =      0.153 s/op
+     p(99.9000) =      0.153 s/op
+     p(99.9900) =      0.153 s/op
+     p(99.9990) =      0.153 s/op
+     p(99.9999) =      0.153 s/op
+    p(100.0000) =      0.153 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_total/2024-04-30_09:51:08/axpy/AxpyBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsize=70000 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.axpy.AxpyBenchmark.serial
+
+# Run progress: 75.00% complete, ETA 00:01:01
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 0.690 s/op
+# Warmup Iteration   2: 0.915 s/op
+# Warmup Iteration   3: 0.254 s/op
+# Warmup Iteration   4: 0.236 s/op
+# Warmup Iteration   5: 0.201 s/op
+# Warmup Iteration   6: 0.197 s/op
+# Warmup Iteration   7: 0.197 s/op
+# Warmup Iteration   8: 0.197 s/op
+# Warmup Iteration   9: 0.235 s/op
+# Warmup Iteration  10: 0.239 s/op
+Iteration   1: 0.196 s/op
+Iteration   2: 0.290 s/op
+Iteration   3: 0.217 s/op
+Iteration   4: 0.214 s/op
+Iteration   5: 0.270 s/op
+Iteration   6: 0.196 s/op
+Iteration   7: 0.196 s/op
+Iteration   8: 0.198 s/op
+Iteration   9: 0.197 s/op
+Iteration  10: 0.200 s/op
+
+
+Result "jvbench.axpy.AxpyBenchmark.serial":
+  N = 10
+  mean =      0.218 ±(99.9%) 0.052 s/op
+
+  Histogram, s/op:
+    [0.190, 0.200) = 6 
+    [0.200, 0.210) = 0 
+    [0.210, 0.220) = 2 
+    [0.220, 0.230) = 0 
+    [0.230, 0.240) = 0 
+    [0.240, 0.250) = 0 
+    [0.250, 0.260) = 0 
+    [0.260, 0.270) = 0 
+    [0.270, 0.280) = 1 
+    [0.280, 0.290) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      0.196 s/op
+     p(50.0000) =      0.199 s/op
+     p(90.0000) =      0.288 s/op
+     p(95.0000) =      0.290 s/op
+     p(99.0000) =      0.290 s/op
+     p(99.9000) =      0.290 s/op
+     p(99.9900) =      0.290 s/op
+     p(99.9990) =      0.290 s/op
+     p(99.9999) =      0.290 s/op
+    p(100.0000) =      0.290 s/op
+
+
+# Run complete. Total time: 00:04:02
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                  Mode  Cnt  Score   Error  Units
+AxpyBenchmark.autoVec        ss   10  0.168 ± 0.033   s/op
+AxpyBenchmark.explicitVec    ss   10  0.119 ± 0.008   s/op
+AxpyBenchmark.fullVec        ss   10  0.147 ± 0.004   s/op
+AxpyBenchmark.serial         ss   10  0.218 ± 0.052   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/benchmark/pin_total/2024-04-30_09:51:08/axpy/AxpyBenchmark.csv
