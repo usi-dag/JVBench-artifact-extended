@@ -65,6 +65,8 @@ def main():
         
         # Iterate over files in the directory
         for filename in os.listdir(directory):
+            if "pattern" in filename:
+                continue
             file_path = os.path.join(directory, filename)
             
             # WARNING: REMOVE THIS TO PLOT ALL FILES - ONLY PLOTTING NO_PROFILER FILES BECAUSE I THINK THIS IS ALL WE CARE ABOUT
