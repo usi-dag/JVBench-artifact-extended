@@ -1,0 +1,302 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/somier/SomierBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsteps=10 -Dn=128
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.somier.SomierBenchmark.autoVec
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 17.022 s/op
+# Warmup Iteration   2: 13.913 s/op
+# Warmup Iteration   3: 13.840 s/op
+# Warmup Iteration   4: 13.847 s/op
+# Warmup Iteration   5: 13.874 s/op
+# Warmup Iteration   6: 13.870 s/op
+# Warmup Iteration   7: 13.877 s/op
+# Warmup Iteration   8: 13.869 s/op
+# Warmup Iteration   9: 13.872 s/op
+# Warmup Iteration  10: 13.877 s/op
+Iteration   1: 13.886 s/op
+Iteration   2: 13.884 s/op
+Iteration   3: 13.872 s/op
+Iteration   4: 13.875 s/op
+Iteration   5: 13.877 s/op
+Iteration   6: 13.858 s/op
+Iteration   7: 13.838 s/op
+Iteration   8: 13.881 s/op
+Iteration   9: 13.849 s/op
+Iteration  10: 13.840 s/op
+
+
+Result "jvbench.somier.SomierBenchmark.autoVec":
+  N = 10
+  mean =     13.866 ±(99.9%) 0.028 s/op
+
+  Histogram, s/op:
+    [13.830, 13.835) = 0 
+    [13.835, 13.840) = 2 
+    [13.840, 13.845) = 0 
+    [13.845, 13.850) = 1 
+    [13.850, 13.855) = 0 
+    [13.855, 13.860) = 1 
+    [13.860, 13.865) = 0 
+    [13.865, 13.870) = 0 
+    [13.870, 13.875) = 2 
+    [13.875, 13.880) = 1 
+    [13.880, 13.885) = 2 
+    [13.885, 13.890) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =     13.838 s/op
+     p(50.0000) =     13.873 s/op
+     p(90.0000) =     13.886 s/op
+     p(95.0000) =     13.886 s/op
+     p(99.0000) =     13.886 s/op
+     p(99.9000) =     13.886 s/op
+     p(99.9900) =     13.886 s/op
+     p(99.9990) =     13.886 s/op
+     p(99.9999) =     13.886 s/op
+    p(100.0000) =     13.886 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/somier/SomierBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsteps=10 -Dn=128 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.somier.SomierBenchmark.explicitVec
+
+# Run progress: 25.00% complete, ETA 00:15:25
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 8.176 s/op
+# Warmup Iteration   2: 2.818 s/op
+# Warmup Iteration   3: 2.771 s/op
+# Warmup Iteration   4: 2.770 s/op
+# Warmup Iteration   5: 2.771 s/op
+# Warmup Iteration   6: 2.771 s/op
+# Warmup Iteration   7: 2.778 s/op
+# Warmup Iteration   8: 2.776 s/op
+# Warmup Iteration   9: 2.776 s/op
+# Warmup Iteration  10: 2.772 s/op
+Iteration   1: 2.771 s/op
+Iteration   2: 2.773 s/op
+Iteration   3: 2.772 s/op
+Iteration   4: 2.773 s/op
+Iteration   5: 2.772 s/op
+Iteration   6: 2.774 s/op
+Iteration   7: 2.773 s/op
+Iteration   8: 2.771 s/op
+Iteration   9: 2.770 s/op
+Iteration  10: 2.771 s/op
+
+
+Result "jvbench.somier.SomierBenchmark.explicitVec":
+  N = 10
+  mean =      2.772 ±(99.9%) 0.002 s/op
+
+  Histogram, s/op:
+    [2.770, 2.770) = 0 
+    [2.770, 2.771) = 1 
+    [2.771, 2.771) = 0 
+    [2.771, 2.771) = 0 
+    [2.771, 2.771) = 1 
+    [2.771, 2.772) = 2 
+    [2.772, 2.772) = 1 
+    [2.772, 2.772) = 0 
+    [2.772, 2.772) = 1 
+    [2.772, 2.773) = 0 
+    [2.773, 2.773) = 1 
+    [2.773, 2.773) = 1 
+    [2.773, 2.773) = 0 
+    [2.773, 2.774) = 1 
+    [2.774, 2.774) = 0 
+    [2.774, 2.774) = 0 
+    [2.774, 2.774) = 0 
+    [2.774, 2.775) = 1 
+    [2.775, 2.775) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      2.770 s/op
+     p(50.0000) =      2.772 s/op
+     p(90.0000) =      2.774 s/op
+     p(95.0000) =      2.774 s/op
+     p(99.0000) =      2.774 s/op
+     p(99.9000) =      2.774 s/op
+     p(99.9900) =      2.774 s/op
+     p(99.9990) =      2.774 s/op
+     p(99.9999) =      2.774 s/op
+    p(100.0000) =      2.774 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/somier/SomierBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsteps=10 -Dn=128
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.somier.SomierBenchmark.fullVec
+
+# Run progress: 50.00% complete, ETA 00:06:36
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 8.424 s/op
+# Warmup Iteration   2: 2.953 s/op
+# Warmup Iteration   3: 2.906 s/op
+# Warmup Iteration   4: 2.906 s/op
+# Warmup Iteration   5: 2.901 s/op
+# Warmup Iteration   6: 2.902 s/op
+# Warmup Iteration   7: 2.898 s/op
+# Warmup Iteration   8: 2.906 s/op
+# Warmup Iteration   9: 2.899 s/op
+# Warmup Iteration  10: 2.904 s/op
+Iteration   1: 2.913 s/op
+Iteration   2: 2.903 s/op
+Iteration   3: 2.902 s/op
+Iteration   4: 2.903 s/op
+Iteration   5: 2.899 s/op
+Iteration   6: 2.899 s/op
+Iteration   7: 2.903 s/op
+Iteration   8: 2.904 s/op
+Iteration   9: 2.903 s/op
+Iteration  10: 2.902 s/op
+
+
+Result "jvbench.somier.SomierBenchmark.fullVec":
+  N = 10
+  mean =      2.903 ±(99.9%) 0.006 s/op
+
+  Histogram, s/op:
+    [2.890, 2.893) = 0 
+    [2.893, 2.895) = 0 
+    [2.895, 2.898) = 0 
+    [2.898, 2.900) = 2 
+    [2.900, 2.903) = 2 
+    [2.903, 2.905) = 5 
+    [2.905, 2.908) = 0 
+    [2.908, 2.910) = 0 
+    [2.910, 2.913) = 0 
+    [2.913, 2.915) = 1 
+    [2.915, 2.918) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      2.899 s/op
+     p(50.0000) =      2.903 s/op
+     p(90.0000) =      2.912 s/op
+     p(95.0000) =      2.913 s/op
+     p(99.0000) =      2.913 s/op
+     p(99.9000) =      2.913 s/op
+     p(99.9900) =      2.913 s/op
+     p(99.9990) =      2.913 s/op
+     p(99.9999) =      2.913 s/op
+    p(100.0000) =      2.913 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/somier/SomierBenchmark_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsteps=10 -Dn=128 -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.somier.SomierBenchmark.serial
+
+# Run progress: 75.00% complete, ETA 00:02:42
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 17.243 s/op
+# Warmup Iteration   2: 14.283 s/op
+# Warmup Iteration   3: 14.210 s/op
+# Warmup Iteration   4: 14.242 s/op
+# Warmup Iteration   5: 14.212 s/op
+# Warmup Iteration   6: 14.235 s/op
+# Warmup Iteration   7: 14.355 s/op
+# Warmup Iteration   8: 14.213 s/op
+# Warmup Iteration   9: 14.244 s/op
+# Warmup Iteration  10: 14.208 s/op
+Iteration   1: 14.304 s/op
+Iteration   2: 14.252 s/op
+Iteration   3: 14.326 s/op
+Iteration   4: 14.297 s/op
+Iteration   5: 14.239 s/op
+Iteration   6: 14.339 s/op
+Iteration   7: 14.256 s/op
+Iteration   8: 14.239 s/op
+Iteration   9: 14.306 s/op
+Iteration  10: 14.211 s/op
+
+
+Result "jvbench.somier.SomierBenchmark.serial":
+  N = 10
+  mean =     14.277 ±(99.9%) 0.065 s/op
+
+  Histogram, s/op:
+    [14.200, 14.213) = 1 
+    [14.213, 14.225) = 0 
+    [14.225, 14.238) = 0 
+    [14.238, 14.250) = 2 
+    [14.250, 14.263) = 2 
+    [14.263, 14.275) = 0 
+    [14.275, 14.288) = 0 
+    [14.288, 14.300) = 1 
+    [14.300, 14.313) = 2 
+    [14.313, 14.325) = 0 
+    [14.325, 14.338) = 1 
+    [14.338, 14.350) = 1 
+    [14.350, 14.363) = 0 
+    [14.363, 14.375) = 0 
+    [14.375, 14.388) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =     14.211 s/op
+     p(50.0000) =     14.276 s/op
+     p(90.0000) =     14.338 s/op
+     p(95.0000) =     14.339 s/op
+     p(99.0000) =     14.339 s/op
+     p(99.9000) =     14.339 s/op
+     p(99.9900) =     14.339 s/op
+     p(99.9990) =     14.339 s/op
+     p(99.9999) =     14.339 s/op
+    p(100.0000) =     14.339 s/op
+
+
+# Run complete. Total time: 00:13:22
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                    Mode  Cnt   Score   Error  Units
+SomierBenchmark.autoVec        ss   10  13.866 ± 0.028   s/op
+SomierBenchmark.explicitVec    ss   10   2.772 ± 0.002   s/op
+SomierBenchmark.fullVec        ss   10   2.903 ± 0.006   s/op
+SomierBenchmark.serial         ss   10  14.277 ± 0.065   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/benchmark/pin_vectorial/2024-05-01_00:29:00/somier/SomierBenchmark.csv

@@ -17,7 +17,7 @@ def helper_benchmark_options(execution, jdk_home, jvbench_jar, benchmark, jvm_ar
     if args['name'] is not None and 'pin' in args['name'] and 'xor' not in jvbench_jar.lower():
         # Adds flags for Log Compilation files (first flag is need to use it)
         # And -cp to my plugin etc
-        return args['prefix'] + jdk_home + '/bin/java -XX:+UnlockDiagnosticVMOptions -XX:+CITime' + \
+        return args['prefix'] + jdk_home + '/bin/java -XX:+UnlockDiagnosticVMOptions -XX:+CITime -XX:+PrintIntrinsics' + \
             ' -cp ' + args['classpath'] + ':' + jvbench_jar + \
             ' --add-modules jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin' + \
             jvm_arguments + \
@@ -30,7 +30,7 @@ def helper_benchmark_options(execution, jdk_home, jvbench_jar, benchmark, jvm_ar
             ' ' + '"' + benchmark + '" ' + \
             '-rf csv -rff "' + output_path + '/' + benchmark + '.csv" | tee ' + output_path + '/' + benchmark + '.txt'
         
-    return jdk_home + '/bin/java -XX:+UnlockDiagnosticVMOptions -XX:+CITime' + \
+    return jdk_home + '/bin/java -XX:+UnlockDiagnosticVMOptions -XX:+CITime -XX:+PrintIntrinsics' + \
         ' --add-modules jdk.incubator.vector ' + \
         ' -cp ' + jvbench_jar + ' ' + \
         jvm_arguments + \

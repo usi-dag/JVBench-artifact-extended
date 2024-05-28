@@ -1,0 +1,83 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/pattern/pin_total/2024-04-30_16:22:57/streamcluster/StreamclusterPatternBenchmark.pow_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=streamcluster/input/streamcluster_128_128.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.streamcluster.StreamclusterPatternBenchmark.pow
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: (benchmark timed out, interrupted 4046 times) 1006.017 s/op
+# Warmup Iteration   2: (benchmark timed out, interrupted 4071 times) 1009.125 s/op
+# Warmup Iteration   3: (benchmark timed out, interrupted 4261 times) 1028.148 s/op
+# Warmup Iteration   4: (benchmark timed out, interrupted 4044 times) 1006.366 s/op
+# Warmup Iteration   5: (benchmark timed out, interrupted 4436 times) 1045.763 s/op
+# Warmup Iteration   6: (benchmark timed out, interrupted 4266 times) 1028.609 s/op
+# Warmup Iteration   7: (benchmark timed out, interrupted 4544 times) 1056.630 s/op
+# Warmup Iteration   8: (benchmark timed out, interrupted 3997 times) 1001.562 s/op
+# Warmup Iteration   9: (benchmark timed out, interrupted 3802 times) 981.898 s/op
+# Warmup Iteration  10: (benchmark timed out, interrupted 4140 times) 1015.955 s/op
+Iteration   1: (benchmark timed out, interrupted 4552 times) 1057.226 s/op
+Iteration   2: (benchmark timed out, interrupted 4557 times) 1057.888 s/op
+Iteration   3: (benchmark timed out, interrupted 4170 times) 1018.984 s/op
+Iteration   4: (benchmark timed out, interrupted 4294 times) 1031.375 s/op
+Iteration   5: (benchmark timed out, interrupted 4279 times) 1029.919 s/op
+Iteration   6: (benchmark timed out, interrupted 4093 times) 1011.221 s/op
+Iteration   7: (benchmark timed out, interrupted 4160 times) 1017.999 s/op
+Iteration   8: (benchmark timed out, interrupted 4499 times) 1051.971 s/op
+Iteration   9: (benchmark timed out, interrupted 4106 times) 1012.515 s/op
+Iteration  10: (benchmark timed out, interrupted 4175 times) 1019.421 s/op
+
+
+Result "jvbench.streamcluster.StreamclusterPatternBenchmark.pow":
+  N = 10
+  mean =   1030.852 ±(99.9%) 27.750 s/op
+
+  Histogram, s/op:
+    [1010.000, 1015.000) = 2 
+    [1015.000, 1020.000) = 3 
+    [1020.000, 1025.000) = 0 
+    [1025.000, 1030.000) = 1 
+    [1030.000, 1035.000) = 1 
+    [1035.000, 1040.000) = 0 
+    [1040.000, 1045.000) = 0 
+    [1045.000, 1050.000) = 0 
+    [1050.000, 1055.000) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =   1011.221 s/op
+     p(50.0000) =   1024.670 s/op
+     p(90.0000) =   1057.822 s/op
+     p(95.0000) =   1057.888 s/op
+     p(99.0000) =   1057.888 s/op
+     p(99.9000) =   1057.888 s/op
+     p(99.9900) =   1057.888 s/op
+     p(99.9990) =   1057.888 s/op
+     p(99.9999) =   1057.888 s/op
+    p(100.0000) =   1057.888 s/op
+
+
+# Run complete. Total time: 05:42:03
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                          Mode  Cnt     Score    Error  Units
+StreamclusterPatternBenchmark.pow    ss   10  1030.852 ± 27.750   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/pattern/pin_total/2024-04-30_16:22:57/streamcluster/StreamclusterPatternBenchmark.pow.csv

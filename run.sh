@@ -69,7 +69,7 @@ fi
 
 echo "Loading $TOOL_NAME docker image... (this may take several minutes)"
 mkdir -p output
-docker load -i $DOCKER_IMG_FILENAME
+docker load -i out/build/$DOCKER_IMG_FILENAME
 
 echo "Running command '$cmd $@' in a docker container..."
 mkdir -p $(pwd)/$SHARED_VOLUME

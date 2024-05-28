@@ -5,13 +5,13 @@
 echo
 echo "This command will generate the figures shown in the paper using pre-collected data."
 echo "Approximate running time: 5 minutes"
-yes_or_no "Do you wish to continue?"
-if [ $? -ne 0 ]; then
-    echo 
-    echo "Aborted"
-    echo
-    exit 4
-fi
+# yes_or_no "Do you wish to continue?"
+# if [ $? -ne 0 ]; then
+#     echo 
+#     echo "Aborted"
+#     echo
+#     exit 4
+# fi
 echo
 
 . config

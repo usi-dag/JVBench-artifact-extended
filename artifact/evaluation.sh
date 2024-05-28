@@ -76,21 +76,21 @@ export PATH=$JAVA_HOME/bin:$PATH
 benchmark_runner_folder=$(pwd)/benchmark_runner
 
 
-if [ $pin_tool_type == "vectorial" ]; then
-    echo "Running JVBench with Pin Vectorial Instruction Counter"
-    mkdir results_vectorial_instructions
-    python3.9 $benchmark_runner_folder/runner.py -prof pin_vectorial -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
-    python3.9 $benchmark_runner_folder/runner.py -prof pin_vectorial -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
-elif [ $pin_tool_type == "total" ]; then
-    echo "Running JVBench with Pin Total Instruction Counter"
-    mkdir results_total_instructions
-    python3.9 $benchmark_runner_folder/runner.py -prof pin_total -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
-    python3.9 $benchmark_runner_folder/runner.py -prof pin_total -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
-else
-    echo "Running JVBench without Pin Tool"
+# if [ $pin_tool_type == "vectorial" ]; then
+#     echo "Running JVBench with Pin Vectorial Instruction Counter"
+#     mkdir results_vectorial_instructions
+#     python3.9 $benchmark_runner_folder/runner.py -prof pin_vectorial -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+#     python3.9 $benchmark_runner_folder/runner.py -prof pin_vectorial -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+# elif [ $pin_tool_type == "total" ]; then
+#     echo "Running JVBench with Pin Total Instruction Counter"
+#     mkdir results_total_instructions
+#     python3.9 $benchmark_runner_folder/runner.py -prof pin_total -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+#     python3.9 $benchmark_runner_folder/runner.py -prof pin_total -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
+# else
+#     echo "Running JVBench without Pin Tool"
     python3.9 $benchmark_runner_folder/runner.py -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
     python3.9 $benchmark_runner_folder/runner.py -pl fma indexInRange pow -p -o $RUNNER_OUT_DIR -m dockerimg -conf $benchmark_runner_folder/configurations/$mode/conf.json -jdk $JVBENCH_JAVA_HOME -jvb $JVBENCH_JAR
-fi
+# fi
 
 
 

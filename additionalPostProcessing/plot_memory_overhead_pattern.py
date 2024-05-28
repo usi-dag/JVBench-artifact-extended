@@ -85,6 +85,7 @@ def create_bar_plot_mul_pow(csv_file, plot_filename, output_dir):
     
     # Set y-axis to log scale
     ax.set_yscale('log')
+    ax.set_ybound(0.0001, 1000000000)
     
     # Customize the plot
     ax.set_xlabel('Benchmark', fontsize=12.5)
@@ -102,6 +103,7 @@ def create_bar_plot_mul_pow(csv_file, plot_filename, output_dir):
     for i, p in enumerate(ax.patches):
         x = p.get_x()
         y = p.get_height()
+        # ax.annotate(' %.4f' % y, (x + bar_width / (len(df.columns) * 2), y), rotation=90,
         ax.annotate(' %.4f' % y, (x + bar_width / (len(df.columns) * 2) + 0.025, y), rotation=90,
                     ha='center', va='bottom', size=value_label_size)
     
@@ -119,8 +121,8 @@ def create_bar_plot_mul_pow(csv_file, plot_filename, output_dir):
 
 def main():
     
-    # avx_types = ["MAVX", "MAVX2", "MAVX512"]
-    avx_types = ["MAVX"]
+    avx_types = ["MAVX", "MAVX2", "MAVX512"]
+    # avx_types = ["MAVX", "MAVX512"]
     for avx_type in avx_types:
         directory = f"{avx_type}/graphData"
         
