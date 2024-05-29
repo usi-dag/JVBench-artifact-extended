@@ -30,10 +30,10 @@ def create_bar_plot(csv_file, output_dir='figures', plot_filename='bar_plot.pdf'
     ax.set_xlabel('Benchmark', fontsize=12.5)
     if 'ratio' in csv_file:
         ax.set_ylabel('Ratio', fontsize=12.5)
-        plt.title(f"Vectorization Ratio", fontsize=15, y=1.25)
+        # plt.title(f"Vectorization Ratio", fontsize=15, y=1.25)
     else:
         ax.set_ylabel('Percentage', fontsize=12.5)
-        plt.title(f"Percentage Of Vectorial Instructions", fontsize=15, y=1.25)
+        # plt.title(f"Percentage Of Vectorial Instructions", fontsize=15, y=1.25)
         
         
     ax.grid(axis='y', linestyle='--', alpha=0.7)
@@ -70,7 +70,7 @@ def main():
     ratio_files = ["ratio_of_percentage_vectorial_instructions_to_serial", "percentage_vectorial_instructions"]
     for avx_type in avx_types:
         for ratio_file in ratio_files:
-            create_bar_plot(f'{avx_type}/graphData/{ratio_file}.csv', f"{avx_type}/figures", f'{ratio_file}.pdf')
+            create_bar_plot(f'{avx_type}/graphData/{ratio_file}.csv', f"{avx_type}/figures", f'{ratio_file}_{avx_type}.pdf')
 
 
 if __name__ == "__main__":

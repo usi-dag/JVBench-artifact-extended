@@ -139,8 +139,8 @@ def main():
                 continue
             
             if os.path.isfile(file_path):
-                create_bar_plot_loopbound_indexinrange(file_path, filename.replace('.csv', '.pdf'), f"{avx_type}/figures")
-                create_bar_plot_mul_pow(file_path, filename.replace('.csv', '.pdf'), f"{avx_type}/figures")
+                create_bar_plot_loopbound_indexinrange(file_path, filename.replace('.csv', f'{avx_type}.pdf'), f"{avx_type}/figures")
+                create_bar_plot_mul_pow(file_path, filename.replace('.csv', f'_{avx_type}.pdf'), f"{avx_type}/figures")
 
 
 if __name__ == "__main__":
