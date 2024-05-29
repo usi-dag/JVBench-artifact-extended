@@ -85,7 +85,7 @@ def create_bar_plot_mul_pow(csv_file, plot_filename, output_dir):
     
     # Set y-axis to log scale
     ax.set_yscale('log')
-    ax.set_ybound(0.0001, 1000000000)
+    # ax.set_ybound(0.0001, 1000000000)
     
     # Customize the plot
     ax.set_xlabel('Benchmark', fontsize=12.5)
