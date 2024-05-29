@@ -6,6 +6,12 @@ def create_bar_plot(csv_file, plot_filename, output_dir):
     # Read the CSV file into a DataFrame
     df = pd.read_csv(csv_file)
     
+    df['auto-vectorized'] = df['autoVec']
+    df['vector-api'] = df['explicitVec']
+    df['fully-vectorized'] = df['fullVec']
+    
+    df.drop(columns=['autoVec', 'explicitVec', 'fullVec'], inplace=True)
+    
     # Set the benchmark column as the index
     df.set_index('benchmark', inplace=True)
     
@@ -42,11 +48,11 @@ def create_bar_plot(csv_file, plot_filename, output_dir):
     ax.legend(loc='upper left', bbox_to_anchor=(1.02, 1), borderaxespad=0)
     
     # Make title
-    name = csv_file.split("gc_")[1].split(".")[0]
-    name = name.replace("_", ".")
-    name = "gc." + name
+    # name = csv_file.split("gc_")[1].split(".")[0]
+    # name = name.replace("_", ".")
+    # name = "gc." + name
     
-    plt.title(f"{name} overhead w.r.t. serial", fontsize=15, y=1.25)
+    # plt.title(f"{name} overhead w.r.t. serial", fontsize=15, y=1.25)
     
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)

@@ -1,0 +1,113 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dinput=src/main/resources/pathfinder/input/pathfinder_5000_5000.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.pathfinder.PathfinderPatternBenchmark.indexInRange
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 84.286 s/op
+# Warmup Iteration   2: 74.607 s/op
+# Warmup Iteration   3: 72.270 s/op
+# Warmup Iteration   4: 72.120 s/op
+# Warmup Iteration   5: 71.902 s/op
+# Warmup Iteration   6: 71.941 s/op
+# Warmup Iteration   7: 71.948 s/op
+# Warmup Iteration   8: 71.826 s/op
+# Warmup Iteration   9: 72.170 s/op
+# Warmup Iteration  10: 71.994 s/op
+Iteration   1: 71.613 s/op
+Iteration   2: 71.583 s/op
+Iteration   3: 71.796 s/op
+Iteration   4: 71.429 s/op
+Iteration   5: 72.010 s/op
+Iteration   6: 72.287 s/op
+Iteration   7: 71.796 s/op
+Iteration   8: 71.728 s/op
+Iteration   9: 71.892 s/op
+Iteration  10: 71.752 s/op
+
+# Run progress: 50.00% complete, ETA 00:24:19
+# Fork: 2 of 2
+# Warmup Iteration   1: 83.822 s/op
+# Warmup Iteration   2: 74.318 s/op
+# Warmup Iteration   3: 74.661 s/op
+# Warmup Iteration   4: 74.572 s/op
+# Warmup Iteration   5: 74.632 s/op
+# Warmup Iteration   6: 74.384 s/op
+# Warmup Iteration   7: 71.985 s/op
+# Warmup Iteration   8: 72.131 s/op
+# Warmup Iteration   9: 71.805 s/op
+# Warmup Iteration  10: 71.516 s/op
+Iteration   1: 71.561 s/op
+Iteration   2: 71.425 s/op
+Iteration   3: 71.437 s/op
+Iteration   4: 71.634 s/op
+Iteration   5: 71.502 s/op
+Iteration   6: 71.925 s/op
+Iteration   7: 71.804 s/op
+Iteration   8: 71.934 s/op
+Iteration   9: 71.748 s/op
+Iteration  10: 71.634 s/op
+
+
+Result "inf.usi.dag.pathfinder.PathfinderPatternBenchmark.indexInRange":
+  N = 20
+  mean =     71.725 ±(99.9%) 0.190 s/op
+
+  Histogram, s/op:
+    [71.400, 71.450) = 3 
+    [71.450, 71.500) = 0 
+    [71.500, 71.550) = 1 
+    [71.550, 71.600) = 2 
+    [71.600, 71.650) = 3 
+    [71.650, 71.700) = 0 
+    [71.700, 71.750) = 2 
+    [71.750, 71.800) = 3 
+    [71.800, 71.850) = 1 
+    [71.850, 71.900) = 1 
+    [71.900, 71.950) = 2 
+    [71.950, 72.000) = 0 
+    [72.000, 72.050) = 1 
+    [72.050, 72.100) = 0 
+    [72.100, 72.150) = 0 
+    [72.150, 72.200) = 0 
+    [72.200, 72.250) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =     71.425 s/op
+     p(50.0000) =     71.738 s/op
+     p(90.0000) =     72.003 s/op
+     p(95.0000) =     72.274 s/op
+     p(99.0000) =     72.287 s/op
+     p(99.9000) =     72.287 s/op
+     p(99.9900) =     72.287 s/op
+     p(99.9990) =     72.287 s/op
+     p(99.9999) =     72.287 s/op
+    p(100.0000) =     72.287 s/op
+
+
+# Run complete. Total time: 00:48:46
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                Mode  Cnt   Score   Error  Units
+PathfinderPatternBenchmark.indexInRange    ss   20  71.725 ± 0.190   s/op
+
+Benchmark result is saved to paper/jdk19/p620/pattern/performance/2022-08-09_09:32:49/pathfinder/PathfinderPatternBenchmark.indexInRange.csv

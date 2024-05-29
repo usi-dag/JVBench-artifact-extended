@@ -1,0 +1,92 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/pattern/pin_total/2024-05-06_12:13:02/canneal/CannealPatternBenchmark.indexInRange_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -DN_SWAPS=10000 -DTEMP=2000 -DNETLIST=canneal/input/2500000.nets -DN_STEPS=300
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.canneal.CannealPatternBenchmark.indexInRange
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 96.495 s/op
+# Warmup Iteration   2: 19.543 s/op
+# Warmup Iteration   3: 15.365 s/op
+# Warmup Iteration   4: 14.473 s/op
+# Warmup Iteration   5: 14.151 s/op
+# Warmup Iteration   6: 14.718 s/op
+# Warmup Iteration   7: 14.541 s/op
+# Warmup Iteration   8: 14.100 s/op
+# Warmup Iteration   9: 14.950 s/op
+# Warmup Iteration  10: 13.752 s/op
+Iteration   1: 13.560 s/op
+Iteration   2: 13.423 s/op
+Iteration   3: 13.382 s/op
+Iteration   4: 13.150 s/op
+Iteration   5: 13.081 s/op
+Iteration   6: 13.252 s/op
+Iteration   7: 12.927 s/op
+Iteration   8: 12.852 s/op
+Iteration   9: 12.797 s/op
+Iteration  10: 12.801 s/op
+
+
+Result "jvbench.canneal.CannealPatternBenchmark.indexInRange":
+  N = 10
+  mean =     13.122 ±(99.9%) 0.418 s/op
+
+  Histogram, s/op:
+    [12.700, 12.750) = 0 
+    [12.750, 12.800) = 1 
+    [12.800, 12.850) = 1 
+    [12.850, 12.900) = 1 
+    [12.900, 12.950) = 1 
+    [12.950, 13.000) = 0 
+    [13.000, 13.050) = 0 
+    [13.050, 13.100) = 1 
+    [13.100, 13.150) = 1 
+    [13.150, 13.200) = 0 
+    [13.200, 13.250) = 0 
+    [13.250, 13.300) = 1 
+    [13.300, 13.350) = 0 
+    [13.350, 13.400) = 1 
+    [13.400, 13.450) = 1 
+    [13.450, 13.500) = 0 
+    [13.500, 13.550) = 0 
+    [13.550, 13.600) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =     12.797 s/op
+     p(50.0000) =     13.115 s/op
+     p(90.0000) =     13.546 s/op
+     p(95.0000) =     13.560 s/op
+     p(99.0000) =     13.560 s/op
+     p(99.9000) =     13.560 s/op
+     p(99.9900) =     13.560 s/op
+     p(99.9990) =     13.560 s/op
+     p(99.9999) =     13.560 s/op
+    p(100.0000) =     13.560 s/op
+
+
+# Run complete. Total time: 00:10:52
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                             Mode  Cnt   Score   Error  Units
+CannealPatternBenchmark.indexInRange    ss   10  13.122 ± 0.418   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/pattern/pin_total/2024-05-06_12:13:02/canneal/CannealPatternBenchmark.indexInRange.csv

@@ -1,0 +1,85 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/pattern/pin_vectorial/2024-05-05_13:01:00/streamcluster/StreamclusterPatternBenchmark.pow_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=streamcluster/input/streamcluster_128_128.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.streamcluster.StreamclusterPatternBenchmark.pow
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 76.304 s/op
+# Warmup Iteration   2: 73.321 s/op
+# Warmup Iteration   3: 72.166 s/op
+# Warmup Iteration   4: 73.096 s/op
+# Warmup Iteration   5: 72.091 s/op
+# Warmup Iteration   6: 73.153 s/op
+# Warmup Iteration   7: 73.059 s/op
+# Warmup Iteration   8: 73.096 s/op
+# Warmup Iteration   9: 73.129 s/op
+# Warmup Iteration  10: 71.976 s/op
+Iteration   1: 72.079 s/op
+Iteration   2: 71.878 s/op
+Iteration   3: 72.931 s/op
+Iteration   4: 71.992 s/op
+Iteration   5: 73.097 s/op
+Iteration   6: 72.002 s/op
+Iteration   7: 73.124 s/op
+Iteration   8: 73.080 s/op
+Iteration   9: 72.086 s/op
+Iteration  10: 73.040 s/op
+
+
+Result "jvbench.streamcluster.StreamclusterPatternBenchmark.pow":
+  N = 10
+  mean =     72.531 ±(99.9%) 0.842 s/op
+
+  Histogram, s/op:
+    [71.000, 71.250) = 0 
+    [71.250, 71.500) = 0 
+    [71.500, 71.750) = 0 
+    [71.750, 72.000) = 2 
+    [72.000, 72.250) = 3 
+    [72.250, 72.500) = 0 
+    [72.500, 72.750) = 0 
+    [72.750, 73.000) = 1 
+    [73.000, 73.250) = 4 
+    [73.250, 73.500) = 0 
+    [73.500, 73.750) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =     71.878 s/op
+     p(50.0000) =     72.509 s/op
+     p(90.0000) =     73.121 s/op
+     p(95.0000) =     73.124 s/op
+     p(99.0000) =     73.124 s/op
+     p(99.9000) =     73.124 s/op
+     p(99.9900) =     73.124 s/op
+     p(99.9990) =     73.124 s/op
+     p(99.9999) =     73.124 s/op
+    p(100.0000) =     73.124 s/op
+
+
+# Run complete. Total time: 00:24:38
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                          Mode  Cnt   Score   Error  Units
+StreamclusterPatternBenchmark.pow    ss   10  72.531 ± 0.842   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/pattern/pin_vectorial/2024-05-05_13:01:00/streamcluster/StreamclusterPatternBenchmark.pow.csv

@@ -1,0 +1,83 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=src/main/resources/streamcluster/input/streamcluster_128_128.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, single-shot each
+# Measurement: 3 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.streamcluster.StreamclusterPatternBenchmark.pow
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 292.517 s/op
+# Warmup Iteration   2: 294.463 s/op
+# Warmup Iteration   3: 303.160 s/op
+Iteration   1: 297.110 s/op
+Iteration   2: 309.638 s/op
+Iteration   3: 303.655 s/op
+
+# Run progress: 50.00% complete, ETA 00:30:01
+# Fork: 2 of 2
+# Warmup Iteration   1: 292.382 s/op
+# Warmup Iteration   2: 294.524 s/op
+# Warmup Iteration   3: 304.034 s/op
+Iteration   1: 297.240 s/op
+Iteration   2: 309.618 s/op
+Iteration   3: 303.802 s/op
+
+
+Result "inf.usi.dag.streamcluster.StreamclusterPatternBenchmark.pow":
+  N = 6
+  mean =    303.510 ±(99.9%) 15.625 s/op
+
+  Histogram, s/op:
+    [290.000, 291.250) = 0 
+    [291.250, 292.500) = 0 
+    [292.500, 293.750) = 0 
+    [293.750, 295.000) = 0 
+    [295.000, 296.250) = 0 
+    [296.250, 297.500) = 2 
+    [297.500, 298.750) = 0 
+    [298.750, 300.000) = 0 
+    [300.000, 301.250) = 0 
+    [301.250, 302.500) = 0 
+    [302.500, 303.750) = 1 
+    [303.750, 305.000) = 1 
+    [305.000, 306.250) = 0 
+    [306.250, 307.500) = 0 
+    [307.500, 308.750) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =    297.110 s/op
+     p(50.0000) =    303.728 s/op
+     p(90.0000) =    309.638 s/op
+     p(95.0000) =    309.638 s/op
+     p(99.0000) =    309.638 s/op
+     p(99.9000) =    309.638 s/op
+     p(99.9900) =    309.638 s/op
+     p(99.9990) =    309.638 s/op
+     p(99.9999) =    309.638 s/op
+    p(100.0000) =    309.638 s/op
+
+
+# Run complete. Total time: 01:00:04
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                          Mode  Cnt    Score    Error  Units
+StreamclusterPatternBenchmark.pow    ss    6  303.510 ± 15.625   s/op
+
+Benchmark result is saved to paper/jdk19/tower/pattern/performance/2022-08-24_19:27:30/streamcluster/StreamclusterPatternBenchmark.pow.csv

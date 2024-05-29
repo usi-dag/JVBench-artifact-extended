@@ -1,0 +1,112 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsize=10000 -Dtsteps=14
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.jacobi2d.Jacobi2dPatternBenchmark.indexInRange
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 12.870 s/op
+# Warmup Iteration   2: 12.310 s/op
+# Warmup Iteration   3: 12.072 s/op
+# Warmup Iteration   4: 11.932 s/op
+# Warmup Iteration   5: 12.042 s/op
+# Warmup Iteration   6: 11.940 s/op
+# Warmup Iteration   7: 12.043 s/op
+# Warmup Iteration   8: 11.946 s/op
+# Warmup Iteration   9: 12.046 s/op
+# Warmup Iteration  10: 11.948 s/op
+Iteration   1: 12.049 s/op
+Iteration   2: 11.949 s/op
+Iteration   3: 12.057 s/op
+Iteration   4: 11.945 s/op
+Iteration   5: 12.045 s/op
+Iteration   6: 11.948 s/op
+Iteration   7: 12.047 s/op
+Iteration   8: 11.944 s/op
+Iteration   9: 12.047 s/op
+Iteration  10: 11.940 s/op
+
+# Run progress: 50.00% complete, ETA 00:04:09
+# Fork: 2 of 2
+# Warmup Iteration   1: 12.827 s/op
+# Warmup Iteration   2: 12.310 s/op
+# Warmup Iteration   3: 12.057 s/op
+# Warmup Iteration   4: 11.924 s/op
+# Warmup Iteration   5: 12.028 s/op
+# Warmup Iteration   6: 11.933 s/op
+# Warmup Iteration   7: 12.040 s/op
+# Warmup Iteration   8: 12.039 s/op
+# Warmup Iteration   9: 11.940 s/op
+# Warmup Iteration  10: 11.935 s/op
+Iteration   1: 12.045 s/op
+Iteration   2: 11.940 s/op
+Iteration   3: 12.037 s/op
+Iteration   4: 11.940 s/op
+Iteration   5: 12.040 s/op
+Iteration   6: 11.937 s/op
+Iteration   7: 12.041 s/op
+Iteration   8: 11.937 s/op
+Iteration   9: 12.041 s/op
+Iteration  10: 11.941 s/op
+
+
+Result "inf.usi.dag.jacobi2d.Jacobi2dPatternBenchmark.indexInRange":
+  N = 20
+  mean =     11.993 ±(99.9%) 0.046 s/op
+
+  Histogram, s/op:
+    [11.900, 11.913) = 0 
+    [11.913, 11.925) = 0 
+    [11.925, 11.938) = 2 
+    [11.938, 11.950) = 8 
+    [11.950, 11.963) = 0 
+    [11.963, 11.975) = 0 
+    [11.975, 11.988) = 0 
+    [11.988, 12.000) = 0 
+    [12.000, 12.013) = 0 
+    [12.013, 12.025) = 0 
+    [12.025, 12.038) = 1 
+    [12.038, 12.050) = 8 
+    [12.050, 12.063) = 1 
+    [12.063, 12.075) = 0 
+    [12.075, 12.088) = 0 
+    [12.088, 12.100) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =     11.937 s/op
+     p(50.0000) =     11.993 s/op
+     p(90.0000) =     12.049 s/op
+     p(95.0000) =     12.056 s/op
+     p(99.0000) =     12.057 s/op
+     p(99.9000) =     12.057 s/op
+     p(99.9900) =     12.057 s/op
+     p(99.9990) =     12.057 s/op
+     p(99.9999) =     12.057 s/op
+    p(100.0000) =     12.057 s/op
+
+
+# Run complete. Total time: 00:08:19
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                              Mode  Cnt   Score   Error  Units
+Jacobi2dPatternBenchmark.indexInRange    ss   20  11.993 ± 0.046   s/op
+
+Benchmark result is saved to paper/jdk19/tower/pattern/performance/2022-08-04_09:56:50/jacobi2d/Jacobi2dPatternBenchmark.indexInRange.csv

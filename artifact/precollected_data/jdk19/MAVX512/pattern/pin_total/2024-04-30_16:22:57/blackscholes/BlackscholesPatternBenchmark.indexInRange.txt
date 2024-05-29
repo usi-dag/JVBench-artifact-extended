@@ -1,0 +1,90 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/pattern/pin_total/2024-04-30_16:22:57/blackscholes/BlackscholesPatternBenchmark.indexInRange_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dinput=/blackscholes/input/in_512K.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.blackscholes.BlackscholesPatternBenchmark.indexInRange
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 21.392 s/op
+# Warmup Iteration   2: 1.961 s/op
+# Warmup Iteration   3: 1.218 s/op
+# Warmup Iteration   4: 0.904 s/op
+# Warmup Iteration   5: 1.095 s/op
+# Warmup Iteration   6: 1.101 s/op
+# Warmup Iteration   7: 1.329 s/op
+# Warmup Iteration   8: 1.008 s/op
+# Warmup Iteration   9: 1.149 s/op
+# Warmup Iteration  10: 1.203 s/op
+Iteration   1: 0.877 s/op
+Iteration   2: 1.169 s/op
+Iteration   3: 0.888 s/op
+Iteration   4: 0.936 s/op
+Iteration   5: 1.079 s/op
+Iteration   6: 1.035 s/op
+Iteration   7: 1.021 s/op
+Iteration   8: 1.010 s/op
+Iteration   9: 1.011 s/op
+Iteration  10: 1.026 s/op
+
+
+Result "jvbench.blackscholes.BlackscholesPatternBenchmark.indexInRange":
+  N = 10
+  mean =      1.005 ±(99.9%) 0.132 s/op
+
+  Histogram, s/op:
+    [0.800, 0.825) = 0 
+    [0.825, 0.850) = 0 
+    [0.850, 0.875) = 0 
+    [0.875, 0.900) = 2 
+    [0.900, 0.925) = 0 
+    [0.925, 0.950) = 1 
+    [0.950, 0.975) = 0 
+    [0.975, 1.000) = 0 
+    [1.000, 1.025) = 3 
+    [1.025, 1.050) = 2 
+    [1.050, 1.075) = 0 
+    [1.075, 1.100) = 1 
+    [1.100, 1.125) = 0 
+    [1.125, 1.150) = 0 
+    [1.150, 1.175) = 1 
+    [1.175, 1.200) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      0.877 s/op
+     p(50.0000) =      1.016 s/op
+     p(90.0000) =      1.160 s/op
+     p(95.0000) =      1.169 s/op
+     p(99.0000) =      1.169 s/op
+     p(99.9000) =      1.169 s/op
+     p(99.9900) =      1.169 s/op
+     p(99.9990) =      1.169 s/op
+     p(99.9999) =      1.169 s/op
+    p(100.0000) =      1.169 s/op
+
+
+# Run complete. Total time: 00:01:31
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                  Mode  Cnt  Score   Error  Units
+BlackscholesPatternBenchmark.indexInRange    ss   10  1.005 ± 0.132   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/pattern/pin_total/2024-04-30_16:22:57/blackscholes/BlackscholesPatternBenchmark.indexInRange.csv

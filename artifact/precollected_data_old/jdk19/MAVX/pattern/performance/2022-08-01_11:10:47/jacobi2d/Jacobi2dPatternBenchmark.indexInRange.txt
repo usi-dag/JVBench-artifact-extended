@@ -1,0 +1,118 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsize=10000 -Dtsteps=14
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.jacobi2d.Jacobi2dPatternBenchmark.indexInRange
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 373.847 s/op
+# Warmup Iteration   2: 366.746 s/op
+# Warmup Iteration   3: 366.308 s/op
+# Warmup Iteration   4: 366.244 s/op
+# Warmup Iteration   5: 366.868 s/op
+# Warmup Iteration   6: 365.630 s/op
+# Warmup Iteration   7: 367.078 s/op
+# Warmup Iteration   8: 366.486 s/op
+# Warmup Iteration   9: 366.332 s/op
+# Warmup Iteration  10: 365.783 s/op
+# Warmup Iteration  11: 366.057 s/op
+# Warmup Iteration  12: 365.294 s/op
+# Warmup Iteration  13: 366.074 s/op
+# Warmup Iteration  14: 366.073 s/op
+# Warmup Iteration  15: 366.222 s/op
+# Warmup Iteration  16: 365.994 s/op
+# Warmup Iteration  17: 365.790 s/op
+# Warmup Iteration  18: 365.239 s/op
+# Warmup Iteration  19: 365.622 s/op
+# Warmup Iteration  20: 365.946 s/op
+# Warmup Iteration  21: 366.753 s/op
+# Warmup Iteration  22: 365.973 s/op
+# Warmup Iteration  23: 366.333 s/op
+# Warmup Iteration  24: 366.622 s/op
+# Warmup Iteration  25: 366.439 s/op
+# Warmup Iteration  26: 365.669 s/op
+# Warmup Iteration  27: 364.966 s/op
+# Warmup Iteration  28: 366.511 s/op
+# Warmup Iteration  29: 366.787 s/op
+# Warmup Iteration  30: 366.299 s/op
+# Warmup Iteration  31: 367.241 s/op
+# Warmup Iteration  32: 366.449 s/op
+# Warmup Iteration  33: 366.006 s/op
+# Warmup Iteration  34: 365.896 s/op
+# Warmup Iteration  35: 366.469 s/op
+# Warmup Iteration  36: 366.971 s/op
+# Warmup Iteration  37: 366.301 s/op
+# Warmup Iteration  38: 365.511 s/op
+# Warmup Iteration  39: 365.803 s/op
+# Warmup Iteration  40: 366.284 s/op
+Iteration   1: 365.469 s/op
+Iteration   2: 365.895 s/op
+Iteration   3: 366.488 s/op
+Iteration   4: 366.884 s/op
+Iteration   5: 365.742 s/op
+Iteration   6: 365.697 s/op
+Iteration   7: 366.233 s/op
+Iteration   8: 366.322 s/op
+Iteration   9: 365.819 s/op
+Iteration  10: 365.962 s/op
+
+
+Result "inf.usi.dag.jacobi2d.Jacobi2dPatternBenchmark.indexInRange":
+  N = 10
+  mean =    366.051 ±(99.9%) 0.645 s/op
+
+  Histogram, s/op:
+    [365.000, 365.125) = 0 
+    [365.125, 365.250) = 0 
+    [365.250, 365.375) = 0 
+    [365.375, 365.500) = 1 
+    [365.500, 365.625) = 0 
+    [365.625, 365.750) = 2 
+    [365.750, 365.875) = 1 
+    [365.875, 366.000) = 2 
+    [366.000, 366.125) = 0 
+    [366.125, 366.250) = 1 
+    [366.250, 366.375) = 1 
+    [366.375, 366.500) = 1 
+    [366.500, 366.625) = 0 
+    [366.625, 366.750) = 0 
+    [366.750, 366.875) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =    365.469 s/op
+     p(50.0000) =    365.928 s/op
+     p(90.0000) =    366.845 s/op
+     p(95.0000) =    366.884 s/op
+     p(99.0000) =    366.884 s/op
+     p(99.9000) =    366.884 s/op
+     p(99.9900) =    366.884 s/op
+     p(99.9990) =    366.884 s/op
+     p(99.9999) =    366.884 s/op
+    p(100.0000) =    366.884 s/op
+
+
+# Run complete. Total time: 05:05:24
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                              Mode  Cnt    Score   Error  Units
+Jacobi2dPatternBenchmark.indexInRange    ss   10  366.051 ± 0.645   s/op
+
+Benchmark result is saved to paper/jdk19/p620/pattern/performance/2022-08-01_11:10:47/jacobi2d/Jacobi2dPatternBenchmark.indexInRange.csv

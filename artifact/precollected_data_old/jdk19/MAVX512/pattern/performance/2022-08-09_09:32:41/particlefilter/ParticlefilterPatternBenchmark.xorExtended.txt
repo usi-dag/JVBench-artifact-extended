@@ -1,0 +1,106 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dx=128 -Dy=128 -Dz=24 -Dnp=32768
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.particlefilter.ParticlefilterPatternBenchmark.xorExtended
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 10.957 s/op
+# Warmup Iteration   2: 9.181 s/op
+# Warmup Iteration   3: 3.462 s/op
+# Warmup Iteration   4: 3.400 s/op
+# Warmup Iteration   5: 3.405 s/op
+# Warmup Iteration   6: 3.403 s/op
+# Warmup Iteration   7: 3.401 s/op
+# Warmup Iteration   8: 3.403 s/op
+# Warmup Iteration   9: 3.399 s/op
+# Warmup Iteration  10: 3.402 s/op
+Iteration   1: 3.401 s/op
+Iteration   2: 3.404 s/op
+Iteration   3: 3.399 s/op
+Iteration   4: 3.401 s/op
+Iteration   5: 3.401 s/op
+Iteration   6: 3.401 s/op
+Iteration   7: 3.405 s/op
+Iteration   8: 3.400 s/op
+Iteration   9: 3.399 s/op
+Iteration  10: 3.402 s/op
+
+# Run progress: 50.00% complete, ETA 00:01:27
+# Fork: 2 of 2
+# Warmup Iteration   1: 10.930 s/op
+# Warmup Iteration   2: 9.193 s/op
+# Warmup Iteration   3: 3.424 s/op
+# Warmup Iteration   4: 3.400 s/op
+# Warmup Iteration   5: 3.401 s/op
+# Warmup Iteration   6: 3.401 s/op
+# Warmup Iteration   7: 3.402 s/op
+# Warmup Iteration   8: 3.401 s/op
+# Warmup Iteration   9: 3.400 s/op
+# Warmup Iteration  10: 3.400 s/op
+Iteration   1: 3.397 s/op
+Iteration   2: 3.398 s/op
+Iteration   3: 3.403 s/op
+Iteration   4: 3.402 s/op
+Iteration   5: 3.398 s/op
+Iteration   6: 3.396 s/op
+Iteration   7: 3.399 s/op
+Iteration   8: 3.397 s/op
+Iteration   9: 3.398 s/op
+Iteration  10: 3.401 s/op
+
+
+Result "inf.usi.dag.particlefilter.ParticlefilterPatternBenchmark.xorExtended":
+  N = 20
+  mean =      3.400 ±(99.9%) 0.002 s/op
+
+  Histogram, s/op:
+    [3.395, 3.396) = 1 
+    [3.396, 3.397) = 1 
+    [3.397, 3.398) = 4 
+    [3.398, 3.399) = 2 
+    [3.399, 3.400) = 1 
+    [3.400, 3.401) = 3 
+    [3.401, 3.402) = 5 
+    [3.402, 3.403) = 1 
+    [3.403, 3.404) = 0 
+    [3.404, 3.405) = 2 
+
+  Percentiles, s/op:
+      p(0.0000) =      3.396 s/op
+     p(50.0000) =      3.401 s/op
+     p(90.0000) =      3.404 s/op
+     p(95.0000) =      3.405 s/op
+     p(99.0000) =      3.405 s/op
+     p(99.9000) =      3.405 s/op
+     p(99.9900) =      3.405 s/op
+     p(99.9990) =      3.405 s/op
+     p(99.9999) =      3.405 s/op
+    p(100.0000) =      3.405 s/op
+
+
+# Run complete. Total time: 00:02:53
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                   Mode  Cnt  Score   Error  Units
+ParticlefilterPatternBenchmark.xorExtended    ss   20  3.400 ± 0.002   s/op
+
+Benchmark result is saved to paper/jdk19/tower/pattern/performance/2022-08-09_09:32:41/particlefilter/ParticlefilterPatternBenchmark.xorExtended.csv

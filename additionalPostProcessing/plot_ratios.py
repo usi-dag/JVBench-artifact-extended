@@ -6,6 +6,13 @@ def create_bar_plot(csv_file, output_dir='figures', plot_filename='bar_plot.pdf'
     # Read the CSV file into a DataFrame
     df = pd.read_csv(csv_file)
     
+    df['auto-vectorized'] = df['autoVec']
+    df['vector-api'] = df['explicitVec']
+    df['fully-vectorized'] = df['fullVec']
+    
+    df.drop(columns=['autoVec', 'explicitVec', 'fullVec'], inplace=True)
+    
+    
     # Set the benchmark column as the index
     df.set_index('benchmark', inplace=True)
     

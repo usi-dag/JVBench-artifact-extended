@@ -1,0 +1,112 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsteps=10 -Dn=128
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.somier.SomierPatternBenchmark.indexInRange
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 4.462 s/op
+# Warmup Iteration   2: 2.652 s/op
+# Warmup Iteration   3: 2.637 s/op
+# Warmup Iteration   4: 2.653 s/op
+# Warmup Iteration   5: 2.635 s/op
+# Warmup Iteration   6: 2.655 s/op
+# Warmup Iteration   7: 2.754 s/op
+# Warmup Iteration   8: 2.752 s/op
+# Warmup Iteration   9: 2.722 s/op
+# Warmup Iteration  10: 2.620 s/op
+Iteration   1: 2.621 s/op
+Iteration   2: 2.783 s/op
+Iteration   3: 2.619 s/op
+Iteration   4: 2.617 s/op
+Iteration   5: 2.618 s/op
+Iteration   6: 2.658 s/op
+Iteration   7: 2.721 s/op
+Iteration   8: 2.619 s/op
+Iteration   9: 2.619 s/op
+Iteration  10: 2.617 s/op
+
+# Run progress: 50.00% complete, ETA 00:01:02
+# Fork: 2 of 2
+# Warmup Iteration   1: 4.718 s/op
+# Warmup Iteration   2: 2.697 s/op
+# Warmup Iteration   3: 2.681 s/op
+# Warmup Iteration   4: 2.698 s/op
+# Warmup Iteration   5: 2.695 s/op
+# Warmup Iteration   6: 2.683 s/op
+# Warmup Iteration   7: 2.778 s/op
+# Warmup Iteration   8: 2.799 s/op
+# Warmup Iteration   9: 2.775 s/op
+# Warmup Iteration  10: 2.664 s/op
+Iteration   1: 2.666 s/op
+Iteration   2: 2.707 s/op
+Iteration   3: 2.749 s/op
+Iteration   4: 2.664 s/op
+Iteration   5: 2.662 s/op
+Iteration   6: 2.698 s/op
+Iteration   7: 2.768 s/op
+Iteration   8: 2.663 s/op
+Iteration   9: 2.663 s/op
+Iteration  10: 2.663 s/op
+
+
+Result "inf.usi.dag.somier.SomierPatternBenchmark.indexInRange":
+  N = 20
+  mean =      2.670 ±(99.9%) 0.046 s/op
+
+  Histogram, s/op:
+    [2.600, 2.613) = 0 
+    [2.613, 2.625) = 7 
+    [2.625, 2.638) = 0 
+    [2.638, 2.650) = 0 
+    [2.650, 2.663) = 2 
+    [2.663, 2.675) = 5 
+    [2.675, 2.688) = 0 
+    [2.688, 2.700) = 1 
+    [2.700, 2.713) = 1 
+    [2.713, 2.725) = 1 
+    [2.725, 2.738) = 0 
+    [2.738, 2.750) = 1 
+    [2.750, 2.763) = 0 
+    [2.763, 2.775) = 1 
+    [2.775, 2.788) = 1 
+    [2.788, 2.800) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      2.617 s/op
+     p(50.0000) =      2.663 s/op
+     p(90.0000) =      2.766 s/op
+     p(95.0000) =      2.782 s/op
+     p(99.0000) =      2.783 s/op
+     p(99.9000) =      2.783 s/op
+     p(99.9900) =      2.783 s/op
+     p(99.9990) =      2.783 s/op
+     p(99.9999) =      2.783 s/op
+    p(100.0000) =      2.783 s/op
+
+
+# Run complete. Total time: 00:02:05
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                            Mode  Cnt  Score   Error  Units
+SomierPatternBenchmark.indexInRange    ss   20  2.670 ± 0.046   s/op
+
+Benchmark result is saved to paper/jdk19/tower/pattern/performance/2022-08-04_09:56:50/somier/SomierPatternBenchmark.indexInRange.csv

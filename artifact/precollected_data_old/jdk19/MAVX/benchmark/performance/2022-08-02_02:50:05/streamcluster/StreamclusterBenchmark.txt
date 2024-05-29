@@ -1,0 +1,415 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=src/main/resources/streamcluster/input/streamcluster_128_128.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.streamcluster.StreamclusterBenchmark.autoVec
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 7.912 s/op
+# Warmup Iteration   2: 8.310 s/op
+# Warmup Iteration   3: 7.969 s/op
+# Warmup Iteration   4: 8.096 s/op
+# Warmup Iteration   5: 8.139 s/op
+# Warmup Iteration   6: 7.928 s/op
+# Warmup Iteration   7: 8.046 s/op
+# Warmup Iteration   8: 7.836 s/op
+# Warmup Iteration   9: 8.078 s/op
+# Warmup Iteration  10: 7.928 s/op
+# Warmup Iteration  11: 8.079 s/op
+# Warmup Iteration  12: 8.061 s/op
+# Warmup Iteration  13: 8.058 s/op
+# Warmup Iteration  14: 7.824 s/op
+# Warmup Iteration  15: 8.117 s/op
+# Warmup Iteration  16: 7.921 s/op
+# Warmup Iteration  17: 7.933 s/op
+# Warmup Iteration  18: 8.072 s/op
+# Warmup Iteration  19: 7.942 s/op
+# Warmup Iteration  20: 7.979 s/op
+# Warmup Iteration  21: 8.126 s/op
+# Warmup Iteration  22: 8.051 s/op
+# Warmup Iteration  23: 8.141 s/op
+# Warmup Iteration  24: 8.073 s/op
+# Warmup Iteration  25: 7.912 s/op
+# Warmup Iteration  26: 8.031 s/op
+# Warmup Iteration  27: 7.941 s/op
+# Warmup Iteration  28: 8.029 s/op
+# Warmup Iteration  29: 8.010 s/op
+# Warmup Iteration  30: 8.023 s/op
+# Warmup Iteration  31: 8.032 s/op
+# Warmup Iteration  32: 8.054 s/op
+# Warmup Iteration  33: 7.963 s/op
+# Warmup Iteration  34: 7.960 s/op
+# Warmup Iteration  35: 8.070 s/op
+# Warmup Iteration  36: 8.075 s/op
+# Warmup Iteration  37: 8.076 s/op
+# Warmup Iteration  38: 8.039 s/op
+# Warmup Iteration  39: 8.010 s/op
+# Warmup Iteration  40: 8.025 s/op
+Iteration   1: 8.156 s/op
+Iteration   2: 8.046 s/op
+Iteration   3: 8.047 s/op
+Iteration   4: 7.975 s/op
+Iteration   5: 8.083 s/op
+Iteration   6: 7.926 s/op
+Iteration   7: 8.023 s/op
+Iteration   8: 7.989 s/op
+Iteration   9: 8.084 s/op
+Iteration  10: 7.891 s/op
+
+
+Result "inf.usi.dag.streamcluster.StreamclusterBenchmark.autoVec":
+  N = 10
+  mean =      8.022 ±(99.9%) 0.120 s/op
+
+  Histogram, s/op:
+    [7.800, 7.825) = 0 
+    [7.825, 7.850) = 0 
+    [7.850, 7.875) = 0 
+    [7.875, 7.900) = 1 
+    [7.900, 7.925) = 0 
+    [7.925, 7.950) = 1 
+    [7.950, 7.975) = 0 
+    [7.975, 8.000) = 2 
+    [8.000, 8.025) = 1 
+    [8.025, 8.050) = 2 
+    [8.050, 8.075) = 0 
+    [8.075, 8.100) = 2 
+    [8.100, 8.125) = 0 
+    [8.125, 8.150) = 0 
+    [8.150, 8.175) = 1 
+    [8.175, 8.200) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      7.891 s/op
+     p(50.0000) =      8.035 s/op
+     p(90.0000) =      8.149 s/op
+     p(95.0000) =      8.156 s/op
+     p(99.0000) =      8.156 s/op
+     p(99.9000) =      8.156 s/op
+     p(99.9900) =      8.156 s/op
+     p(99.9990) =      8.156 s/op
+     p(99.9999) =      8.156 s/op
+    p(100.0000) =      8.156 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=src/main/resources/streamcluster/input/streamcluster_128_128.input -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.streamcluster.StreamclusterBenchmark.explicitVec
+
+# Run progress: 25.00% complete, ETA 00:20:10
+# Fork: 1 of 1
+# Warmup Iteration   1: 3.147 s/op
+# Warmup Iteration   2: 2.918 s/op
+# Warmup Iteration   3: 2.803 s/op
+# Warmup Iteration   4: 2.505 s/op
+# Warmup Iteration   5: 2.732 s/op
+# Warmup Iteration   6: 2.758 s/op
+# Warmup Iteration   7: 2.340 s/op
+# Warmup Iteration   8: 2.611 s/op
+# Warmup Iteration   9: 2.334 s/op
+# Warmup Iteration  10: 2.618 s/op
+# Warmup Iteration  11: 2.351 s/op
+# Warmup Iteration  12: 2.715 s/op
+# Warmup Iteration  13: 2.702 s/op
+# Warmup Iteration  14: 2.701 s/op
+# Warmup Iteration  15: 2.322 s/op
+# Warmup Iteration  16: 2.671 s/op
+# Warmup Iteration  17: 2.283 s/op
+# Warmup Iteration  18: 2.348 s/op
+# Warmup Iteration  19: 2.619 s/op
+# Warmup Iteration  20: 2.292 s/op
+# Warmup Iteration  21: 2.349 s/op
+# Warmup Iteration  22: 2.777 s/op
+# Warmup Iteration  23: 2.738 s/op
+# Warmup Iteration  24: 2.644 s/op
+# Warmup Iteration  25: 2.651 s/op
+# Warmup Iteration  26: 2.284 s/op
+# Warmup Iteration  27: 2.653 s/op
+# Warmup Iteration  28: 2.307 s/op
+# Warmup Iteration  29: 2.777 s/op
+# Warmup Iteration  30: 2.717 s/op
+# Warmup Iteration  31: 2.689 s/op
+# Warmup Iteration  32: 2.707 s/op
+# Warmup Iteration  33: 2.630 s/op
+# Warmup Iteration  34: 2.285 s/op
+# Warmup Iteration  35: 2.335 s/op
+# Warmup Iteration  36: 2.788 s/op
+# Warmup Iteration  37: 2.736 s/op
+# Warmup Iteration  38: 2.767 s/op
+# Warmup Iteration  39: 2.726 s/op
+# Warmup Iteration  40: 2.796 s/op
+Iteration   1: 2.697 s/op
+Iteration   2: 2.757 s/op
+Iteration   3: 2.728 s/op
+Iteration   4: 2.664 s/op
+Iteration   5: 2.757 s/op
+Iteration   6: 2.591 s/op
+Iteration   7: 2.314 s/op
+Iteration   8: 2.617 s/op
+Iteration   9: 2.660 s/op
+Iteration  10: 2.598 s/op
+
+
+Result "inf.usi.dag.streamcluster.StreamclusterBenchmark.explicitVec":
+  N = 10
+  mean =      2.638 ±(99.9%) 0.195 s/op
+
+  Histogram, s/op:
+    [2.300, 2.350) = 1 
+    [2.350, 2.400) = 0 
+    [2.400, 2.450) = 0 
+    [2.450, 2.500) = 0 
+    [2.500, 2.550) = 0 
+    [2.550, 2.600) = 2 
+    [2.600, 2.650) = 1 
+    [2.650, 2.700) = 3 
+    [2.700, 2.750) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      2.314 s/op
+     p(50.0000) =      2.662 s/op
+     p(90.0000) =      2.757 s/op
+     p(95.0000) =      2.757 s/op
+     p(99.0000) =      2.757 s/op
+     p(99.9000) =      2.757 s/op
+     p(99.9900) =      2.757 s/op
+     p(99.9990) =      2.757 s/op
+     p(99.9999) =      2.757 s/op
+    p(100.0000) =      2.757 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=src/main/resources/streamcluster/input/streamcluster_128_128.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.streamcluster.StreamclusterBenchmark.fullVec
+
+# Run progress: 50.00% complete, ETA 00:08:56
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.939 s/op
+# Warmup Iteration   2: 2.936 s/op
+# Warmup Iteration   3: 2.730 s/op
+# Warmup Iteration   4: 2.351 s/op
+# Warmup Iteration   5: 2.799 s/op
+# Warmup Iteration   6: 2.298 s/op
+# Warmup Iteration   7: 2.335 s/op
+# Warmup Iteration   8: 2.650 s/op
+# Warmup Iteration   9: 2.335 s/op
+# Warmup Iteration  10: 2.285 s/op
+# Warmup Iteration  11: 2.342 s/op
+# Warmup Iteration  12: 2.737 s/op
+# Warmup Iteration  13: 2.330 s/op
+# Warmup Iteration  14: 2.746 s/op
+# Warmup Iteration  15: 2.761 s/op
+# Warmup Iteration  16: 2.642 s/op
+# Warmup Iteration  17: 2.665 s/op
+# Warmup Iteration  18: 2.808 s/op
+# Warmup Iteration  19: 2.794 s/op
+# Warmup Iteration  20: 2.682 s/op
+# Warmup Iteration  21: 2.351 s/op
+# Warmup Iteration  22: 2.863 s/op
+# Warmup Iteration  23: 2.730 s/op
+# Warmup Iteration  24: 2.775 s/op
+# Warmup Iteration  25: 2.690 s/op
+# Warmup Iteration  26: 2.304 s/op
+# Warmup Iteration  27: 2.800 s/op
+# Warmup Iteration  28: 2.318 s/op
+# Warmup Iteration  29: 2.699 s/op
+# Warmup Iteration  30: 2.695 s/op
+# Warmup Iteration  31: 2.758 s/op
+# Warmup Iteration  32: 2.699 s/op
+# Warmup Iteration  33: 2.771 s/op
+# Warmup Iteration  34: 2.276 s/op
+# Warmup Iteration  35: 2.340 s/op
+# Warmup Iteration  36: 2.749 s/op
+# Warmup Iteration  37: 2.828 s/op
+# Warmup Iteration  38: 2.787 s/op
+# Warmup Iteration  39: 2.866 s/op
+# Warmup Iteration  40: 2.915 s/op
+Iteration   1: 2.795 s/op
+Iteration   2: 2.852 s/op
+Iteration   3: 2.699 s/op
+Iteration   4: 2.708 s/op
+Iteration   5: 2.844 s/op
+Iteration   6: 2.636 s/op
+Iteration   7: 2.297 s/op
+Iteration   8: 2.719 s/op
+Iteration   9: 2.760 s/op
+Iteration  10: 2.660 s/op
+
+
+Result "inf.usi.dag.streamcluster.StreamclusterBenchmark.fullVec":
+  N = 10
+  mean =      2.697 ±(99.9%) 0.239 s/op
+
+  Histogram, s/op:
+    [2.200, 2.250) = 0 
+    [2.250, 2.300) = 1 
+    [2.300, 2.350) = 0 
+    [2.350, 2.400) = 0 
+    [2.400, 2.450) = 0 
+    [2.450, 2.500) = 0 
+    [2.500, 2.550) = 0 
+    [2.550, 2.600) = 0 
+    [2.600, 2.650) = 1 
+    [2.650, 2.700) = 2 
+    [2.700, 2.750) = 2 
+    [2.750, 2.800) = 2 
+    [2.800, 2.850) = 1 
+    [2.850, 2.900) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      2.297 s/op
+     p(50.0000) =      2.713 s/op
+     p(90.0000) =      2.851 s/op
+     p(95.0000) =      2.852 s/op
+     p(99.0000) =      2.852 s/op
+     p(99.9000) =      2.852 s/op
+     p(99.9900) =      2.852 s/op
+     p(99.9990) =      2.852 s/op
+     p(99.9999) =      2.852 s/op
+    p(100.0000) =      2.852 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=src/main/resources/streamcluster/input/streamcluster_128_128.input -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.streamcluster.StreamclusterBenchmark.serial
+
+# Run progress: 75.00% complete, ETA 00:03:43
+# Fork: 1 of 1
+# Warmup Iteration   1: 6.351 s/op
+# Warmup Iteration   2: 6.635 s/op
+# Warmup Iteration   3: 6.378 s/op
+# Warmup Iteration   4: 6.442 s/op
+# Warmup Iteration   5: 6.493 s/op
+# Warmup Iteration   6: 6.329 s/op
+# Warmup Iteration   7: 6.433 s/op
+# Warmup Iteration   8: 6.258 s/op
+# Warmup Iteration   9: 6.458 s/op
+# Warmup Iteration  10: 6.320 s/op
+# Warmup Iteration  11: 6.459 s/op
+# Warmup Iteration  12: 6.435 s/op
+# Warmup Iteration  13: 6.446 s/op
+# Warmup Iteration  14: 6.294 s/op
+# Warmup Iteration  15: 6.436 s/op
+# Warmup Iteration  16: 6.322 s/op
+# Warmup Iteration  17: 6.341 s/op
+# Warmup Iteration  18: 6.460 s/op
+# Warmup Iteration  19: 6.354 s/op
+# Warmup Iteration  20: 6.327 s/op
+# Warmup Iteration  21: 6.455 s/op
+# Warmup Iteration  22: 6.452 s/op
+# Warmup Iteration  23: 6.517 s/op
+# Warmup Iteration  24: 6.430 s/op
+# Warmup Iteration  25: 6.320 s/op
+# Warmup Iteration  26: 6.406 s/op
+# Warmup Iteration  27: 6.350 s/op
+# Warmup Iteration  28: 6.435 s/op
+# Warmup Iteration  29: 6.427 s/op
+# Warmup Iteration  30: 6.436 s/op
+# Warmup Iteration  31: 6.414 s/op
+# Warmup Iteration  32: 6.434 s/op
+# Warmup Iteration  33: 6.324 s/op
+# Warmup Iteration  34: 6.362 s/op
+# Warmup Iteration  35: 6.457 s/op
+# Warmup Iteration  36: 6.443 s/op
+# Warmup Iteration  37: 6.430 s/op
+# Warmup Iteration  38: 6.410 s/op
+# Warmup Iteration  39: 6.438 s/op
+# Warmup Iteration  40: 6.435 s/op
+Iteration   1: 6.489 s/op
+Iteration   2: 6.397 s/op
+Iteration   3: 6.418 s/op
+Iteration   4: 6.406 s/op
+Iteration   5: 6.421 s/op
+Iteration   6: 6.317 s/op
+Iteration   7: 6.437 s/op
+Iteration   8: 6.415 s/op
+Iteration   9: 6.405 s/op
+Iteration  10: 6.320 s/op
+
+
+Result "inf.usi.dag.streamcluster.StreamclusterBenchmark.serial":
+  N = 10
+  mean =      6.403 ±(99.9%) 0.077 s/op
+
+  Histogram, s/op:
+    [6.300, 6.313) = 0 
+    [6.313, 6.325) = 2 
+    [6.325, 6.338) = 0 
+    [6.338, 6.350) = 0 
+    [6.350, 6.363) = 0 
+    [6.363, 6.375) = 0 
+    [6.375, 6.388) = 0 
+    [6.388, 6.400) = 1 
+    [6.400, 6.413) = 2 
+    [6.413, 6.425) = 3 
+    [6.425, 6.438) = 1 
+    [6.438, 6.450) = 0 
+    [6.450, 6.463) = 0 
+    [6.463, 6.475) = 0 
+    [6.475, 6.488) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      6.317 s/op
+     p(50.0000) =      6.411 s/op
+     p(90.0000) =      6.484 s/op
+     p(95.0000) =      6.489 s/op
+     p(99.0000) =      6.489 s/op
+     p(99.9000) =      6.489 s/op
+     p(99.9900) =      6.489 s/op
+     p(99.9990) =      6.489 s/op
+     p(99.9999) =      6.489 s/op
+    p(100.0000) =      6.489 s/op
+
+
+# Run complete. Total time: 00:16:33
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                           Mode  Cnt  Score   Error  Units
+StreamclusterBenchmark.autoVec        ss   10  8.022 ± 0.120   s/op
+StreamclusterBenchmark.explicitVec    ss   10  2.638 ± 0.195   s/op
+StreamclusterBenchmark.fullVec        ss   10  2.697 ± 0.239   s/op
+StreamclusterBenchmark.serial         ss   10  6.403 ± 0.077   s/op
+
+Benchmark result is saved to paper/jdk19/p620/benchmark/performance/2022-08-02_02:50:05/streamcluster/StreamclusterBenchmark.csv

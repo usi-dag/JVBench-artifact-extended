@@ -1,0 +1,83 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/pattern/pin_total/2024-05-06_12:13:02/particlefilter/ParticlefilterPatternBenchmark.indexInRange_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dx=128 -Dy=128 -Dz=24 -Dnp=32768
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.particlefilter.ParticlefilterPatternBenchmark.indexInRange
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 106.931 s/op
+# Warmup Iteration   2: 89.981 s/op
+# Warmup Iteration   3: 44.334 s/op
+# Warmup Iteration   4: 40.848 s/op
+# Warmup Iteration   5: 40.789 s/op
+# Warmup Iteration   6: 40.774 s/op
+# Warmup Iteration   7: 40.759 s/op
+# Warmup Iteration   8: 40.805 s/op
+# Warmup Iteration   9: 40.798 s/op
+# Warmup Iteration  10: 40.832 s/op
+Iteration   1: 40.754 s/op
+Iteration   2: 40.801 s/op
+Iteration   3: 40.768 s/op
+Iteration   4: 40.763 s/op
+Iteration   5: 40.764 s/op
+Iteration   6: 41.160 s/op
+Iteration   7: 40.769 s/op
+Iteration   8: 40.743 s/op
+Iteration   9: 40.747 s/op
+Iteration  10: 40.763 s/op
+
+
+Result "jvbench.particlefilter.ParticlefilterPatternBenchmark.indexInRange":
+  N = 10
+  mean =     40.803 ±(99.9%) 0.191 s/op
+
+  Histogram, s/op:
+    [40.700, 40.750) = 2 
+    [40.750, 40.800) = 6 
+    [40.800, 40.850) = 1 
+    [40.850, 40.900) = 0 
+    [40.900, 40.950) = 0 
+    [40.950, 41.000) = 0 
+    [41.000, 41.050) = 0 
+    [41.050, 41.100) = 0 
+    [41.100, 41.150) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =     40.743 s/op
+     p(50.0000) =     40.764 s/op
+     p(90.0000) =     41.124 s/op
+     p(95.0000) =     41.160 s/op
+     p(99.0000) =     41.160 s/op
+     p(99.9000) =     41.160 s/op
+     p(99.9900) =     41.160 s/op
+     p(99.9990) =     41.160 s/op
+     p(99.9999) =     41.160 s/op
+    p(100.0000) =     41.160 s/op
+
+
+# Run complete. Total time: 00:16:01
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                    Mode  Cnt   Score   Error  Units
+ParticlefilterPatternBenchmark.indexInRange    ss   10  40.803 ± 0.191   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/pattern/pin_total/2024-05-06_12:13:02/particlefilter/ParticlefilterPatternBenchmark.indexInRange.csv

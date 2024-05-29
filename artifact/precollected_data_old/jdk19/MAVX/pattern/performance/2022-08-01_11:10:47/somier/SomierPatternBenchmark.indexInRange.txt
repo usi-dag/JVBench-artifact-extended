@@ -1,0 +1,115 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dsteps=10 -Dn=128
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.somier.SomierPatternBenchmark.indexInRange
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 39.631 s/op
+# Warmup Iteration   2: 36.073 s/op
+# Warmup Iteration   3: 35.131 s/op
+# Warmup Iteration   4: 35.326 s/op
+# Warmup Iteration   5: 34.997 s/op
+# Warmup Iteration   6: 34.913 s/op
+# Warmup Iteration   7: 34.679 s/op
+# Warmup Iteration   8: 34.801 s/op
+# Warmup Iteration   9: 34.681 s/op
+# Warmup Iteration  10: 34.605 s/op
+# Warmup Iteration  11: 34.596 s/op
+# Warmup Iteration  12: 34.637 s/op
+# Warmup Iteration  13: 34.599 s/op
+# Warmup Iteration  14: 34.768 s/op
+# Warmup Iteration  15: 34.475 s/op
+# Warmup Iteration  16: 34.578 s/op
+# Warmup Iteration  17: 34.656 s/op
+# Warmup Iteration  18: 34.455 s/op
+# Warmup Iteration  19: 34.579 s/op
+# Warmup Iteration  20: 34.299 s/op
+# Warmup Iteration  21: 34.400 s/op
+# Warmup Iteration  22: 34.405 s/op
+# Warmup Iteration  23: 34.660 s/op
+# Warmup Iteration  24: 34.390 s/op
+# Warmup Iteration  25: 34.388 s/op
+# Warmup Iteration  26: 34.485 s/op
+# Warmup Iteration  27: 34.510 s/op
+# Warmup Iteration  28: 34.687 s/op
+# Warmup Iteration  29: 34.459 s/op
+# Warmup Iteration  30: 34.837 s/op
+# Warmup Iteration  31: 34.572 s/op
+# Warmup Iteration  32: 34.495 s/op
+# Warmup Iteration  33: 34.438 s/op
+# Warmup Iteration  34: 34.383 s/op
+# Warmup Iteration  35: 34.446 s/op
+# Warmup Iteration  36: 34.447 s/op
+# Warmup Iteration  37: 34.517 s/op
+# Warmup Iteration  38: 34.266 s/op
+# Warmup Iteration  39: 34.440 s/op
+# Warmup Iteration  40: 34.803 s/op
+Iteration   1: 34.476 s/op
+Iteration   2: 34.557 s/op
+Iteration   3: 34.593 s/op
+Iteration   4: 34.384 s/op
+Iteration   5: 34.482 s/op
+Iteration   6: 34.671 s/op
+Iteration   7: 34.523 s/op
+Iteration   8: 34.699 s/op
+Iteration   9: 34.191 s/op
+Iteration  10: 34.242 s/op
+
+
+Result "inf.usi.dag.somier.SomierPatternBenchmark.indexInRange":
+  N = 10
+  mean =     34.482 ±(99.9%) 0.254 s/op
+
+  Histogram, s/op:
+    [34.100, 34.150) = 0 
+    [34.150, 34.200) = 1 
+    [34.200, 34.250) = 1 
+    [34.250, 34.300) = 0 
+    [34.300, 34.350) = 0 
+    [34.350, 34.400) = 1 
+    [34.400, 34.450) = 0 
+    [34.450, 34.500) = 2 
+    [34.500, 34.550) = 1 
+    [34.550, 34.600) = 2 
+    [34.600, 34.650) = 0 
+    [34.650, 34.700) = 2 
+
+  Percentiles, s/op:
+      p(0.0000) =     34.191 s/op
+     p(50.0000) =     34.503 s/op
+     p(90.0000) =     34.696 s/op
+     p(95.0000) =     34.699 s/op
+     p(99.0000) =     34.699 s/op
+     p(99.9000) =     34.699 s/op
+     p(99.9900) =     34.699 s/op
+     p(99.9990) =     34.699 s/op
+     p(99.9999) =     34.699 s/op
+    p(100.0000) =     34.699 s/op
+
+
+# Run complete. Total time: 00:29:02
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                            Mode  Cnt   Score   Error  Units
+SomierPatternBenchmark.indexInRange    ss   10  34.482 ± 0.254   s/op
+
+Benchmark result is saved to paper/jdk19/p620/pattern/performance/2022-08-01_11:10:47/somier/SomierPatternBenchmark.indexInRange.csv

@@ -1,0 +1,105 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dk1=3 -Dk2=10 -Ddim=128 -Dchunksize=128 -Dclustersize=10 -Dinfile=src/main/resources/streamcluster/input/streamcluster_128_128.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.streamcluster.StreamclusterPatternBenchmark.reduction
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 4.015 s/op
+# Warmup Iteration   2: 3.955 s/op
+# Warmup Iteration   3: 3.701 s/op
+# Warmup Iteration   4: 3.737 s/op
+# Warmup Iteration   5: 3.754 s/op
+# Warmup Iteration   6: 3.689 s/op
+# Warmup Iteration   7: 3.732 s/op
+# Warmup Iteration   8: 3.633 s/op
+# Warmup Iteration   9: 3.743 s/op
+# Warmup Iteration  10: 3.656 s/op
+Iteration   1: 3.753 s/op
+Iteration   2: 3.741 s/op
+Iteration   3: 3.731 s/op
+Iteration   4: 3.648 s/op
+Iteration   5: 3.739 s/op
+Iteration   6: 3.655 s/op
+Iteration   7: 3.342 s/op
+Iteration   8: 3.749 s/op
+Iteration   9: 3.655 s/op
+Iteration  10: 3.677 s/op
+
+# Run progress: 50.00% complete, ETA 00:01:16
+# Fork: 2 of 2
+# Warmup Iteration   1: 3.982 s/op
+# Warmup Iteration   2: 3.967 s/op
+# Warmup Iteration   3: 3.742 s/op
+# Warmup Iteration   4: 3.680 s/op
+# Warmup Iteration   5: 3.790 s/op
+# Warmup Iteration   6: 3.713 s/op
+# Warmup Iteration   7: 3.771 s/op
+# Warmup Iteration   8: 3.663 s/op
+# Warmup Iteration   9: 3.771 s/op
+# Warmup Iteration  10: 3.678 s/op
+Iteration   1: 3.454 s/op
+Iteration   2: 3.780 s/op
+Iteration   3: 3.768 s/op
+Iteration   4: 3.678 s/op
+Iteration   5: 3.770 s/op
+Iteration   6: 3.688 s/op
+Iteration   7: 3.701 s/op
+Iteration   8: 3.774 s/op
+Iteration   9: 3.698 s/op
+Iteration  10: 3.716 s/op
+
+
+Result "inf.usi.dag.streamcluster.StreamclusterPatternBenchmark.reduction":
+  N = 20
+  mean =      3.686 ±(99.9%) 0.094 s/op
+
+  Histogram, s/op:
+    [3.300, 3.350) = 1 
+    [3.350, 3.400) = 0 
+    [3.400, 3.450) = 0 
+    [3.450, 3.500) = 1 
+    [3.500, 3.550) = 0 
+    [3.550, 3.600) = 0 
+    [3.600, 3.650) = 1 
+    [3.650, 3.700) = 6 
+    [3.700, 3.750) = 6 
+
+  Percentiles, s/op:
+      p(0.0000) =      3.342 s/op
+     p(50.0000) =      3.708 s/op
+     p(90.0000) =      3.774 s/op
+     p(95.0000) =      3.779 s/op
+     p(99.0000) =      3.780 s/op
+     p(99.9000) =      3.780 s/op
+     p(99.9900) =      3.780 s/op
+     p(99.9990) =      3.780 s/op
+     p(99.9999) =      3.780 s/op
+    p(100.0000) =      3.780 s/op
+
+
+# Run complete. Total time: 00:02:32
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                Mode  Cnt  Score   Error  Units
+StreamclusterPatternBenchmark.reduction    ss   20  3.686 ± 0.094   s/op
+
+Benchmark result is saved to paper/jdk19/tower/pattern/performance/2022-08-24_19:27:30/streamcluster/StreamclusterPatternBenchmark.reduction.csv

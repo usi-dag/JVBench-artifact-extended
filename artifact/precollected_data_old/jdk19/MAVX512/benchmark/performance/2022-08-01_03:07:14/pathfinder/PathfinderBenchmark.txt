@@ -1,0 +1,416 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dinput=src/main/resources/pathfinder/input/pathfinder_5000_5000.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.pathfinder.PathfinderBenchmark.autoVec
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 10.520 s/op
+# Warmup Iteration   2: 10.492 s/op
+# Warmup Iteration   3: 10.491 s/op
+# Warmup Iteration   4: 10.490 s/op
+# Warmup Iteration   5: 10.490 s/op
+# Warmup Iteration   6: 10.489 s/op
+# Warmup Iteration   7: 10.423 s/op
+# Warmup Iteration   8: 10.491 s/op
+# Warmup Iteration   9: 10.488 s/op
+# Warmup Iteration  10: 10.490 s/op
+# Warmup Iteration  11: 10.490 s/op
+# Warmup Iteration  12: 10.491 s/op
+# Warmup Iteration  13: 4.149 s/op
+# Warmup Iteration  14: 4.143 s/op
+# Warmup Iteration  15: 4.142 s/op
+# Warmup Iteration  16: 4.147 s/op
+# Warmup Iteration  17: 4.147 s/op
+# Warmup Iteration  18: 4.139 s/op
+# Warmup Iteration  19: 4.160 s/op
+# Warmup Iteration  20: 4.147 s/op
+# Warmup Iteration  21: 4.141 s/op
+# Warmup Iteration  22: 4.146 s/op
+# Warmup Iteration  23: 4.144 s/op
+# Warmup Iteration  24: 4.141 s/op
+# Warmup Iteration  25: 4.144 s/op
+# Warmup Iteration  26: 4.139 s/op
+# Warmup Iteration  27: 4.138 s/op
+# Warmup Iteration  28: 4.152 s/op
+# Warmup Iteration  29: 4.158 s/op
+# Warmup Iteration  30: 4.154 s/op
+# Warmup Iteration  31: 4.143 s/op
+# Warmup Iteration  32: 4.145 s/op
+# Warmup Iteration  33: 4.139 s/op
+# Warmup Iteration  34: 4.155 s/op
+# Warmup Iteration  35: 4.144 s/op
+# Warmup Iteration  36: 4.141 s/op
+# Warmup Iteration  37: 4.160 s/op
+# Warmup Iteration  38: 4.134 s/op
+# Warmup Iteration  39: 4.141 s/op
+# Warmup Iteration  40: 4.133 s/op
+Iteration   1: 4.141 s/op
+Iteration   2: 4.141 s/op
+Iteration   3: 4.137 s/op
+Iteration   4: 4.148 s/op
+Iteration   5: 4.141 s/op
+Iteration   6: 4.134 s/op
+Iteration   7: 4.144 s/op
+Iteration   8: 4.151 s/op
+Iteration   9: 4.147 s/op
+Iteration  10: 4.142 s/op
+
+
+Result "inf.usi.dag.pathfinder.PathfinderBenchmark.autoVec":
+  N = 10
+  mean =      4.143 ±(99.9%) 0.008 s/op
+
+  Histogram, s/op:
+    [4.130, 4.133) = 0 
+    [4.133, 4.135) = 1 
+    [4.135, 4.138) = 1 
+    [4.138, 4.140) = 0 
+    [4.140, 4.143) = 4 
+    [4.143, 4.145) = 1 
+    [4.145, 4.148) = 1 
+    [4.148, 4.150) = 1 
+    [4.150, 4.153) = 1 
+    [4.153, 4.155) = 0 
+    [4.155, 4.158) = 0 
+    [4.158, 4.160) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      4.134 s/op
+     p(50.0000) =      4.142 s/op
+     p(90.0000) =      4.150 s/op
+     p(95.0000) =      4.151 s/op
+     p(99.0000) =      4.151 s/op
+     p(99.9000) =      4.151 s/op
+     p(99.9900) =      4.151 s/op
+     p(99.9990) =      4.151 s/op
+     p(99.9999) =      4.151 s/op
+    p(100.0000) =      4.151 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dinput=src/main/resources/pathfinder/input/pathfinder_5000_5000.input -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.pathfinder.PathfinderBenchmark.explicitVec
+
+# Run progress: 25.00% complete, ETA 00:14:24
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.676 s/op
+# Warmup Iteration   2: 2.244 s/op
+# Warmup Iteration   3: 2.192 s/op
+# Warmup Iteration   4: 2.181 s/op
+# Warmup Iteration   5: 1.319 s/op
+# Warmup Iteration   6: 1.315 s/op
+# Warmup Iteration   7: 1.322 s/op
+# Warmup Iteration   8: 1.314 s/op
+# Warmup Iteration   9: 1.316 s/op
+# Warmup Iteration  10: 1.315 s/op
+# Warmup Iteration  11: 1.319 s/op
+# Warmup Iteration  12: 1.314 s/op
+# Warmup Iteration  13: 1.316 s/op
+# Warmup Iteration  14: 1.310 s/op
+# Warmup Iteration  15: 1.318 s/op
+# Warmup Iteration  16: 1.310 s/op
+# Warmup Iteration  17: 1.318 s/op
+# Warmup Iteration  18: 1.311 s/op
+# Warmup Iteration  19: 1.317 s/op
+# Warmup Iteration  20: 1.320 s/op
+# Warmup Iteration  21: 1.320 s/op
+# Warmup Iteration  22: 1.322 s/op
+# Warmup Iteration  23: 1.319 s/op
+# Warmup Iteration  24: 1.320 s/op
+# Warmup Iteration  25: 1.315 s/op
+# Warmup Iteration  26: 1.315 s/op
+# Warmup Iteration  27: 1.316 s/op
+# Warmup Iteration  28: 1.317 s/op
+# Warmup Iteration  29: 1.315 s/op
+# Warmup Iteration  30: 1.317 s/op
+# Warmup Iteration  31: 1.316 s/op
+# Warmup Iteration  32: 1.316 s/op
+# Warmup Iteration  33: 1.318 s/op
+# Warmup Iteration  34: 1.316 s/op
+# Warmup Iteration  35: 1.317 s/op
+# Warmup Iteration  36: 1.318 s/op
+# Warmup Iteration  37: 1.312 s/op
+# Warmup Iteration  38: 1.320 s/op
+# Warmup Iteration  39: 1.316 s/op
+# Warmup Iteration  40: 1.315 s/op
+Iteration   1: 1.313 s/op
+Iteration   2: 1.324 s/op
+Iteration   3: 1.313 s/op
+Iteration   4: 1.315 s/op
+Iteration   5: 1.315 s/op
+Iteration   6: 1.314 s/op
+Iteration   7: 1.315 s/op
+Iteration   8: 1.315 s/op
+Iteration   9: 1.320 s/op
+Iteration  10: 1.315 s/op
+
+
+Result "inf.usi.dag.pathfinder.PathfinderBenchmark.explicitVec":
+  N = 10
+  mean =      1.316 ±(99.9%) 0.005 s/op
+
+  Histogram, s/op:
+    [1.310, 1.311) = 0 
+    [1.311, 1.313) = 0 
+    [1.313, 1.314) = 2 
+    [1.314, 1.315) = 2 
+    [1.315, 1.316) = 4 
+    [1.316, 1.318) = 0 
+    [1.318, 1.319) = 0 
+    [1.319, 1.320) = 0 
+    [1.320, 1.321) = 1 
+    [1.321, 1.323) = 0 
+    [1.323, 1.324) = 1 
+    [1.324, 1.325) = 0 
+    [1.325, 1.326) = 0 
+    [1.326, 1.328) = 0 
+    [1.328, 1.329) = 0 
+    [1.329, 1.330) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      1.313 s/op
+     p(50.0000) =      1.315 s/op
+     p(90.0000) =      1.323 s/op
+     p(95.0000) =      1.324 s/op
+     p(99.0000) =      1.324 s/op
+     p(99.9000) =      1.324 s/op
+     p(99.9900) =      1.324 s/op
+     p(99.9990) =      1.324 s/op
+     p(99.9999) =      1.324 s/op
+    p(100.0000) =      1.324 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dinput=src/main/resources/pathfinder/input/pathfinder_5000_5000.input
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.pathfinder.PathfinderBenchmark.fullVec
+
+# Run progress: 50.00% complete, ETA 00:06:01
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.636 s/op
+# Warmup Iteration   2: 2.144 s/op
+# Warmup Iteration   3: 2.144 s/op
+# Warmup Iteration   4: 2.107 s/op
+# Warmup Iteration   5: 1.298 s/op
+# Warmup Iteration   6: 1.300 s/op
+# Warmup Iteration   7: 1.292 s/op
+# Warmup Iteration   8: 1.296 s/op
+# Warmup Iteration   9: 1.292 s/op
+# Warmup Iteration  10: 1.301 s/op
+# Warmup Iteration  11: 1.294 s/op
+# Warmup Iteration  12: 1.293 s/op
+# Warmup Iteration  13: 1.288 s/op
+# Warmup Iteration  14: 1.296 s/op
+# Warmup Iteration  15: 1.292 s/op
+# Warmup Iteration  16: 1.289 s/op
+# Warmup Iteration  17: 1.300 s/op
+# Warmup Iteration  18: 1.290 s/op
+# Warmup Iteration  19: 1.293 s/op
+# Warmup Iteration  20: 1.290 s/op
+# Warmup Iteration  21: 1.296 s/op
+# Warmup Iteration  22: 1.289 s/op
+# Warmup Iteration  23: 1.300 s/op
+# Warmup Iteration  24: 1.286 s/op
+# Warmup Iteration  25: 1.298 s/op
+# Warmup Iteration  26: 1.296 s/op
+# Warmup Iteration  27: 1.307 s/op
+# Warmup Iteration  28: 1.299 s/op
+# Warmup Iteration  29: 1.302 s/op
+# Warmup Iteration  30: 1.295 s/op
+# Warmup Iteration  31: 1.297 s/op
+# Warmup Iteration  32: 1.289 s/op
+# Warmup Iteration  33: 1.296 s/op
+# Warmup Iteration  34: 1.289 s/op
+# Warmup Iteration  35: 1.296 s/op
+# Warmup Iteration  36: 1.291 s/op
+# Warmup Iteration  37: 1.295 s/op
+# Warmup Iteration  38: 1.291 s/op
+# Warmup Iteration  39: 1.296 s/op
+# Warmup Iteration  40: 1.299 s/op
+Iteration   1: 1.292 s/op
+Iteration   2: 1.297 s/op
+Iteration   3: 1.293 s/op
+Iteration   4: 1.295 s/op
+Iteration   5: 1.290 s/op
+Iteration   6: 1.298 s/op
+Iteration   7: 1.294 s/op
+Iteration   8: 1.298 s/op
+Iteration   9: 1.294 s/op
+Iteration  10: 1.300 s/op
+
+
+Result "inf.usi.dag.pathfinder.PathfinderBenchmark.fullVec":
+  N = 10
+  mean =      1.295 ±(99.9%) 0.005 s/op
+
+  Histogram, s/op:
+    [1.290, 1.291) = 1 
+    [1.291, 1.292) = 0 
+    [1.292, 1.293) = 2 
+    [1.293, 1.294) = 2 
+    [1.294, 1.295) = 1 
+    [1.295, 1.296) = 0 
+    [1.296, 1.297) = 0 
+    [1.297, 1.298) = 2 
+    [1.298, 1.299) = 1 
+    [1.299, 1.300) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      1.290 s/op
+     p(50.0000) =      1.294 s/op
+     p(90.0000) =      1.299 s/op
+     p(95.0000) =      1.300 s/op
+     p(99.0000) =      1.300 s/op
+     p(99.9000) =      1.300 s/op
+     p(99.9900) =      1.300 s/op
+     p(99.9990) =      1.300 s/op
+     p(99.9999) =      1.300 s/op
+    p(100.0000) =      1.300 s/op
+
+
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dinput=src/main/resources/pathfinder/input/pathfinder_5000_5000.input -XX:-UseSuperWord
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.pathfinder.PathfinderBenchmark.serial
+
+# Run progress: 75.00% complete, ETA 00:02:24
+# Fork: 1 of 1
+# Warmup Iteration   1: 11.960 s/op
+# Warmup Iteration   2: 11.933 s/op
+# Warmup Iteration   3: 11.933 s/op
+# Warmup Iteration   4: 11.933 s/op
+# Warmup Iteration   5: 11.934 s/op
+# Warmup Iteration   6: 11.932 s/op
+# Warmup Iteration   7: 11.852 s/op
+# Warmup Iteration   8: 11.930 s/op
+# Warmup Iteration   9: 11.929 s/op
+# Warmup Iteration  10: 11.932 s/op
+# Warmup Iteration  11: 11.936 s/op
+# Warmup Iteration  12: 11.933 s/op
+# Warmup Iteration  13: 3.907 s/op
+# Warmup Iteration  14: 3.910 s/op
+# Warmup Iteration  15: 3.892 s/op
+# Warmup Iteration  16: 3.880 s/op
+# Warmup Iteration  17: 3.916 s/op
+# Warmup Iteration  18: 3.900 s/op
+# Warmup Iteration  19: 3.958 s/op
+# Warmup Iteration  20: 3.889 s/op
+# Warmup Iteration  21: 3.882 s/op
+# Warmup Iteration  22: 3.904 s/op
+# Warmup Iteration  23: 3.878 s/op
+# Warmup Iteration  24: 3.884 s/op
+# Warmup Iteration  25: 3.923 s/op
+# Warmup Iteration  26: 3.879 s/op
+# Warmup Iteration  27: 3.918 s/op
+# Warmup Iteration  28: 3.886 s/op
+# Warmup Iteration  29: 3.886 s/op
+# Warmup Iteration  30: 3.897 s/op
+# Warmup Iteration  31: 3.882 s/op
+# Warmup Iteration  32: 3.916 s/op
+# Warmup Iteration  33: 3.915 s/op
+# Warmup Iteration  34: 3.901 s/op
+# Warmup Iteration  35: 3.898 s/op
+# Warmup Iteration  36: 3.894 s/op
+# Warmup Iteration  37: 3.894 s/op
+# Warmup Iteration  38: 3.915 s/op
+# Warmup Iteration  39: 3.892 s/op
+# Warmup Iteration  40: 3.911 s/op
+Iteration   1: 3.908 s/op
+Iteration   2: 3.901 s/op
+Iteration   3: 3.884 s/op
+Iteration   4: 3.955 s/op
+Iteration   5: 3.904 s/op
+Iteration   6: 3.878 s/op
+Iteration   7: 3.902 s/op
+Iteration   8: 3.946 s/op
+Iteration   9: 3.886 s/op
+Iteration  10: 3.895 s/op
+
+
+Result "inf.usi.dag.pathfinder.PathfinderBenchmark.serial":
+  N = 10
+  mean =      3.906 ±(99.9%) 0.038 s/op
+
+  Histogram, s/op:
+    [3.870, 3.875) = 0 
+    [3.875, 3.880) = 1 
+    [3.880, 3.885) = 1 
+    [3.885, 3.890) = 1 
+    [3.890, 3.895) = 0 
+    [3.895, 3.900) = 1 
+    [3.900, 3.905) = 3 
+    [3.905, 3.910) = 1 
+    [3.910, 3.915) = 0 
+    [3.915, 3.920) = 0 
+    [3.920, 3.925) = 0 
+    [3.925, 3.930) = 0 
+    [3.930, 3.935) = 0 
+    [3.935, 3.940) = 0 
+    [3.940, 3.945) = 0 
+    [3.945, 3.950) = 1 
+    [3.950, 3.955) = 1 
+
+  Percentiles, s/op:
+      p(0.0000) =      3.878 s/op
+     p(50.0000) =      3.901 s/op
+     p(90.0000) =      3.954 s/op
+     p(95.0000) =      3.955 s/op
+     p(99.0000) =      3.955 s/op
+     p(99.9000) =      3.955 s/op
+     p(99.9900) =      3.955 s/op
+     p(99.9990) =      3.955 s/op
+     p(99.9999) =      3.955 s/op
+    p(100.0000) =      3.955 s/op
+
+
+# Run complete. Total time: 00:12:08
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                        Mode  Cnt  Score   Error  Units
+PathfinderBenchmark.autoVec        ss   10  4.143 ± 0.008   s/op
+PathfinderBenchmark.explicitVec    ss   10  1.316 ± 0.005   s/op
+PathfinderBenchmark.fullVec        ss   10  1.295 ± 0.005   s/op
+PathfinderBenchmark.serial         ss   10  3.906 ± 0.038   s/op
+
+Benchmark result is saved to paper/jdk19/tower/benchmark/performance/2022-08-01_03:07:14/pathfinder/PathfinderBenchmark.csv

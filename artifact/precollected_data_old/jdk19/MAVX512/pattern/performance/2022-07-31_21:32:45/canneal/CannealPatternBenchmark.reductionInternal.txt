@@ -1,0 +1,119 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -DN_SWAPS=10000 -DTEMP=2000 -DNETLIST=src/main/resources/canneal/input/2500000.nets -DN_STEPS=300
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 40 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.canneal.CannealPatternBenchmark.reductionInternal
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 6.877 s/op
+# Warmup Iteration   2: 3.865 s/op
+# Warmup Iteration   3: 4.652 s/op
+# Warmup Iteration   4: 3.779 s/op
+# Warmup Iteration   5: 4.355 s/op
+# Warmup Iteration   6: 4.175 s/op
+# Warmup Iteration   7: 3.809 s/op
+# Warmup Iteration   8: 4.397 s/op
+# Warmup Iteration   9: 4.160 s/op
+# Warmup Iteration  10: 3.800 s/op
+# Warmup Iteration  11: 3.818 s/op
+# Warmup Iteration  12: 3.692 s/op
+# Warmup Iteration  13: 3.319 s/op
+# Warmup Iteration  14: 3.309 s/op
+# Warmup Iteration  15: 3.329 s/op
+# Warmup Iteration  16: 3.243 s/op
+# Warmup Iteration  17: 3.356 s/op
+# Warmup Iteration  18: 3.357 s/op
+# Warmup Iteration  19: 3.242 s/op
+# Warmup Iteration  20: 3.363 s/op
+# Warmup Iteration  21: 3.243 s/op
+# Warmup Iteration  22: 3.363 s/op
+# Warmup Iteration  23: 3.362 s/op
+# Warmup Iteration  24: 3.246 s/op
+# Warmup Iteration  25: 3.363 s/op
+# Warmup Iteration  26: 3.244 s/op
+# Warmup Iteration  27: 3.372 s/op
+# Warmup Iteration  28: 3.255 s/op
+# Warmup Iteration  29: 3.382 s/op
+# Warmup Iteration  30: 3.265 s/op
+# Warmup Iteration  31: 3.381 s/op
+# Warmup Iteration  32: 3.256 s/op
+# Warmup Iteration  33: 3.382 s/op
+# Warmup Iteration  34: 3.377 s/op
+# Warmup Iteration  35: 3.255 s/op
+# Warmup Iteration  36: 3.376 s/op
+# Warmup Iteration  37: 3.230 s/op
+# Warmup Iteration  38: 3.356 s/op
+# Warmup Iteration  39: 3.249 s/op
+# Warmup Iteration  40: 3.376 s/op
+Iteration   1: 3.257 s/op
+Iteration   2: 3.380 s/op
+Iteration   3: 3.229 s/op
+Iteration   4: 3.380 s/op
+Iteration   5: 3.374 s/op
+Iteration   6: 3.262 s/op
+Iteration   7: 3.372 s/op
+Iteration   8: 3.250 s/op
+Iteration   9: 3.374 s/op
+Iteration  10: 3.246 s/op
+
+
+Result "inf.usi.dag.canneal.CannealPatternBenchmark.reductionInternal":
+  N = 10
+  mean =      3.312 ±(99.9%) 0.102 s/op
+
+  Histogram, s/op:
+    [3.200, 3.213) = 0 
+    [3.213, 3.225) = 0 
+    [3.225, 3.238) = 1 
+    [3.238, 3.250) = 1 
+    [3.250, 3.263) = 3 
+    [3.263, 3.275) = 0 
+    [3.275, 3.288) = 0 
+    [3.288, 3.300) = 0 
+    [3.300, 3.313) = 0 
+    [3.313, 3.325) = 0 
+    [3.325, 3.338) = 0 
+    [3.338, 3.350) = 0 
+    [3.350, 3.363) = 0 
+    [3.363, 3.375) = 3 
+    [3.375, 3.388) = 2 
+    [3.388, 3.400) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      3.229 s/op
+     p(50.0000) =      3.317 s/op
+     p(90.0000) =      3.380 s/op
+     p(95.0000) =      3.380 s/op
+     p(99.0000) =      3.380 s/op
+     p(99.9000) =      3.380 s/op
+     p(99.9900) =      3.380 s/op
+     p(99.9990) =      3.380 s/op
+     p(99.9999) =      3.380 s/op
+    p(100.0000) =      3.380 s/op
+
+
+# Run complete. Total time: 00:03:19
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                  Mode  Cnt  Score   Error  Units
+CannealPatternBenchmark.reductionInternal    ss   10  3.312 ± 0.102   s/op
+
+Benchmark result is saved to paper/jdk19/tower/pattern/performance/2022-07-31_21:32:45/canneal/CannealPatternBenchmark.reductionInternal.csv

@@ -1,0 +1,90 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc..jdk19u
+# VM invoker: /artifact/jdk19/bin/java
+# VM options: -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=/artifact/output/short/data/jdk19/dockerimg/pattern/pin_total/2024-04-30_16:22:57/somier/SomierPatternBenchmark.pow_LogCompilation_%p.log --add-modules=jdk.incubator.vector -Dbenchmark.plugin=jvbench.plugin.SocketPlugin -Dsteps=10 -Dn=128
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: jvbench.somier.SomierPatternBenchmark.pow
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 1
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 65.937 s/op
+# Warmup Iteration   2: 47.803 s/op
+# Warmup Iteration   3: 46.550 s/op
+# Warmup Iteration   4: 46.557 s/op
+# Warmup Iteration   5: 46.551 s/op
+# Warmup Iteration   6: 46.541 s/op
+# Warmup Iteration   7: 46.546 s/op
+# Warmup Iteration   8: 46.544 s/op
+# Warmup Iteration   9: 46.595 s/op
+# Warmup Iteration  10: 46.644 s/op
+Iteration   1: 46.543 s/op
+Iteration   2: 46.630 s/op
+Iteration   3: 46.547 s/op
+Iteration   4: 46.560 s/op
+Iteration   5: 46.636 s/op
+Iteration   6: 46.581 s/op
+Iteration   7: 46.554 s/op
+Iteration   8: 46.551 s/op
+Iteration   9: 46.535 s/op
+Iteration  10: 46.538 s/op
+
+
+Result "jvbench.somier.SomierPatternBenchmark.pow":
+  N = 10
+  mean =     46.567 ±(99.9%) 0.056 s/op
+
+  Histogram, s/op:
+    [46.500, 46.513) = 0 
+    [46.513, 46.525) = 0 
+    [46.525, 46.538) = 1 
+    [46.538, 46.550) = 3 
+    [46.550, 46.563) = 3 
+    [46.563, 46.575) = 0 
+    [46.575, 46.588) = 1 
+    [46.588, 46.600) = 0 
+    [46.600, 46.613) = 0 
+    [46.613, 46.625) = 0 
+    [46.625, 46.638) = 2 
+    [46.638, 46.650) = 0 
+    [46.650, 46.663) = 0 
+    [46.663, 46.675) = 0 
+    [46.675, 46.688) = 0 
+    [46.688, 46.700) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =     46.535 s/op
+     p(50.0000) =     46.552 s/op
+     p(90.0000) =     46.635 s/op
+     p(95.0000) =     46.636 s/op
+     p(99.0000) =     46.636 s/op
+     p(99.9000) =     46.636 s/op
+     p(99.9900) =     46.636 s/op
+     p(99.9990) =     46.636 s/op
+     p(99.9999) =     46.636 s/op
+    p(100.0000) =     46.636 s/op
+
+
+# Run complete. Total time: 00:16:29
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                   Mode  Cnt   Score   Error  Units
+SomierPatternBenchmark.pow    ss   10  46.567 ± 0.056   s/op
+
+Benchmark result is saved to /artifact/output/short/data/jdk19/dockerimg/pattern/pin_total/2024-04-30_16:22:57/somier/SomierPatternBenchmark.pow.csv

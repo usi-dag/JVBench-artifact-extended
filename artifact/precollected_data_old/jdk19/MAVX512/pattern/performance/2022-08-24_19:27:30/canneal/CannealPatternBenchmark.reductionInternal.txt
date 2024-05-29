@@ -1,0 +1,111 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.root.jdk19
+# VM invoker: /usr/lib/jvm/jdk19/build/linux-x86_64-server-fastdebug/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -DN_SWAPS=10000 -DTEMP=2000 -DNETLIST=src/main/resources/canneal/input/2500000.nets -DN_STEPS=300
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.canneal.CannealPatternBenchmark.reductionInternal
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 7.241 s/op
+# Warmup Iteration   2: 3.955 s/op
+# Warmup Iteration   3: 4.906 s/op
+# Warmup Iteration   4: 3.999 s/op
+# Warmup Iteration   5: 4.623 s/op
+# Warmup Iteration   6: 4.375 s/op
+# Warmup Iteration   7: 4.024 s/op
+# Warmup Iteration   8: 4.682 s/op
+# Warmup Iteration   9: 4.346 s/op
+# Warmup Iteration  10: 4.022 s/op
+Iteration   1: 4.145 s/op
+Iteration   2: 3.853 s/op
+Iteration   3: 3.547 s/op
+Iteration   4: 3.545 s/op
+Iteration   5: 3.560 s/op
+Iteration   6: 3.483 s/op
+Iteration   7: 3.593 s/op
+Iteration   8: 3.597 s/op
+Iteration   9: 3.483 s/op
+Iteration  10: 3.600 s/op
+
+# Run progress: 50.00% complete, ETA 00:01:44
+# Fork: 2 of 2
+# Warmup Iteration   1: 7.219 s/op
+# Warmup Iteration   2: 3.951 s/op
+# Warmup Iteration   3: 4.889 s/op
+# Warmup Iteration   4: 3.992 s/op
+# Warmup Iteration   5: 4.575 s/op
+# Warmup Iteration   6: 4.402 s/op
+# Warmup Iteration   7: 4.020 s/op
+# Warmup Iteration   8: 4.635 s/op
+# Warmup Iteration   9: 4.388 s/op
+# Warmup Iteration  10: 4.012 s/op
+Iteration   1: 4.120 s/op
+Iteration   2: 3.862 s/op
+Iteration   3: 3.540 s/op
+Iteration   4: 3.540 s/op
+Iteration   5: 3.558 s/op
+Iteration   6: 3.473 s/op
+Iteration   7: 3.585 s/op
+Iteration   8: 3.586 s/op
+Iteration   9: 3.477 s/op
+Iteration  10: 3.593 s/op
+
+
+Result "inf.usi.dag.canneal.CannealPatternBenchmark.reductionInternal":
+  N = 20
+  mean =      3.637 ±(99.9%) 0.172 s/op
+
+  Histogram, s/op:
+    [3.400, 3.450) = 0 
+    [3.450, 3.500) = 4 
+    [3.500, 3.550) = 4 
+    [3.550, 3.600) = 8 
+    [3.600, 3.650) = 0 
+    [3.650, 3.700) = 0 
+    [3.700, 3.750) = 0 
+    [3.750, 3.800) = 0 
+    [3.800, 3.850) = 0 
+    [3.850, 3.900) = 2 
+    [3.900, 3.950) = 0 
+    [3.950, 4.000) = 0 
+    [4.000, 4.050) = 0 
+    [4.050, 4.100) = 0 
+    [4.100, 4.150) = 2 
+
+  Percentiles, s/op:
+      p(0.0000) =      3.473 s/op
+     p(50.0000) =      3.573 s/op
+     p(90.0000) =      4.094 s/op
+     p(95.0000) =      4.144 s/op
+     p(99.0000) =      4.145 s/op
+     p(99.9000) =      4.145 s/op
+     p(99.9900) =      4.145 s/op
+     p(99.9990) =      4.145 s/op
+     p(99.9999) =      4.145 s/op
+    p(100.0000) =      4.145 s/op
+
+
+# Run complete. Total time: 00:03:29
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                  Mode  Cnt  Score   Error  Units
+CannealPatternBenchmark.reductionInternal    ss   20  3.637 ± 0.172   s/op
+
+Benchmark result is saved to paper/jdk19/tower/pattern/performance/2022-08-24_19:27:30/canneal/CannealPatternBenchmark.reductionInternal.csv
