@@ -26,10 +26,11 @@ def create_bar_plot(csv_file, plot_filename, output_dir):
     ax.set_yscale('log')
     
     # Customize the plot
-    ax.set_xlabel('Benchmark', fontsize=12.5)
-    ax.set_ylabel('Overhead', fontsize=12.5)
-    ax.grid(axis='y', linestyle='--', alpha=0.7)
-    plt.xticks(rotation=45, ha='right')
+    ax.set_xlabel('', fontsize=20)
+    ax.set_ylabel('Overhead', fontsize=15)
+    ax.grid(axis='y', linestyle='', alpha=0.7)
+    plt.xticks(rotation=35, ha='right', fontsize=15)
+    plt.yticks(fontsize=15)
     
     # Remove the top and right spines
     ax.spines['top'].set_visible(False)
@@ -37,15 +38,22 @@ def create_bar_plot(csv_file, plot_filename, output_dir):
     
     # Annotate above the bars
     bar_width = 0.85
-    value_label_size = 10
+    value_label_size = 17.5
     for i, p in enumerate(ax.patches):
         x = p.get_x()
         y = p.get_height()
-        ax.annotate(' %.4f' % y, (x + bar_width / (len(df.columns) * 2) + 0.025, y), rotation=90,
+        if y > 10000:
+            annotation = f' {y:.1e}'
+        elif y < 0.01:
+            annotation = f' {y:.4f}'
+        else:
+            annotation = f' {y:.2f}'
+        ax.annotate(annotation, (x + bar_width / (len(df.columns) * 2) + 0.025, y), rotation=90,
                     ha='center', va='bottom', size=value_label_size)
     
     # Move the legend outside the plot
-    ax.legend(loc='upper left', bbox_to_anchor=(1.02, 1), borderaxespad=0)
+    # ax.legend(loc='upper left', bbox_to_anchor=(1.02, 1), borderaxespad=0)
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.35), ncol=3, fontsize=17.5)
     
     # Make title
     # name = csv_file.split("gc_")[1].split(".")[0]
@@ -82,7 +90,7 @@ def main():
                 continue
             
             if os.path.isfile(file_path):
-                create_bar_plot(file_path, filename.replace('.csv', f'_{avx_type}.pdf'), f"{avx_type}/figures")
+                create_bar_plot(file_path, filename.replace('.csv', f'_{avx_type}.png'), f"{avx_type}/figures")
 
 
 if __name__ == "__main__":
