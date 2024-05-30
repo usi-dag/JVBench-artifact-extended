@@ -1,7 +1,14 @@
+from matplotlib import ticker
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
+def custom_formatter(value, pos):
+    if value < 1:
+        return f'{value:.3f}%'
+    else:
+        return f'{value:.0f}%'
+    
 def create_bar_plot(csv_file, output_dir='figures', plot_filename='bar_plot.png'):
     # Read the CSV file into a DataFrame
     df = pd.read_csv(csv_file)
@@ -29,10 +36,13 @@ def create_bar_plot(csv_file, output_dir='figures', plot_filename='bar_plot.png'
     # Customize the plot
     ax.set_xlabel('', fontsize=20)
     if 'ratio' in csv_file:
+        ax.set_ylim(top=10000000)
         ax.set_ylabel('Ratio', fontsize=20)
         # plt.title(f"Vectorization Ratio", fontsize=20, y=1.25)
     else:
+        ax.set_ylim(top=100)
         ax.set_ylabel('Percentage', fontsize=20)
+        ax.yaxis.set_major_formatter(ticker.FuncFormatter(custom_formatter))
         # plt.title(f"Percentage Of Vectorial Instructions", fontsize=20, y=1.25)
         
         
@@ -63,6 +73,7 @@ def create_bar_plot(csv_file, output_dir='figures', plot_filename='bar_plot.png'
     # ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), ncol=3)
     # ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.5), ncol=3, fontsize=17.5)
     ax.get_legend().remove()
+    
     
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)

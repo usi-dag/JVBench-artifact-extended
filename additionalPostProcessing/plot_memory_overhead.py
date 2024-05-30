@@ -57,6 +57,10 @@ def create_bar_plot(csv_file, plot_filename, output_dir):
     # ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.45), ncol=3, fontsize=17.5)
     ax.get_legend().remove()
     
+    ax.set_ylim(top=10000000)
+    plt.axhline(y=1, color='grey', alpha=0.5, zorder=0, linestyle='-')
+    
+    
     # Make title
     # name = csv_file.split("gc_")[1].split(".")[0]
     # name = name.replace("_", ".")

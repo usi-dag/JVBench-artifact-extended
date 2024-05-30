@@ -9,7 +9,7 @@ scripts = [
     "memory_pattern_benchmarks.py",
     "plot_ratios.py",
     "plot_memory_overhead.py",
-    "plot_memory_overhead_pattern.py"
+    "plot_memory_overhead_pattern.py",
     "plot_speedup_factor.py",
 ]
 
