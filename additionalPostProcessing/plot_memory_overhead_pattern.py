@@ -28,7 +28,8 @@ def create_bar_plot_loopbound_indexinrange(csv_file, plot_filename, output_dir):
     
     # Customize the plot
     ax.set_xlabel('', fontsize=20)
-    ax.set_ylabel('Overhead', fontsize=20)
+    # ax.set_ylabel('Overhead', fontsize=20)
+    ax.set_ylabel('Ratio', fontsize=20)
     ax.grid(axis='y', linestyle='', alpha=0.7)
     plt.xticks(rotation=35, ha='right', fontsize=20)
     plt.yticks(fontsize=20)
