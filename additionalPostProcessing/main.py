@@ -10,6 +10,7 @@ scripts = [
     "plot_ratios.py",
     "plot_memory_overhead.py",
     "plot_memory_overhead_pattern.py"
+    "plot_speedup_factor.py",
 ]
 
 # Execute each script in order

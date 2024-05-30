@@ -264,6 +264,7 @@ def merge_csv_files(directory, output_name, avx_type):
     print(f"Merged CSV files saved to: {output_file}")
     
 def main():
+    print("Computing the execution overhead of the profilers vs no profiler...")
     avx_types = ["MAVX", "MAVX2", "MAVX512"]
     for avx_type in avx_types:
         parse_execution_times(avx_type)
