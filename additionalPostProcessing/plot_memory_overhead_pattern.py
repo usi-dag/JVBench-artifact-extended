@@ -21,7 +21,7 @@ def create_bar_plot_loopbound_indexinrange(csv_file, plot_filename, output_dir):
     bar_colors = [plt_colors[0], plt_colors[2], plt_colors[0]]
     
     # Create the bar plot
-    ax = df.plot(kind='bar', color=bar_colors, width=0.85, figsize=(10, 7))
+    ax = df.plot(kind='bar', color=bar_colors, width=0.85, figsize=(10, 6))
     
     # Set y-axis to log scale
     ax.set_yscale('log')
@@ -55,7 +55,8 @@ def create_bar_plot_loopbound_indexinrange(csv_file, plot_filename, output_dir):
     
     # Move the legend outside the plot
     # ax.legend(loc='upper left', bbox_to_anchor=(1.02, 1), borderaxespad=0)
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.35), ncol=3, fontsize=17.5)
+    # ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.35), ncol=3, fontsize=17.5)
+    ax.get_legend().remove()
     
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
@@ -90,7 +91,7 @@ def create_bar_plot_mul_pow(csv_file, plot_filename, output_dir):
     bar_colors = [plt_colors[0], plt_colors[2], plt_colors[0]]
     
     # Create the bar plot
-    ax = df.plot(kind='bar', color=bar_colors, width=0.85, figsize=(10, 7))
+    ax = df.plot(kind='bar', color=bar_colors, width=0.85, figsize=(10, 6))
     
     # Set y-axis to log scale
     ax.set_yscale('log')
@@ -124,7 +125,8 @@ def create_bar_plot_mul_pow(csv_file, plot_filename, output_dir):
     
     # Move the legend outside the plot
     # ax.legend(loc='upper left', bbox_to_anchor=(1.02, 1), borderaxespad=0)
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.5), ncol=3, fontsize=17.5)
+    # ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.5), ncol=3, fontsize=17.5)
+    ax.get_legend().remove()
     
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)

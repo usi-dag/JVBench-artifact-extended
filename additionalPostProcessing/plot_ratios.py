@@ -21,7 +21,7 @@ def create_bar_plot(csv_file, output_dir='figures', plot_filename='bar_plot.png'
     bar_colors = [plt_colors[3], plt_colors[0], plt_colors[2]]
     
     # Create the bar plot
-    ax = df.plot(kind='bar', color=bar_colors, width=0.85, figsize=(10, 7))
+    ax = df.plot(kind='bar', color=bar_colors, width=0.85, figsize=(10, 6))
     
     # Set y-axis to log scale
     ax.set_yscale('log')
@@ -61,7 +61,8 @@ def create_bar_plot(csv_file, output_dir='figures', plot_filename='bar_plot.png'
     
     # Move the legend outside the plot
     # ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), ncol=3)
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.5), ncol=3, fontsize=17.5)
+    # ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.5), ncol=3, fontsize=17.5)
+    ax.get_legend().remove()
     
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)

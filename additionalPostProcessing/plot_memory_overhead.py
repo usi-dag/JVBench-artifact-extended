@@ -27,10 +27,10 @@ def create_bar_plot(csv_file, plot_filename, output_dir):
     
     # Customize the plot
     ax.set_xlabel('', fontsize=20)
-    ax.set_ylabel('Overhead', fontsize=15)
+    ax.set_ylabel('Overhead', fontsize=20)
     ax.grid(axis='y', linestyle='', alpha=0.7)
-    plt.xticks(rotation=35, ha='right', fontsize=15)
-    plt.yticks(fontsize=15)
+    plt.xticks(rotation=35, ha='right', fontsize=20)
+    plt.yticks(fontsize=20)
     
     # Remove the top and right spines
     ax.spines['top'].set_visible(False)
@@ -53,14 +53,15 @@ def create_bar_plot(csv_file, plot_filename, output_dir):
     
     # Move the legend outside the plot
     # ax.legend(loc='upper left', bbox_to_anchor=(1.02, 1), borderaxespad=0)
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.35), ncol=3, fontsize=17.5)
+    # ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.45), ncol=3, fontsize=17.5)
+    ax.get_legend().remove()
     
     # Make title
     # name = csv_file.split("gc_")[1].split(".")[0]
     # name = name.replace("_", ".")
     # name = "gc." + name
     
-    # plt.title(f"{name} overhead w.r.t. serial", fontsize=15, y=1.25)
+    # plt.title(f"{name} overhead w.r.t. serial", fontsize=20, y=1.25)
     
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
