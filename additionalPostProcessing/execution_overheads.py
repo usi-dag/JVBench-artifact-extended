@@ -232,7 +232,12 @@ def merge_csv_files(directory, output_name, avx_type):
                 # Check if the row contains "MEAN" in the "Iteration" column
                 if row[0] == "MEAN":
                     # Format the numbers to have only 4 values after the comma
-                    formatted_row = [f"{float(value):.4f}" for value in row[1:]]
+                    formatted_row = []
+                    for value in row[1:]:
+                        if value == "N/A":
+                            formatted_row.append(value)
+                        else:
+                            formatted_row.append(f"{float(value):.4f}")
                     
                     # Get the benchmark name from the file name (excluding the ".csv" extension)
                     benchmark_name = os.path.splitext(file)[0]
