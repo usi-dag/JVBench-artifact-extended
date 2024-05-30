@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import matplotlib.ticker as ticker
-def create_bar_plot(df, plot_filename, output_dir):
+def create_bar_plot(df, plot_filename, output_dir, avx_type):
     df['autoVec'] = pd.to_numeric(df['autoVec'], errors='coerce')
     df['explicitVec'] = pd.to_numeric(df['explicitVec'], errors='coerce')
     df['fullVec'] = pd.to_numeric(df['fullVec'], errors='coerce')
@@ -14,6 +14,9 @@ def create_bar_plot(df, plot_filename, output_dir):
     df['fully-vectorized'] = df['serial']/df['fullVec']
     
     df.drop(columns=['autoVec', 'explicitVec', 'fullVec', 'serial'], inplace=True)
+    
+    # Save as csv in graphData folder
+    df.to_csv(f'{avx_type}/graphData/speedup_factor.csv', index=False)
     
     # Set the benchmark column as the index
     df.set_index('benchmark', inplace=True)
@@ -112,6 +115,7 @@ def merge_execution_times(avx_type):
     # Reset the index
     merged_df = merged_df.reset_index(drop=True)
     
+    
     return merged_df
 
 def main():
@@ -119,7 +123,7 @@ def main():
     avx_types = ["MAVX", "MAVX2", "MAVX512"]
     for avx_type in avx_types:
         df = merge_execution_times(avx_type)
-        create_bar_plot(df, f"speedup_factor.png", f"{avx_type}/figures")
+        create_bar_plot(df, f"speedup_factor.png", f"{avx_type}/figures", avx_type)
 
 
 if __name__ == "__main__":
