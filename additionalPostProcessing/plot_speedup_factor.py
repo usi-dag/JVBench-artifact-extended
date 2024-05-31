@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import matplotlib.ticker as ticker
+from scipy.stats import gmean
+
 def create_bar_plot(df, plot_filename, output_dir, avx_type):
     df['autoVec'] = pd.to_numeric(df['autoVec'], errors='coerce')
     df['explicitVec'] = pd.to_numeric(df['explicitVec'], errors='coerce')
@@ -13,6 +15,13 @@ def create_bar_plot(df, plot_filename, output_dir, avx_type):
     df['fully-vectorized'] = df['serial']/df['fullVec']
     
     df.drop(columns=['autoVec', 'explicitVec', 'fullVec', 'serial'], inplace=True)
+    
+    # Combine all values from the specified columns
+    all_values = pd.concat([df['auto-vectorized'], df['vector-api'], df['fully-vectorized']])
+
+    # Calculate the geometric mean of all values
+    geometric_mean = gmean(all_values)
+    print(f'{avx_type} Speedup Factor geometric mean is: {geometric_mean}')
     
     # Save as csv in graphData folder
     df.to_csv(f'{avx_type}/graphData/speedup_factor.csv', index=False)

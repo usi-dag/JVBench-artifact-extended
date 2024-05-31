@@ -2,6 +2,7 @@ from matplotlib import ticker
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+from scipy.stats import gmean
 
 def custom_formatter(value, pos):
     if value < 1:
@@ -9,13 +10,19 @@ def custom_formatter(value, pos):
     else:
         return f'{value:.0f}%'
     
-def create_bar_plot(csv_file, output_dir='figures', plot_filename='bar_plot.png'):
+def create_bar_plot(csv_file, output_dir, plot_filename, avx_type):
     # Read the CSV file into a DataFrame
     df = pd.read_csv(csv_file)
     
     df['auto-vectorized'] = df['autoVec']
     df['vector-api'] = df['explicitVec']
     df['fully-vectorized'] = df['fullVec']
+    
+    # Combine all values from the specified columns
+    all_values = pd.concat([df['auto-vectorized'], df['vector-api'], df['fully-vectorized']])
+
+    # Calculate the geometric mean of all values
+    geometric_mean = gmean(all_values)
     
     df.drop(columns=['autoVec', 'explicitVec', 'fullVec'], inplace=True)
     
@@ -38,11 +45,13 @@ def create_bar_plot(csv_file, output_dir='figures', plot_filename='bar_plot.png'
     if 'ratio' in csv_file:
         ax.set_ylim(top=10000000)
         ax.set_ylabel('Ratio', fontsize=20)
+        print(f'{avx_type} Vectorization Ratio geometric mean is: {geometric_mean}')
         # plt.title(f"Vectorization Ratio", fontsize=20, y=1.25)
     else:
         ax.set_ylim(top=100)
         ax.set_ylabel('Percentage', fontsize=20)
         ax.yaxis.set_major_formatter(ticker.FuncFormatter(custom_formatter))
+        # print(f'{avx_type} Percentage geometric mean is: {geometric_mean}')
         # plt.title(f"Percentage Of Vectorial Instructions", fontsize=20, y=1.25)
         
         
@@ -91,7 +100,7 @@ def main():
     ratio_files = ["ratio_of_percentage_vectorial_instructions_to_serial", "percentage_vectorial_instructions"]
     for avx_type in avx_types:
         for ratio_file in ratio_files:
-            create_bar_plot(f'{avx_type}/graphData/{ratio_file}.csv', f"{avx_type}/figures", f'{ratio_file}_{avx_type}.png')
+            create_bar_plot(f'{avx_type}/graphData/{ratio_file}.csv', f"{avx_type}/figures", f'{ratio_file}_{avx_type}.png', avx_type)
 
 
 if __name__ == "__main__":
