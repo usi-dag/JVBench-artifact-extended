@@ -27,12 +27,12 @@ def create_bar_plot_loopbound_indexinrange(csv_file, plot_filename, output_dir):
     ax.set_yscale('log')
     
     # Customize the plot
-    ax.set_xlabel('', fontsize=20)
-    # ax.set_ylabel('Overhead', fontsize=20)
-    ax.set_ylabel('Overhead', fontsize=20)
+    ax.set_xlabel('', fontsize=25)
+    # ax.set_ylabel('Overhead', fontsize=25)
+    ax.set_ylabel('Ratio', fontsize=25)
     ax.grid(axis='y', linestyle='', alpha=0.7)
-    plt.xticks(rotation=35, ha='right', fontsize=20)
-    plt.yticks(fontsize=20)
+    plt.xticks(rotation=35, ha='right', fontsize=25)
+    plt.yticks(fontsize=25)
     
     
     # Remove the top and right spines
@@ -41,7 +41,7 @@ def create_bar_plot_loopbound_indexinrange(csv_file, plot_filename, output_dir):
     
     # Annotate above the bars
     bar_width = 0.85
-    value_label_size = 17.5
+    value_label_size = 20
     for i, p in enumerate(ax.patches):
         x = p.get_x()
         y = p.get_height()
@@ -59,7 +59,7 @@ def create_bar_plot_loopbound_indexinrange(csv_file, plot_filename, output_dir):
     # ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.35), ncol=3, fontsize=17.5)
     ax.get_legend().remove()
     
-    ax.set_ylim(top=10000000)
+    ax.set_ylim(top=10000000000)
     
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
@@ -101,11 +101,11 @@ def create_bar_plot_mul_pow(csv_file, plot_filename, output_dir):
     # ax.set_ybound(0.0001, 1000000000)
     
     # Customize the plot
-    ax.set_xlabel('', fontsize=20)
-    ax.set_ylabel('Overhead', fontsize=20)
+    ax.set_xlabel('', fontsize=25)
+    ax.set_ylabel('Ratio', fontsize=25)
     ax.grid(axis='y', linestyle='', alpha=0.7)
-    plt.xticks(rotation=35, ha='right', fontsize=20)
-    plt.yticks(fontsize=20)
+    plt.xticks(rotation=35, ha='right', fontsize=25)
+    plt.yticks(fontsize=25)
     
     # Remove the top and right spines
     ax.spines['top'].set_visible(False)
@@ -113,7 +113,7 @@ def create_bar_plot_mul_pow(csv_file, plot_filename, output_dir):
     
     # Annotate above the bars
     bar_width = 0.85
-    value_label_size = 17.5
+    value_label_size = 20
     for i, p in enumerate(ax.patches):
         x = p.get_x()
         y = p.get_height()
@@ -131,7 +131,7 @@ def create_bar_plot_mul_pow(csv_file, plot_filename, output_dir):
     # ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.5), ncol=3, fontsize=17.5)
     ax.get_legend().remove()
     
-    ax.set_ylim(top=10000000)
+    ax.set_ylim(top=100000000)
     
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
