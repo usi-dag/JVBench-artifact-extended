@@ -18,14 +18,11 @@ def create_bar_plot(csv_file, output_dir, plot_filename, avx_type):
     df['vector-api'] = df['explicitVec']
     df['fully-vectorized'] = df['fullVec']
     
-    # Combine all values from the specified columns
-    all_values = pd.concat([df['auto-vectorized'], df['vector-api'], df['fully-vectorized']])
-
-    # Calculate the geometric mean of all values
-    geometric_mean = gmean(all_values)
-    
     df.drop(columns=['autoVec', 'explicitVec', 'fullVec'], inplace=True)
-    
+  
+    geometric_mean_autoVec = gmean(df['auto-vectorized'])
+    geometric_mean_explicitVec = gmean(df['vector-api'])
+    geometric_mean_fullVec = gmean(df['fully-vectorized'])
     
     # Set the benchmark column as the index
     df.set_index('benchmark', inplace=True)
@@ -45,7 +42,9 @@ def create_bar_plot(csv_file, output_dir, plot_filename, avx_type):
     if 'ratio' in csv_file:
         ax.set_ylim(top=10000000)
         ax.set_ylabel('Ratio', fontsize=20)
-        print(f'{avx_type} Vectorization Ratio geometric mean is: {geometric_mean}')
+        print(f'{avx_type} Vectorization ratio auto-vectorized geometric mean is: {geometric_mean_autoVec}')
+        print(f'{avx_type} Vectorization ratio vector-api geometric mean is: {geometric_mean_explicitVec}')
+        print(f'{avx_type} Vectorization ratio fully-vectorized geometric mean is: {geometric_mean_fullVec}')
         # plt.title(f"Vectorization Ratio", fontsize=20, y=1.25)
     else:
         ax.set_ylim(top=100)

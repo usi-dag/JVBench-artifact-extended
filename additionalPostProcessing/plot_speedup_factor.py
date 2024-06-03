@@ -16,12 +16,12 @@ def create_bar_plot(df, plot_filename, output_dir, avx_type):
     
     df.drop(columns=['autoVec', 'explicitVec', 'fullVec', 'serial'], inplace=True)
     
-    # Combine all values from the specified columns
-    all_values = pd.concat([df['auto-vectorized'], df['vector-api'], df['fully-vectorized']])
-
-    # Calculate the geometric mean of all values
-    geometric_mean = gmean(all_values)
-    print(f'{avx_type} Speedup Factor geometric mean is: {geometric_mean}')
+    geometric_mean_autoVec = gmean(df['auto-vectorized'])
+    geometric_mean_explicitVec = gmean(df['vector-api'])
+    geometric_mean_fullVec = gmean(df['fully-vectorized'])
+    print(f'{avx_type} Speedup factor auto-vectorized geometric mean is: {geometric_mean_autoVec}')
+    print(f'{avx_type} Speedup factor vector-api geometric mean is: {geometric_mean_explicitVec}')
+    print(f'{avx_type} Speedup factor fully-vectorized geometric mean is: {geometric_mean_fullVec}')
     
     # Save as csv in graphData folder
     df.to_csv(f'{avx_type}/graphData/speedup_factor.csv', index=False)

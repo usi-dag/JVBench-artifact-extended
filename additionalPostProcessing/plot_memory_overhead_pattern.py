@@ -1,8 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+from scipy.stats import gmean
 
-def create_bar_plot_loopbound_indexinrange(csv_file, plot_filename, output_dir):
+def create_bar_plot_loopbound_indexinrange(csv_file, plot_filename, output_dir, avx_type):
     plot_filename = plot_filename.replace(".png", "_loopbound_indexinrange.png")
     # Read the CSV file into a DataFrame
     df = pd.read_csv(csv_file)
@@ -12,6 +13,11 @@ def create_bar_plot_loopbound_indexinrange(csv_file, plot_filename, output_dir):
     
     # Remove all columns except loopBound and indexInRange
     df = df[['benchmark', 'loopBound', 'indexInRange']]
+
+    geometric_mean_loopBound = gmean(df['loopBound'])
+    geometric_mean_indexInRange = gmean(df['indexInRange'])
+    print(f'{avx_type} Memory Overhead Pattern loopBound geometric mean is: {geometric_mean_loopBound}')
+    print(f'{avx_type} Memory Overhead Pattern indexInRange geometric mean is: {geometric_mean_indexInRange}')
     
     # Set the benchmark column as the index
     df.set_index('benchmark', inplace=True)
@@ -162,7 +168,7 @@ def main():
                 continue
             
             if os.path.isfile(file_path):
-                create_bar_plot_loopbound_indexinrange(file_path, filename.replace('.csv', f'{avx_type}.png'), f"{avx_type}/figures")
+                create_bar_plot_loopbound_indexinrange(file_path, filename.replace('.csv', f'{avx_type}.png'), f"{avx_type}/figures", avx_type)
                 create_bar_plot_mul_pow(file_path, filename.replace('.csv', f'_{avx_type}.png'), f"{avx_type}/figures")
 
 

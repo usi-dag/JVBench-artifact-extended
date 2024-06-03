@@ -1,8 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy.stats import gmean
 import os
 
-def create_bar_plot(csv_file, plot_filename, output_dir):
+def create_bar_plot(csv_file, plot_filename, output_dir, avx_type):
     # Read the CSV file into a DataFrame
     df = pd.read_csv(csv_file)
     
@@ -11,6 +12,14 @@ def create_bar_plot(csv_file, plot_filename, output_dir):
     df['fully-vectorized'] = df['fullVec']
     
     df.drop(columns=['autoVec', 'explicitVec', 'fullVec'], inplace=True)
+    
+    geometric_mean_autoVec = gmean(df['auto-vectorized'])
+    geometric_mean_explicitVec = gmean(df['vector-api'])
+    geometric_mean_fullVec = gmean(df['fully-vectorized'])
+    print(f'{avx_type} Memory Overhead auto-vectorized geometric mean is: {geometric_mean_autoVec}')
+    print(f'{avx_type} Memory Overhead vector-api geometric mean is: {geometric_mean_explicitVec}')
+    print(f'{avx_type} Memory Overhead fully-vectorized geometric mean is: {geometric_mean_fullVec}')
+    
     
     # Set the benchmark column as the index
     df.set_index('benchmark', inplace=True)
@@ -96,7 +105,7 @@ def main():
                 continue
             
             if os.path.isfile(file_path):
-                create_bar_plot(file_path, filename.replace('.csv', f'_{avx_type}.png'), f"{avx_type}/figures")
+                create_bar_plot(file_path, filename.replace('.csv', f'_{avx_type}.png'), f"{avx_type}/figures", avx_type)
 
 
 if __name__ == "__main__":
