@@ -67,9 +67,20 @@ def compute_ratios(avx_type):
             'Ratio': [ratio]
         })
         
+        vectorial_instructions_df = pd.DataFrame({
+            'Vectorial Instructions': [total_vectorial_instructions_sum]
+        })
+        
         # Write the result to a new CSV file in the output directory
         output_file_path = os.path.join(output_dir, file)
         result_df.to_csv(output_file_path, index=False)
+        
+        output_dir = f"{avx_type}/sum_vectorial_instructions_all_iterations"
+        
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        output_file_path = os.path.join(output_dir, file)
+        vectorial_instructions_df.to_csv(output_file_path, index=False)
 
     # MERGE THE RESULTS
     print("Ratios computed, merging results...")
@@ -109,7 +120,7 @@ def compute_ratios(avx_type):
                 grouped_dataframes[group_key] = pd.concat([grouped_dataframes[group_key], df], axis=1)
             
             # Delete the file after it has been read
-            os.remove(filepath)
+            # os.remove(filepath)
 
     # Save each group's dataframe to a new CSV file
     for group_key, df in grouped_dataframes.items():
@@ -123,8 +134,8 @@ def compute_ratios(avx_type):
         
     # Delete directory "sum_vectorial_instructions"
     print("Deleting directoris 'ratio_vectorial_total_intructions_raw' and 'sum_vectorial_instructions'...")
-    shutil.rmtree(f"{avx_type}/ratio_vectorial_total_instructions_raw")
-    shutil.rmtree(f"{avx_type}/sum_vectorial_instructions")
+    # shutil.rmtree(f"{avx_type}/ratio_vectorial_total_instructions_raw")
+    # shutil.rmtree(f"{avx_type}/sum_vectorial_instructions")
 
 # Computes by how many times more vectorial instructions are executed compared to serial instructions, for each vectorization type
 def compare_ratios_vs_serial(avx_type):
@@ -206,11 +217,45 @@ def merge_csv_files(input_directory, output_file, avx_type, use_percentage):
     merged_df.to_csv(output_file, index=False)
 
     print(f'Merged CSV saved as {output_file}')
+    
+def merge_vectorial_sums(avx_type):
+    
+    # Create a df with columns 'benchmark' 'autoVec' 'explicitVec' 'fullVec'
+    df = pd.DataFrame(columns=['benchmark', 'autoVec', 'explicitVec', 'fullVec'])
+    
+    input_dir = f"{avx_type}/sum_vectorial_instructions_all_iterations"
+    for filename in os.listdir(input_dir):
+        if filename.endswith(".csv"):
+            file_path = os.path.join(input_dir, filename)
+            benchmark = filename.split('.')[1]
+            column = filename.split('.')[3].split('_')[0]
+            # Check if the row with the benchmark value already exists
+            if benchmark in df['benchmark'].values:
+                # If the row exists, update the specific column with the new value
+                df.loc[df['benchmark'] == benchmark, column] = pd.read_csv(file_path)['Vectorial Instructions'].values[0]
+            else:
+                # If the row doesn't exist, create a new DataFrame with the benchmark and column values
+                new_row = pd.DataFrame({'benchmark': [benchmark], column: [pd.read_csv(file_path)['Vectorial Instructions'].values[0]]})
+                df = pd.concat([df, new_row], ignore_index=True)
+            
+            os.remove(file_path)
+            
+    df.sort_values(by='benchmark', inplace=True)
+    
+    df = df[['benchmark', 'autoVec', 'explicitVec', 'fullVec', 'serial']]
+    
+    # Save the df in the graphData directory
+    output_dir = f"{avx_type}/graphData"
+    os.makedirs(output_dir, exist_ok=True)
+    output_file = os.path.join(output_dir, "sum_vectorial_instructions.csv")
+    df.to_csv(output_file, index=False)
+
 
 def main():
     avx_types = ["MAVX", "MAVX2", "MAVX512"]
     for avx_type in avx_types:
         compute_ratios(avx_type)
+        merge_vectorial_sums(avx_type)
         compare_ratios_vs_serial(avx_type)
         
         input_directories = ["percentage_vectorial_instructions", "ratio_of_percentage_vectorial_instructions_to_serial"]
