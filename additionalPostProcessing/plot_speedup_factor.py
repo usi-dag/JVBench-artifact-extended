@@ -16,6 +16,10 @@ def create_bar_plot(df, plot_filename, output_dir, avx_type):
     
     df.drop(columns=['autoVec', 'explicitVec', 'fullVec', 'serial'], inplace=True)
     
+    if avx_type == "MAVX":
+        # Remove this benchmark since we don't have all the data for the other figures
+        df = df[~df['benchmark'].isin(['particlefilter'])]
+        
     geometric_mean_autoVec = gmean(df['auto-vectorized'])
     geometric_mean_explicitVec = gmean(df['vector-api'])
     geometric_mean_fullVec = gmean(df['fully-vectorized'])
